@@ -7,7 +7,7 @@ import 'package:first_app/Screens/register.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'login',
+    initialRoute: 'HomePage',
     routes: {
       'login': (context)=>const LoginScreen(),
       'register': (context)=>const RegisterScreen(),

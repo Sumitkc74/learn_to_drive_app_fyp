@@ -13,7 +13,7 @@ class RegisterScreen extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _RegisterScreenState createState() => _RegisterScreenState();
-}
+} 
 
 class _RegisterScreenState extends State<RegisterScreen> {
   String _email = '';
@@ -22,8 +22,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _lastName = '';
   String _phoneNumber = '';
   String _confirmPassword = '';
+  bool passwordVisible=false; 
+  bool confirmPasswordVisible=false;
 
-  createAccountPressed() async {
+  onCreateAccountPressed() async {
     if(_firstName.isEmpty || _lastName.isEmpty || _email.isEmpty || _phoneNumber.isEmpty || _password.isEmpty || _confirmPassword.isEmpty){
       errorSnackBar(context, 'Enter all the fields');
     }
@@ -59,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 200,
+        toolbarHeight: 150,
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -122,6 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     TextField(
                       decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.email),
                         hintText: 'Email',
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         filled: true, 
@@ -135,6 +138,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     TextField(
                       decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.phone),
                         hintText: 'Phone number',
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         filled: true, 
@@ -147,14 +151,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 25,),
 
                     TextField(
+                      obscureText: passwordVisible,
                       decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock),
                         hintText: 'Password',
+                        helperText:"Password must contain atleast 8 letters, a uppercase and a special character",
+                        helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         filled: true, 
                         fillColor: Colors.white,
                         suffixIcon: IconButton(
-                          icon: const Icon(Icons.remove_red_eye ),
-                          onPressed: () {},
+                          icon: Icon( passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              passwordVisible = !passwordVisible; 
+                            });
+                          },
                         ),
                       ),
                       onChanged: (value) {
@@ -164,16 +178,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(height: 25,),
 
                     TextField(
+                      obscureText: confirmPasswordVisible,
                       decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock),
                         hintText: 'Confirm Password',
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         filled: true, 
                         fillColor: Colors.white,
                         suffixIcon: IconButton(
-                          icon: const Icon(Icons.remove_red_eye ),
-                          onPressed: () {},
+                          icon: Icon( confirmPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              confirmPasswordVisible = !confirmPasswordVisible; 
+                            });
+                          },
                         ),
                       ),
+
                       onChanged: (value) {
                         _confirmPassword = value;
                       }
@@ -190,8 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                       child:(
                         TextButton(
-                          onPressed: () => createAccountPressed(),
-                          //{Navigator.pushNamed(context, 'HomePage');}, 
+                          onPressed: () => onCreateAccountPressed(),
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(

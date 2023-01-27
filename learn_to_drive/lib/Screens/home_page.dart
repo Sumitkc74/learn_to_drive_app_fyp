@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFF303030),
+        backgroundColor: const Color(0xFFFFDE17),
         shadowColor: const Color(0xff00183F),
         leading: IconButton(
           onPressed: () {Navigator.pushNamed(context, 'login');},

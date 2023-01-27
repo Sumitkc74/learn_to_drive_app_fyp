@@ -17,8 +17,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String _email = '';
   String _password = '';
+  bool passwordVisible = false;
 
-  loginPressed() async {
+  onLoginPressed() async {
     if (_email.isNotEmpty && _password.isNotEmpty) {
       http.Response response = await AuthServices.login(_email, _password);
       Map responseMap = jsonDecode(response.body);
@@ -34,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
         errorSnackBar(context, responseMap.values.first);
       }
     } else {
-      errorSnackBar(context, 'enter all required fields');
+      errorSnackBar(context, 'Enter all the required fields');
     }
   }
 
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SingleChildScrollView(
               child:Container(
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.40, 
+                  top: MediaQuery.of(context).size.height * 0.35, 
                   right: 35, 
                   left: 35
                 ),
@@ -66,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         filled: true, 
                         fillColor: Colors.white,
+                        prefixIcon: const Icon(Icons.account_circle),
                         hintText: 'Username / Email',
                         border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                       ),
@@ -73,18 +75,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         _email = value;
                       },
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(height: 25,),
 
                     TextField(
-                      obscureText: true,
+                      obscureText: passwordVisible,
                       decoration: InputDecoration(
                         filled: true, 
                         fillColor: Colors.white,
+                        prefixIcon: const Icon(Icons.lock),
                         hintText: 'Password',
                         //suffixIcon: Icon(Icons.remove_red_eye, ),
                         suffixIcon: IconButton(
-                          icon: const Icon(Icons.remove_red_eye ),
-                          onPressed: () {},
+                          icon: Icon( passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              passwordVisible = !passwordVisible; 
+                            });
+                          },
                         ),
                         border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                       ),
@@ -120,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child:(
-                        TextButton(onPressed: () =>  loginPressed(),
+                        TextButton(onPressed: () =>  onLoginPressed(),
                         //{ Navigator.pushNamed(context, 'HomePage');}, 
                           child: const Text(
                             'Login',
@@ -132,34 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         )
                         ),
                     ),
-                    
-
-
-                    /*
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Login', 
-                          style: TextStyle(
-                            fontSize: 24, 
-                            fontWeight: FontWeight.bold
-                            ),
-                          ),
-
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.black,
-                          child: IconButton(
-                            color: Colors.white,
-                            onPressed: () {},
-                            icon: Icon(Icons.arrow_forward),
-                            ),
-                        )
-                      ],
-                    ),
-
-                    */
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

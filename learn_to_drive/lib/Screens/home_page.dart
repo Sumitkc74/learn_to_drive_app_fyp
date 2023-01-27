@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         onTap: () {},
                         splashColor: Colors.grey.withOpacity(0.1),
-                        child: Container(
+                        child: SizedBox(
                           height: 120,
                           width: 350,
                           child: Center(

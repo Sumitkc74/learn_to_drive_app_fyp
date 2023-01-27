@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:first_app/Screens/home_page.dart';
-import 'package:first_app/Services/auth_services.dart';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../Services/globals.dart';
+import 'package:first_app/Services/auth_services.dart';
+import 'package:first_app/navigator.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Navigator.push(
               context, 
               MaterialPageRoute(builder:(
-                BuildContext context) => const HomeScreen()));
+                BuildContext context) => const Navigation()));
           } else {
             // ignore: use_build_context_synchronously
             errorSnackBar(context, responseMap.values.first[0]);

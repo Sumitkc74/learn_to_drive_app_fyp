@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text(
+          "Welcome",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
+        toolbarHeight: 80,
         foregroundColor: const Color(0xff00183F),
         backgroundColor: const Color(0xFFFFDE17),
         shadowColor: const Color(0xff00183F),
@@ -17,7 +33,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.logo_dev),
+            icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
@@ -31,6 +47,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  /*
                   const Padding(
                     padding: EdgeInsets.only(top: 20),
                     
@@ -43,11 +60,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  */
 
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
-
+        
                 Row(
                   children: [
                     Material(
@@ -295,8 +313,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-      ],
-    ),
+      ]),
     );
   }
 }

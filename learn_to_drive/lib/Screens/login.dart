@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:first_app/Screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../Services/auth_services.dart';
 import '../Services/globals.dart';
+import 'package:first_app/navigator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => const HomeScreen(),
+              builder: (BuildContext context) => const Navigation(),
             ));
       } else {
         // ignore: use_build_context_synchronously

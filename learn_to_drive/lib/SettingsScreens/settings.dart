@@ -44,305 +44,300 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                const SizedBox(
-                  height: 20,
-                ),
-        
-                Row(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xFF3C3C3C),
-                      child: InkWell(
+                  const SizedBox(height: 20,),
+          
+                  Row(
+                    children: [
+                      Material(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {
-                          Navigator.pushNamed(context, 'notifications');
-                        },
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: SizedBox(
-                          height: 80,
-                          width: 370,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Icon(
-                                  Icons.notifications_outlined,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                                Text(
-                                  "Notifications",
-                                  style: TextStyle(
-                                    color: Colors.white, 
-                                    fontSize: 25
+                        color: const Color(0xFF3C3C3C),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {
+                            Navigator.pushNamed(context, 'notifications');
+                          },
+                          splashColor: Colors.grey.withOpacity(0.1),
+                          child: SizedBox(
+                            height: 80,
+                            width: 370,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 10.0,
+                                children: const [
+                                  Icon(
+                                    Icons.notifications_outlined,
+                                    color: Colors.white,
+                                    size: 30,
                                   ),
-                                ),
-                                Icon(
-                                  Icons.keyboard_arrow_right,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ],
+                                  Text(
+                                    "Notifications",
+                                    style: TextStyle(
+                                      color: Colors.white, 
+                                      fontSize: 25
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20,),
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
 
-                
-                Row(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xFF3C3C3C),
-                      child: InkWell(
+                  
+                  Row(
+                    children: [
+                      Material(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {
-                          Navigator.pushNamed(context, 'changePassword');
-                        },
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: SizedBox(
-                          height: 80,
-                          width: 370,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Icon(
-                                  Icons.lock_outline,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                                Text(
-                                  "Change Password",
-                                  style: TextStyle(color: Colors.white,  fontSize: 25),
-                                ),
-                                Icon(
-                                  Icons.keyboard_arrow_right,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ],
+                        color: const Color(0xFF3C3C3C),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {
+                            Navigator.pushNamed(context, 'changePassword');
+                          },
+                          splashColor: Colors.grey.withOpacity(0.1),
+                          child: SizedBox(
+                            height: 80,
+                            width: 370,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 10.0,
+                                children: const [
+                                  Icon(
+                                    Icons.lock_outline,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                  Text(
+                                    "Change Password",
+                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
 
 
-                Row(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xFF3C3C3C),
-                      child: InkWell(
+                  Row(
+                    children: [
+                      Material(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {
-                          Navigator.pushNamed(context, 'change_language');
-                        },
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: SizedBox(
-                          height: 80,
-                          width: 370,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Icon(
-                                  Icons.language,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                                Text(
-                                  "Change Language",
-                                  style: TextStyle(color: Colors.white,  fontSize: 25),
-                                ),
-                                Icon(
-                                  Icons.keyboard_arrow_right,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ],
+                        color: const Color(0xFF3C3C3C),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {
+                            Navigator.pushNamed(context, 'change_language');
+                          },
+                          splashColor: Colors.grey.withOpacity(0.1),
+                          child: SizedBox(
+                            height: 80,
+                            width: 370,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 10.0,
+                                children: const [
+                                  Icon(
+                                    Icons.language,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                  Text(
+                                    "Change Language",
+                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20,),
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
 
-                Row(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xFF3C3C3C),
-                      child: InkWell(
+                  Row(
+                    children: [
+                      Material(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {
-                          
-                        },
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: SizedBox(
-                          height: 80,
-                          width: 370,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Icon(
-                                  Icons.logout,
-                                  color: Colors.white,
-                                  size: 25,
-                                ),
-                                Text(
-                                  "Logout",
-                                  style: TextStyle(color: Colors.white,  fontSize: 23),
-                                ),
-                              ],
+                        color: const Color(0xFF3C3C3C),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {
+                            
+                          },
+                          splashColor: Colors.grey.withOpacity(0.1),
+                          child: SizedBox(
+                            height: 80,
+                            width: 370,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 10.0,
+                                children: const [
+                                  Icon(
+                                    Icons.logout,
+                                    color: Colors.white,
+                                    size: 25,
+                                  ),
+                                  Text(
+                                    "Logout",
+                                    style: TextStyle(color: Colors.white,  fontSize: 23),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20,),
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
 
-                // Row(
-                //   children: [
-                //     Material(
-                //       borderRadius: BorderRadius.circular(10),
-                //       color: const Color(0xFF3C3C3C),
-                //       child: InkWell(
-                //         borderRadius: BorderRadius.circular(10),
-                //         onTap: () {},
-                //         splashColor: Colors.grey.withOpacity(0.1),
-                //         child: SizedBox(
-                //           height: 120,
-                //           width: 350,
-                //           child: Center(
-                //             child: Wrap(
-                //               alignment: WrapAlignment.center,
-                //               crossAxisAlignment: WrapCrossAlignment.center,
-                //               spacing: 10.0,
-                //               children: const [
-                //                 Text(
-                //                   "Vision Test",
-                //                   style: TextStyle(color: Colors.white,  fontSize: 25),
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: 30,),
+                  // Row(
+                  //   children: [
+                  //     Material(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       color: const Color(0xFF3C3C3C),
+                  //       child: InkWell(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //         onTap: () {},
+                  //         splashColor: Colors.grey.withOpacity(0.1),
+                  //         child: SizedBox(
+                  //           height: 120,
+                  //           width: 350,
+                  //           child: Center(
+                  //             child: Wrap(
+                  //               alignment: WrapAlignment.center,
+                  //               crossAxisAlignment: WrapCrossAlignment.center,
+                  //               spacing: 10.0,
+                  //               children: const [
+                  //                 Text(
+                  //                   "Vision Test",
+                  //                   style: TextStyle(color: Colors.white,  fontSize: 25),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // const SizedBox(height: 30,),
 
-                /*
-                BottomAppBar(child: Text("Hello"),)
-                */
+                  /*
+                  BottomAppBar(child: Text("Hello"),)
+                  */
 
-                
-                /*
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xff00183F),
-                      child: InkWell(
+                  
+                  /*
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Material(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: Container(
-                          height: 104,
-                          width: 163,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Icon(
-                                  Icons.home,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  "Home Move",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ],
+                        color: Color(0xff00183F),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {},
+                          splashColor: Colors.grey.withOpacity(0.1),
+                          child: Container(
+                            height: 104,
+                            width: 163,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 10.0,
+                                children: const [
+                                  Icon(
+                                    Icons.home,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    "Home Move",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
 
 
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xff00183F),
-                      child: InkWell(
+                      Material(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: Container(
-                          height: 104,
-                          width: 163,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Icon(
-                                  Icons.home,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  "Office Move",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ],
+                        color: Color(0xff00183F),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(10),
+                          onTap: () {},
+                          splashColor: Colors.grey.withOpacity(0.1),
+                          child: Container(
+                            height: 104,
+                            width: 163,
+                            child: Center(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 10.0,
+                                children: const [
+                                  Icon(
+                                    Icons.home,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    "Office Move",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
 
-                SizedBox(
-                  height: 20,
-                ),
-                */
-
-              ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  */
+                ],
+              ),
             ),
           ),
-        ),
-      ]),
+        ]
+      ),
     );
   }
 }

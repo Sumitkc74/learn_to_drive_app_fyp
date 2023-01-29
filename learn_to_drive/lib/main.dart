@@ -39,6 +39,6 @@ void main() {
       'notifications':(context) => const Notifications(),
       'changePassword':(context) => const ChangePassword(),
       'change_language':(context) => const ChangeLanguageScreen(),
-      },
+    },
   ));
 }

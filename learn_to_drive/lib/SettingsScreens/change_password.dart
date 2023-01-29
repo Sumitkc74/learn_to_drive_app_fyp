@@ -63,119 +63,121 @@ class _ChangePasswordState extends State<ChangePassword> {
       body: Stack(
         children: [
           SingleChildScrollView(
-              child:Container(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1, 
-                  right: 35, 
-                  left: 35
-                ),
+            child:Container(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.1, 
+                right: 35, 
+                left: 35
+              ),
 
-                child: Column(
-                  children: [
-                    TextField(
-                      obscureText: !currentPasswordVisible,
-                      decoration: InputDecoration(
-                        filled: true, 
-                        fillColor: Colors.white,
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'Current Password',
-                        suffixIcon: IconButton(
-                          icon: Icon( !currentPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              currentPasswordVisible = !currentPasswordVisible; 
-                            });
-                          },
+              child: Column(
+                children: [
+                  TextField(
+                    obscureText: !currentPasswordVisible,
+                    decoration: InputDecoration(
+                      filled: true, 
+                      fillColor: Colors.white,
+                      prefixIcon: const Icon(Icons.lock),
+                      hintText: 'Current Password',
+                      suffixIcon: IconButton(
+                        icon: Icon( !currentPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off
                         ),
-                        border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
+                        onPressed: () {
+                          setState(() { 
+                            currentPasswordVisible = !currentPasswordVisible; 
+                          });
+                        },
                       ),
-                      onChanged: (value) {
-                        _currentPassword = value;
-                      },
+                      border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                     ),
-                    const SizedBox(height: 25,),
+                    onChanged: (value) {
+                      _currentPassword = value;
+                    },
+                  ),
+                  const SizedBox(height: 25,),
 
-                    TextField(
-                      obscureText: !newPasswordVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'New Password',
-                        helperText:"New password must be diferent from current password",
-                        helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        filled: true, 
-                        fillColor: Colors.white,
-                        suffixIcon: IconButton(
-                          icon: Icon( !newPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              newPasswordVisible = !newPasswordVisible; 
-                            });
-                          },
+                  TextField(
+                    obscureText: !newPasswordVisible,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      hintText: 'New Password',
+                      helperText:"New password must be diferent from current password",
+                      helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      filled: true, 
+                      fillColor: Colors.white,
+                      suffixIcon: IconButton(
+                        icon: Icon( !newPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            newPasswordVisible = !newPasswordVisible; 
+                          });
+                        },
+                      ),
+                    ),
+                    onChanged: (value) {
+                      _newPassword = value;
+                    }
+                  ),
+                  const SizedBox(height: 25,),
+
+                  TextField(
+                    obscureText: !confirmPasswordVisible,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      hintText: 'Confirm Password',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      filled: true, 
+                      fillColor: Colors.white,
+                      suffixIcon: IconButton(                          
+                        icon: Icon( 
+                          !confirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off
                         ),
+                        onPressed: () {
+                          setState(() {
+                            confirmPasswordVisible = !confirmPasswordVisible; 
+                          });
+                        },
                       ),
-                      onChanged: (value) {
-                        _newPassword = value;
-                      }
                     ),
-                    const SizedBox(height: 25,),
-
-                    TextField(
-                      obscureText: !confirmPasswordVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'Confirm Password',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        filled: true, 
-                        fillColor: Colors.white,
-                        suffixIcon: IconButton(
-                          icon: Icon( !confirmPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              confirmPasswordVisible = !confirmPasswordVisible; 
-                            });
-                          },
-                        ),
-                      ),
-
-                      onChanged: (value) {
-                        _confirmNewPassword = value;
-                      }
-                    ),
-                    const SizedBox(height: 30,),
-                    
-                    Container(
-                      margin: const EdgeInsets.all(10),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
+                    onChanged: (value) {
+                      _confirmNewPassword = value;
+                    }
+                  ),
+                  const SizedBox(height: 30,),
+                  
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
                         color: const Color(0xFFFFDE17),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child:(
-                        TextButton(onPressed: () =>  onChangePasswordPressed(),
-                        //{ Navigator.pushNamed(context, 'HomePage');}, 
-                          child: const Text(
-                            'Change Password',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            )
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+
+                    child:(
+                      TextButton(onPressed: () =>  onChangePasswordPressed(),
+                        child: const Text(
+                          'Change Password',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
                           )
                         )
-                      ),
+                      )
                     ),
-                  ],
-                )
-              ),
+                  ),
+                ],
+              )
             ),
-          ], 
-        ),
-      );
-    }
+          ),
+        ], 
+      ),
+    );
   }
+}

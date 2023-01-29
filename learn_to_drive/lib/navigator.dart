@@ -41,7 +41,8 @@ class _NavigationState extends State<Navigation> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Tutorials'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),      
-      ]),
+        ]
+      ),
     );
   }
 }

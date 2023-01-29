@@ -1,41 +1,38 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _HomeScreenState createState() => _HomeScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-
+class _SettingsScreenState extends State<SettingsScreen> {
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.account_circle, size: 80,),
+        ),
+        // actions: const [
+        //   Icon(Icons.account_circle, size: 80,),
+        // ],
         title: const Text(
-          "Welcome",
+          "      Welcome\nEmail",
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: Colors.black,
+            color: Colors.black, 
           ),
         ),
-        toolbarHeight: 80,
+        toolbarHeight: 150,
         foregroundColor: const Color(0xff00183F),
         backgroundColor: const Color(0xFFFFDE17),
         shadowColor: const Color(0xff00183F),
-        leading: IconButton(
-          onPressed: () {Navigator.pushNamed(context, 'login');},
-          icon: const Icon(Icons.arrow_back),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.account_circle),
-          ),
-        ],
       ),
       
       backgroundColor: const Color(0xFF303030),
@@ -47,23 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /*
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    
-                    child: Text(
-                      "Welcome, \nMr. Sumit",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  */
 
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
         
                 Row(
@@ -73,21 +56,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: const Color(0xFF3C3C3C),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, 'notifications');
+                        },
                         splashColor: Colors.grey.withOpacity(0.1),
                         child: SizedBox(
-                          height: 120,
-                          width: 350,
+                          height: 80,
+                          width: 370,
                           child: Center(
                             child: Wrap(
                               alignment: WrapAlignment.center,
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 10.0,
                               children: const [
+                                Icon(
+                                  Icons.notifications_outlined,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                                 Text(
-                                  "Traffic Signs",
-                                  style: TextStyle(color: Colors.white, fontSize: 25),
-                                ),                               
+                                  "Notifications",
+                                  style: TextStyle(
+                                    color: Colors.white, 
+                                    fontSize: 25
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                               ],
                             ),
                           ),
@@ -96,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 20,),
 
                 
                 Row(
@@ -106,20 +104,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: const Color(0xFF3C3C3C),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, 'changePassword');
+                        },
                         splashColor: Colors.grey.withOpacity(0.1),
                         child: SizedBox(
-                          height: 120,
-                          width: 350,
+                          height: 80,
+                          width: 370,
                           child: Center(
                             child: Wrap(
                               alignment: WrapAlignment.center,
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 10.0,
                               children: const [
+                                Icon(
+                                  Icons.lock_outline,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                                 Text(
-                                  "Reading Materials",
+                                  "Change Password",
                                   style: TextStyle(color: Colors.white,  fontSize: 25),
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: Colors.white,
+                                  size: 30,
                                 ),
                               ],
                             ),
@@ -130,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
 
 
@@ -141,20 +151,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: const Color(0xFF3C3C3C),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, 'change_language');
+                        },
                         splashColor: Colors.grey.withOpacity(0.1),
                         child: SizedBox(
-                          height: 120,
-                          width: 350,
+                          height: 80,
+                          width: 370,
                           child: Center(
                             child: Wrap(
                               alignment: WrapAlignment.center,
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 10.0,
                               children: const [
+                                Icon(
+                                  Icons.language,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                                 Text(
-                                  "Written Mock Exam",
+                                  "Change Language",
                                   style: TextStyle(color: Colors.white,  fontSize: 25),
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  color: Colors.white,
+                                  size: 30,
                                 ),
                               ],
                             ),
@@ -164,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 20,),
 
                 Row(
                   children: [
@@ -173,20 +195,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: const Color(0xFF3C3C3C),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
+                        onTap: () {
+                          
+                        },
                         splashColor: Colors.grey.withOpacity(0.1),
                         child: SizedBox(
-                          height: 120,
-                          width: 350,
+                          height: 80,
+                          width: 370,
                           child: Center(
                             child: Wrap(
                               alignment: WrapAlignment.center,
                               crossAxisAlignment: WrapCrossAlignment.center,
                               spacing: 10.0,
                               children: const [
+                                Icon(
+                                  Icons.logout,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
                                 Text(
-                                  "Exam Trial and Information",
-                                  style: TextStyle(color: Colors.white,  fontSize: 25),
+                                  "Logout",
+                                  style: TextStyle(color: Colors.white,  fontSize: 23),
                                 ),
                               ],
                             ),
@@ -196,39 +225,39 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 20,),
 
-                Row(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xFF3C3C3C),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
-                        splashColor: Colors.grey.withOpacity(0.1),
-                        child: SizedBox(
-                          height: 120,
-                          width: 350,
-                          child: Center(
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: 10.0,
-                              children: const [
-                                Text(
-                                  "Vision Test",
-                                  style: TextStyle(color: Colors.white,  fontSize: 25),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 30,),
+                // Row(
+                //   children: [
+                //     Material(
+                //       borderRadius: BorderRadius.circular(10),
+                //       color: const Color(0xFF3C3C3C),
+                //       child: InkWell(
+                //         borderRadius: BorderRadius.circular(10),
+                //         onTap: () {},
+                //         splashColor: Colors.grey.withOpacity(0.1),
+                //         child: SizedBox(
+                //           height: 120,
+                //           width: 350,
+                //           child: Center(
+                //             child: Wrap(
+                //               alignment: WrapAlignment.center,
+                //               crossAxisAlignment: WrapCrossAlignment.center,
+                //               spacing: 10.0,
+                //               children: const [
+                //                 Text(
+                //                   "Vision Test",
+                //                   style: TextStyle(color: Colors.white,  fontSize: 25),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(height: 30,),
 
                 /*
                 BottomAppBar(child: Text("Hello"),)

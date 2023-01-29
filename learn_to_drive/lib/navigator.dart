@@ -1,8 +1,8 @@
-import 'package:first_app/Screens/settings.dart';
+import 'package:first_app/SettingsScreens/settings.dart';
 import 'package:first_app/Screens/tutorials.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/home_page.dart';
+import 'package:first_app/HomeScreens/home_page.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});

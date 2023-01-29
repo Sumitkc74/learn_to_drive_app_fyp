@@ -6,7 +6,6 @@ import '../Services/globals.dart';
 import 'package:first_app/Services/auth_services.dart';
 import 'package:first_app/navigator.dart';
 
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
@@ -129,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         filled: true, 
                         fillColor: Colors.white,
-                      ),                      
+                      ),
                       onChanged: (value) {
                         _email = value;
                       }

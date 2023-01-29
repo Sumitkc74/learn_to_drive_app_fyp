@@ -36,12 +36,12 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                   ),
                   const SizedBox(height: 25,),
 
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       filled: true, 
                       fillColor: Colors.white,
                       hintText: 'Enter verification code',
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+                      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                     ),
                   ),
                   const SizedBox( height: 20,),

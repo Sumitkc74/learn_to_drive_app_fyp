@@ -24,7 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool passwordVisible=false; 
   bool confirmPasswordVisible=false;
 
-  onCreateAccountPressed() async {
+  void onCreateAccountPressed() async {
     if(_firstName.isEmpty || _lastName.isEmpty || _email.isEmpty || _phoneNumber.isEmpty || _password.isEmpty || _confirmPassword.isEmpty){
       errorSnackBar(context, 'Enter all the fields');
     }
@@ -33,9 +33,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(_email);        
       if (emailValid) {
+        setEmail(email);
         if(_password == _confirmPassword){
           String name = "$_firstName $_lastName";
-          http.Response response = await AuthServices.register(name, _email, _phoneNumber, _password);
+          final http.Response response = await AuthServices.register(name, _email, _phoneNumber, _password);
           Map<String, dynamic> responseMap = jsonDecode(response.body);
           if (response.statusCode == 200) {
             // ignore: use_build_context_synchronously
@@ -43,6 +44,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               context, 
               MaterialPageRoute(builder:(
                 BuildContext context) => const Navigation()));
+            // ignore: use_build_context_synchronously
+            errorSnackBar(context, 'User register successfully');
           } else {
             // ignore: use_build_context_synchronously
             errorSnackBar(context, responseMap.values.first[0]);

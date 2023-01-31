@@ -22,7 +22,7 @@ import 'package:first_app/SettingsScreens/change_password.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: 'navigator',
+    initialRoute: 'login',
     routes: {
       'login': (context)=>const LoginScreen(),
       'register': (context)=>const RegisterScreen(),

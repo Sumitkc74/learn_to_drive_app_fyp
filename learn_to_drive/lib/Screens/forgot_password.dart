@@ -1,4 +1,11 @@
+import 'dart:convert';
+
+import 'package:first_app/Services/globals.dart';
+import 'package:first_app/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../Services/auth_services.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -8,6 +15,35 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPasswordScreen> {
+  String code = '';
+  String newPassword = '';
+
+  onConfirmButtonPressed() async {
+    if(code.isNotEmpty && newPassword.isNotEmpty){
+      
+      http.Response response = await AuthServices.resetPassword(code, newPassword);
+      Map responseMap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const Navigation(),
+            ));
+            // ignore: use_build_context_synchronously
+            errorSnackBar(context, responseMap.values.first);
+            
+      } else {
+        // ignore: use_build_context_synchronously
+        errorSnackBar(context, responseMap.values.first);
+      }
+    } else {
+      errorSnackBar(context, 'Enter all the required fields');
+    }
+
+    }
+    
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +73,29 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                 ),
                 const SizedBox(height: 25,),
 
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  decoration: const InputDecoration(
                     filled: true, 
                     fillColor: Colors.white,
                     hintText: 'Enter verification code',
                     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                   ),
+                  onChanged: (value) {
+                    code = value;
+                  },
+                ),
+                const SizedBox( height: 20,),
+
+                TextField(
+                  decoration: const InputDecoration(
+                    filled: true, 
+                    fillColor: Colors.white,
+                    hintText: 'Enter new password',
+                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
+                  ),
+                  onChanged: (value) {
+                    newPassword = value;
+                  },
                 ),
                 const SizedBox( height: 20,),
 
@@ -57,7 +109,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
 
                   child:(
                     TextButton(
-                      onPressed: () {}, 
+                      onPressed: () => onConfirmButtonPressed(), 
                       child: const Text(
                         'Confirm',
                         style: TextStyle(
@@ -68,6 +120,23 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                     )
                   ),
                 ),
+
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () => onConfirmButtonPressed(), 
+                        child: const Text(
+                          'Send another code',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 18,
+                            color: Color(0xFFFFDE17)
+                          )
+                        )
+                      )
+                    ],
+                  )
               ],
             )
           ),     

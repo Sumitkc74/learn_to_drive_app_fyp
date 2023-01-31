@@ -31,6 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
             MaterialPageRoute(
               builder: (BuildContext context) => const Navigation(),
             ));
+            // ignore: use_build_context_synchronously
+            errorSnackBar(context, 'User Login Successfully');
+            
       } else {
         // ignore: use_build_context_synchronously
         errorSnackBar(context, responseMap.values.first);
@@ -74,12 +77,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onChanged: (value) {
                       _email = value;
+                      setEmail(_email);
                     },
                   ),
                   const SizedBox(height: 25,),
 
                   TextField(
-                    obscureText: passwordVisible,
+                    obscureText: !passwordVisible,
                     decoration: InputDecoration(
                       filled: true, 
                       fillColor: Colors.white,
@@ -87,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'Password',
                       //suffixIcon: Icon(Icons.remove_red_eye, ),
                       suffixIcon: IconButton(
-                          icon: Icon( passwordVisible
+                          icon: Icon( !passwordVisible
                           ? Icons.visibility
                           : Icons.visibility_off),
                         onPressed: () {
@@ -107,7 +111,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(onPressed: () {
-                          Navigator.pushNamed(context, 'forgotPassword');
+                        if(_email.isNotEmpty){
+                          Navigator.pushNamed(context, 'forgot_password');
+                        }
+                        else{
+                          errorSnackBar(context,'Enter your email address first');
+                        }
                       }, 
                         child: const Text(
                           'Forgot Password?',

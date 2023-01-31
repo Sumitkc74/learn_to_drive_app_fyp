@@ -12,3 +12,32 @@ errorSnackBar(BuildContext context, String text) {
     )
   );
 }
+
+String email = '';
+// String password = '';
+// String phoneNumber = '';
+
+getEmail(){
+  return email.toString();
+}
+
+// getPassword(){
+//   return password;
+// }
+
+// getPhoneNumber(){
+//   return phoneNumber;
+// }
+
+setEmail(String enteredEmail){
+  email = enteredEmail;
+}
+
+// setPassword(String enteredPassword){
+//   email = enteredPassword;
+// }
+
+
+// setPhoneNumber(String phoneNumber){
+//   return phoneNumber;
+// }

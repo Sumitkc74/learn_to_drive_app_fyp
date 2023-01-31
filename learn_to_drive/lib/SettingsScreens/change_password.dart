@@ -1,5 +1,10 @@
-//import 'package:first_app/Services/globals.dart';
+import 'dart:convert';
+
+import 'package:first_app/Services/globals.dart';
+import 'package:first_app/Services/auth_services.dart';
+import 'package:first_app/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -15,30 +20,37 @@ class _ChangePasswordState extends State<ChangePassword> {
   bool currentPasswordVisible=false;
   bool newPasswordVisible=false;
   bool confirmPasswordVisible=false;
-  
+
   onChangePasswordPressed() async {
-    // if (_currentPassword.isNotEmpty && _newPassword.isNotEmpty && _confirmNewPassword.isNotEmpty) {
-    //   if(_newPassword == _currentPassword){
-    //   http.Response response = await AuthServices.login(_email, _password);
-    //   Map responseMap = jsonDecode(response.body);
-    //   if (response.statusCode == 200) {
-    //     // ignore: use_build_context_synchronously
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (BuildContext context) => const Navigation(),
-    //       )
-    //     );
-    //   }else{
-    //     errorSnackBar(context, 'New Password is same as the current password');
-    //   }
-    //   } else {
-    //     // ignore: use_build_context_synchronously
-    //     errorSnackBar(context, responseMap.values.first);
-    //   }
-    // } else {
-    //   errorSnackBar(context, 'Enter all the required fields');
-    // }
+    if (_currentPassword.isNotEmpty && _newPassword.isNotEmpty && _confirmNewPassword.isNotEmpty) {
+      if(_newPassword == _confirmNewPassword){
+        if(_newPassword != _currentPassword){
+          http.Response response = await AuthServices.changePassword(_currentPassword, _newPassword);
+          Map responseMap = jsonDecode(response.body);
+          if (response.statusCode == 200) {
+            // ignore: use_build_context_synchronously
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const Navigation(),
+              )
+            );
+            // ignore: use_build_context_synchronously
+            errorSnackBar(context, responseMap.values.first);
+          }else{
+            // ignore: use_build_context_synchronously
+            errorSnackBar(context, responseMap.values.first);
+          }
+        }else{
+          errorSnackBar(context, 'Current password and new password cannot be same');
+        }
+      } else {
+        // ignore: use_build_context_synchronously
+        errorSnackBar(context, 'Please enter same password in confirm password');
+      }
+    } else {
+      errorSnackBar(context, 'Enter all the required fields');
+    }
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:first_app/Services/globals.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -8,6 +9,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  String email = getEmail();
  
   @override
   Widget build(BuildContext context) {
@@ -20,10 +22,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         // actions: const [
         //   Icon(Icons.account_circle, size: 80,),
         // ],
-        title: const Text(
-          "      Welcome\nEmail",
+        title: Text(
+          "Welcome\n    $email",
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
             color: Colors.black, 

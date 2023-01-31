@@ -25,11 +25,45 @@ class AuthServices {
 
   static Future<http.Response> login(String email, String password) async {
     Map data = {
-      "email": email,
-      "password": password,
+      "email": email.trim(),
+      "password": password.trim(),
     };
     var body = json.encode(data);
     var url = Uri.parse('${baseURL}auth/login');
+    http.Response response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+    //print(response.body);
+    return response;
+  }
+  
+  static Future<http.Response> changePassword(String currentPassword, String newPassword) async {
+    Map data = {
+      "email": getEmail(),
+      "password": currentPassword.trim(),
+      "new_password": newPassword.trim(),
+    };
+    var body = json.encode(data);
+    var url = Uri.parse('${baseURL}auth/changePassword');
+    http.Response response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+    //print(response.body);
+    return response;
+  }
+
+    static Future<http.Response> resetPassword(String code, String newPassword) async {
+    Map data = {
+      "email": getEmail(),
+      "code": int.tryParse(code.trim()),
+      "new_password": newPassword,
+    };
+    var body = json.encode(data);
+    var url = Uri.parse('${baseURL}auth/resetPassword');
     http.Response response = await http.post(
       url,
       headers: headers,

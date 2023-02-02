@@ -71,8 +71,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       filled: true, 
                       fillColor: Colors.white,
-                      prefixIcon: const Icon(Icons.account_circle),
-                      hintText: 'Username / Email',
+                      prefixIcon: const Icon(Icons.email),
+                      hintText: 'Email',
                       border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                     ),
                     onChanged: (value) {
@@ -89,7 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       fillColor: Colors.white,
                       prefixIcon: const Icon(Icons.lock),
                       hintText: 'Password',
-                      //suffixIcon: Icon(Icons.remove_red_eye, ),
                       suffixIcon: IconButton(
                           icon: Icon( !passwordVisible
                           ? Icons.visibility

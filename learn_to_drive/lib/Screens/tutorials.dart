@@ -13,6 +13,10 @@ class _TutorialsScreenState extends State<TutorialsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.circle, color:Color(0xFFFFDE17),),
+        ),
         title: const Text(
           'Tutorials',
           style: TextStyle(

@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import 'package:first_app/Screens/login.dart';
+import 'package:first_app/Services/auth_services.dart';
 import 'package:first_app/Services/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -9,7 +14,26 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  String email = getEmail();
+  
+  onLogoutPressed() async {
+    http.Response response = await AuthServices.logout();
+    Map responseMap = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const LoginScreen(),
+        ));
+      // ignore: use_build_context_synchronously
+      errorSnackBar(context, responseMap.values.first);          
+      } 
+      else {
+        // ignore: use_build_context_synchronously
+        errorSnackBar(context, responseMap.values.first);
+      }
+    }
  
   @override
   Widget build(BuildContext context) {
@@ -192,9 +216,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         color: const Color(0xFF3C3C3C),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            
-                          },
+                          onTap: () => onLogoutPressed(),
+                          // {
+                          //   Navigator.pushNamed(context, 'login');
+                          // },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
                             height: 80,
@@ -223,117 +248,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ],
                   ),
                   const SizedBox(height: 20,),
-
-                  // Row(
-                  //   children: [
-                  //     Material(
-                  //       borderRadius: BorderRadius.circular(10),
-                  //       color: const Color(0xFF3C3C3C),
-                  //       child: InkWell(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //         onTap: () {},
-                  //         splashColor: Colors.grey.withOpacity(0.1),
-                  //         child: SizedBox(
-                  //           height: 120,
-                  //           width: 350,
-                  //           child: Center(
-                  //             child: Wrap(
-                  //               alignment: WrapAlignment.center,
-                  //               crossAxisAlignment: WrapCrossAlignment.center,
-                  //               spacing: 10.0,
-                  //               children: const [
-                  //                 Text(
-                  //                   "Vision Test",
-                  //                   style: TextStyle(color: Colors.white,  fontSize: 25),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(height: 30,),
-
-                  /*
-                  BottomAppBar(child: Text("Hello"),)
-                  */
-
-                  
-                  /*
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff00183F),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: Container(
-                            height: 104,
-                            width: 163,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: const [
-                                  Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Home Move",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff00183F),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: Container(
-                            height: 104,
-                            width: 163,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: const [
-                                  Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Office Move",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-                  */
                 ],
               ),
             ),

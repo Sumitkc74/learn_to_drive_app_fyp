@@ -77,161 +77,161 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
 
       backgroundColor: const Color(0xFF303030),
-        body: Stack(
-          children: [
-                        
-            SingleChildScrollView(
+      body: Stack(
+        children: [
+          SingleChildScrollView(
               child:Container(
-                padding: const EdgeInsets.only(
-                  right: 35, 
-                  left: 35
-                ),
+              padding: const EdgeInsets.only(
+                right: 35, 
+                left: 35
+              ),
 
-                child: Column(
-                  children: [            
-                    Row(
-                      children: [
-                        Flexible(child:
-                          TextField(
-                            decoration: InputDecoration(
-                            hintText: 'First Name',
+              child: Column(
+                children: [            
+                  Row(
+                    children: [
+                      Flexible(child:
+                        TextField(
+                          decoration: InputDecoration(
+                          hintText: 'First Name',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          filled: true, 
+                          fillColor: Colors.white,
+                          ),
+                          onChanged: (value) {
+                            _firstName = value;
+                          }
+                        ),
+                      ),
+                      const SizedBox(width:10),
+                      
+                        
+                      Flexible(child: 
+                        TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Last Name',
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                             filled: true, 
                             fillColor: Colors.white,
-                            ),
-                            onChanged: (value) {
-                              _firstName = value;
-                            }
                           ),
-                        ),
-                        const SizedBox(width:10),
-                        
-                        
-                        Flexible(child: 
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Last Name',
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                              filled: true, 
-                              fillColor: Colors.white,
-                            ),
-                            onChanged: (value) {
+                          onChanged: (value) {
                               _lastName = value;
-                            }
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox( height: 25,),
-
-                    TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.email),
-                        hintText: 'Email',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        filled: true, 
-                        fillColor: Colors.white,
-                      ),
-                      onChanged: (value) {
-                        _email = value;
-                      }
-                    ),
-                    const SizedBox(height: 25,),  
-
-                    TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.phone),
-                        hintText: 'Phone number',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        filled: true, 
-                        fillColor: Colors.white,
-                      ),
-                      onChanged: (value) {
-                        _phoneNumber = value;
-                      }
-                    ),
-                    const SizedBox(height: 25,),
-
-                    TextField(
-                      obscureText: passwordVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'Password',
-                        helperText:"Password must contain atleast 8 letters, a uppercase and a special character",
-                        helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        filled: true, 
-                        fillColor: Colors.white,
-                        suffixIcon: IconButton(
-                          icon: Icon( passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              passwordVisible = !passwordVisible; 
-                            });
-                          },
+                          }
                         ),
                       ),
-                      onChanged: (value) {
-                        _password = value;
-                      }
+                    ],
+                  ),
+                  const SizedBox( height: 25,),
+
+                  TextField(
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.email),
+                      hintText: 'Email',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      filled: true, 
+                      fillColor: Colors.white,
                     ),
-                    const SizedBox(height: 25,),
+                    onChanged: (value) {
+                      _email = value;
+                    }
+                  ),
+                  const SizedBox(height: 25,),  
 
-                    TextField(
-                      obscureText: confirmPasswordVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        hintText: 'Confirm Password',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                        filled: true, 
-                        fillColor: Colors.white,
-                        suffixIcon: IconButton(
-                          icon: Icon( confirmPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              confirmPasswordVisible = !confirmPasswordVisible; 
-                            });
-                          },
-                        ),
-                      ),
-
-                      onChanged: (value) {
-                        _confirmPassword = value;
-                      }
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.phone),
+                      hintText: 'Phone number',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      filled: true, 
+                      fillColor: Colors.white,
                     ),
-                    const SizedBox(height: 30,),
+                    onChanged: (value) {
+                      _phoneNumber = value;
+                    }
+                  ),
+                  const SizedBox(height: 25,),
 
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFDE17),
-                        borderRadius: BorderRadius.circular(10),
+                  TextField(
+                    obscureText: passwordVisible,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      hintText: 'Password',
+                      helperText:"Password must contain atleast 8 letters, a uppercase and a special character",
+                      helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      filled: true, 
+                      fillColor: Colors.white,
+                      suffixIcon: IconButton(
+                        icon: Icon( passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible; 
+                          });
+                        },
                       ),
+                    ),
+                    onChanged: (value) {
+                      _password = value;
+                    }
+                  ),
+                  const SizedBox(height: 25,),
 
-                      child:(
-                        TextButton(
-                          onPressed: () => onCreateAccountPressed(),
-                          child: const Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            )
+                  TextField(
+                    obscureText: confirmPasswordVisible,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      hintText: 'Confirm Password',
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      filled: true, 
+                      fillColor: Colors.white,
+                      suffixIcon: IconButton(
+                        icon: Icon( confirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            confirmPasswordVisible = !confirmPasswordVisible; 
+                          });
+                        },
+                      ),
+                    ),
+
+                    onChanged: (value) {
+                      _confirmPassword = value;
+                    }
+                  ),
+                  const SizedBox(height: 30,),
+
+                  Container(
+                    margin: const EdgeInsets.all(5),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFDE17),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+
+                    child:(
+                      TextButton(
+                        onPressed: () => onCreateAccountPressed(),
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
                           )
                         )
-                      ),
+                      )
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        )
+          ),
+        ],
+      )
     ); 
   }
 }

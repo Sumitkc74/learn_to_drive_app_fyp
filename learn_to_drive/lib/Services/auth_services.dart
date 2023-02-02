@@ -25,8 +25,8 @@ class AuthServices {
 
   static Future<http.Response> login(String email, String password) async {
     Map data = {
-      "email": email.trim(),
-      "password": password.trim(),
+      "email": email,
+      "password": password,
     };
     var body = json.encode(data);
     var url = Uri.parse('${baseURL}auth/login');
@@ -62,6 +62,21 @@ class AuthServices {
     };
     var body = json.encode(data);
     var url = Uri.parse('${baseURL}auth/resetPassword');
+    http.Response response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+    //print(response.body);
+    return response;
+  }
+
+  static Future<http.Response> logout() async {
+    Map data = {
+
+    };
+    var body = json.encode(data);
+    var url = Uri.parse('${baseURL}auth/logout');
     http.Response response = await http.post(
       url,
       headers: headers,

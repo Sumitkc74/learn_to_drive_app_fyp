@@ -41,3 +41,10 @@ setEmail(String enteredEmail){
 // setPhoneNumber(String phoneNumber){
 //   return phoneNumber;
 // }
+
+// bool state = true;
+
+// bool loggedIn(){
+//   state? true:false;
+//   return state;
+// }

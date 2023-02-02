@@ -37,7 +37,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
         errorSnackBar(context, responseMap.values.first);
       }
     } else {
-      errorSnackBar(context, 'Enter all the required fields');
+      errorSnackBar(context, 'Enter your email address');
     }
 
     }
@@ -87,10 +87,11 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
 
                 TextField(
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.email),
                     filled: true, 
                     fillColor: Colors.white,
                     hintText: 'Enter email',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
                   onChanged: (value) {
                     email = value;
@@ -99,7 +100,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                 const SizedBox( height: 20,),
 
                 Container(
-                  margin: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(10),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFDE17),

@@ -56,11 +56,9 @@ class AuthServices {
     return response;
   }
 
-    static Future<http.Response> resetPassword(String code, String newPassword) async {
+    static Future<http.Response> resetPassword(String email) async {
     Map data = {
-      "email": getEmail(),
-      "code": int.tryParse(code.trim()),
-      "new_password": newPassword,
+      "email": email,
     };
     var body = json.encode(data);
     var url = Uri.parse('${baseURL}auth/resetPassword');

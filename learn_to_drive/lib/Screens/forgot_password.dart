@@ -15,13 +15,12 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPasswordScreen> {
-  String code = '';
-  String newPassword = '';
+  String email = '';
 
   onConfirmButtonPressed() async {
-    if(code.isNotEmpty && newPassword.isNotEmpty){
+    if(email.isNotEmpty){
       
-      http.Response response = await AuthServices.resetPassword(code, newPassword);
+      http.Response response = await AuthServices.resetPassword(email);
       Map responseMap = jsonDecode(response.body);
       if (response.statusCode == 200) {
         // ignore: use_build_context_synchronously
@@ -73,28 +72,28 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                 ),
                 const SizedBox(height: 25,),
 
-                TextField(
-                  decoration: const InputDecoration(
-                    filled: true, 
-                    fillColor: Colors.white,
-                    hintText: 'Enter verification code',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
-                  ),
-                  onChanged: (value) {
-                    code = value;
-                  },
-                ),
-                const SizedBox( height: 20,),
+                // TextField(
+                //   decoration: const InputDecoration(
+                //     filled: true, 
+                //     fillColor: Colors.white,
+                //     hintText: 'Enter verification code',
+                //     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
+                //   ),
+                //   onChanged: (value) {
+                //     code = value;
+                //   },
+                // ),
+                // const SizedBox( height: 20,),
 
                 TextField(
                   decoration: const InputDecoration(
                     filled: true, 
                     fillColor: Colors.white,
-                    hintText: 'Enter new password',
+                    hintText: 'Enter email',
                     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
                   ),
                   onChanged: (value) {
-                    newPassword = value;
+                    email = value;
                   },
                 ),
                 const SizedBox( height: 20,),

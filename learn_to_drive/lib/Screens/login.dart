@@ -111,12 +111,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(onPressed: () {
-                        if(_email.isNotEmpty){
-                          Navigator.pushNamed(context, 'forgot_password');
-                        }
-                        else{
-                          errorSnackBar(context,'Enter your email address first');
-                        }
+                        // if(_email.isNotEmpty){
+                        //   Navigator.pushNamed(context, 'forgot_password');
+                        // }
+                        // else{
+                        //   errorSnackBar(context,'Enter your email address first');
+                        // }
+                        Navigator.pushNamed(context, 'forgot_password');
                       }, 
                         child: const Text(
                           'Forgot Password?',

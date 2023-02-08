@@ -61,7 +61,7 @@ class AuthServices {
       "email": email,
     };
     var body = json.encode(data);
-    var url = Uri.parse('${baseURL}auth/resetPassword');
+    var url = Uri.parse('${baseURL}auth/forgotPassword');
     http.Response response = await http.post(
       url,
       headers: headers,

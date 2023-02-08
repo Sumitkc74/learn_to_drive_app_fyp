@@ -153,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 25,),
 
                   TextField(
-                    obscureText: passwordVisible,
+                    obscureText: !passwordVisible,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
                       hintText: 'Password',
@@ -163,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                       suffixIcon: IconButton(
-                        icon: Icon( passwordVisible
+                        icon: Icon( !passwordVisible
                           ? Icons.visibility
                           : Icons.visibility_off),
                         onPressed: () {
@@ -180,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 25,),
 
                   TextField(
-                    obscureText: confirmPasswordVisible,
+                    obscureText: !confirmPasswordVisible,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
                       hintText: 'Confirm Password',
@@ -188,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                       suffixIcon: IconButton(
-                        icon: Icon( confirmPasswordVisible
+                        icon: Icon( !confirmPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off),
                         onPressed: () {

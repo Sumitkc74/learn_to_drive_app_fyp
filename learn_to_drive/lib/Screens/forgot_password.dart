@@ -1,11 +1,6 @@
-import 'dart:convert';
-
-import 'package:first_app/Services/globals.dart';
-import 'package:first_app/navigator.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
-import '../Services/auth_services.dart';
+import 'package:get/get.dart';
+import 'package:first_app/Controllers/auth_controller.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -15,34 +10,9 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPasswordScreen> {
-  String email = '';
-
-  onConfirmButtonPressed() async {
-    if(email.isNotEmpty){
-      
-      http.Response response = await AuthServices.resetPassword(email);
-      Map responseMap = jsonDecode(response.body);
-      if (response.statusCode == 200) {
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => const Navigation(),
-            ));
-            // ignore: use_build_context_synchronously
-            errorSnackBar(context, responseMap.values.first);
-            
-      } else {
-        // ignore: use_build_context_synchronously
-        errorSnackBar(context, responseMap.values.first);
-      }
-    } else {
-      errorSnackBar(context, 'Enter your email address');
-    }
-
-    }
-    
-
+  String _email = '';
+  final forgotPasswordController = Get.put(AuthController());
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +64,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                     border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
                   onChanged: (value) {
-                    email = value;
+                    _email = value;
                   },
                 ),
                 const SizedBox( height: 20,),
@@ -109,7 +79,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
 
                   child:(
                     TextButton(
-                      onPressed: () => onConfirmButtonPressed(), 
+                      onPressed: () => forgotPasswordController.forgotPassword(email: _email), 
                       child: const Text(
                         'Confirm',
                         style: TextStyle(
@@ -122,26 +92,26 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                 ),
 
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () => onConfirmButtonPressed(), 
-                        child: const Text(
-                          'Send another code',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontSize: 18,
-                            color: Color(0xFFFFDE17)
-                          )
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () => forgotPasswordController.forgotPassword(email: _email), 
+                      child: const Text(
+                        'Send another code',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontSize: 18,
+                          color: Color(0xFFFFDE17)
                         )
                       )
-                    ],
-                  )
+                    )
+                  ],
+                )
               ],
             )
-          ),     
+          ),
         ], 
       ),
-    );  
+    );
   }
 }

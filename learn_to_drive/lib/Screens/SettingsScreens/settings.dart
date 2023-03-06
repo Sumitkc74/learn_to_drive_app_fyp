@@ -1,10 +1,11 @@
-import 'dart:convert';
-
-import 'package:first_app/Screens/login.dart';
-import 'package:first_app/Services/auth_services.dart';
-import 'package:first_app/Services/globals.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+
+import 'package:first_app/Controllers/auth_controller.dart';
+import 'package:first_app/Services/globals.dart';
+import 'package:first_app/Screens/SettingsScreens/change_language.dart';
+import 'package:first_app/Screens/SettingsScreens/change_password.dart';
+import 'package:first_app/Screens/SettingsScreens/notifications.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,27 +15,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  
-  onLogoutPressed() async {
-    http.Response response = await AuthServices.logout();
-    Map responseMap = jsonDecode(response.body);
 
-    if (response.statusCode == 200) {
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => const LoginScreen(),
-        ));
-      // ignore: use_build_context_synchronously
-      errorSnackBar(context, responseMap.values.first);          
-      } 
-      else {
-        // ignore: use_build_context_synchronously
-        errorSnackBar(context, responseMap.values.first);
-      }
-    }
- 
+
+  final logoutController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +63,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'notifications');
+                            Get.to(()=>const NotificationsScreen());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -128,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'changePassword');
+                            Get.to(()=>const ChangePasswordScreen());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -173,7 +156,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'change_language');
+                            Get.to(()=>const ChangeLanguageScreen());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -216,10 +199,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         color: const Color(0xFF3C3C3C),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () => onLogoutPressed(),
-                          // {
-                          //   Navigator.pushNamed(context, 'login');
-                          // },
+                          onTap: () => logoutController.logout(),
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
                             height: 80,

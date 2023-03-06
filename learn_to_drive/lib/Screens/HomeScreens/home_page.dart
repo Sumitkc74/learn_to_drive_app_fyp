@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:first_app/Screens/HomeScreens/mock_exam.dart';
+import 'package:first_app/Screens/HomeScreens/reading_materials.dart';
+import 'package:first_app/Screens/HomeScreens/traffic_sign_page.dart';
+import 'package:first_app/Screens/HomeScreens/trial_information.dart';
+import 'package:first_app/Screens/HomeScreens/vision_test.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,20 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /*
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    
-                    child: Text(
-                      "Welcome, \nMr. Sumit",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  */
                   const SizedBox(height: 30,),
           
                   Row(
@@ -71,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'traffic_signs');
+                            Get.to(()=> const TrafficSignsPage());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -106,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'readingMaterials');
+                            Get.to(()=> const ReadingMaterials());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -141,7 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'mockExam');
+                            Get.to(()=> const MockExam());
+                            // Navigator.pushNamed(context, 'mockExam');
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -175,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'trialInformation');
+                            Get.to(()=> const TrialInformation());
                             },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -209,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Navigator.pushNamed(context, 'visionTest');
+                            Get.to(()=> const VisionTest());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -234,86 +228,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(height: 30,),
-
-                  /*
-                  BottomAppBar(child: Text("Hello"),)
-                  */
-
-                  
-                  /*
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff00183F),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: Container(
-                            height: 104,
-                            width: 163,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: const [
-                                  Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Home Move",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff00183F),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: Container(
-                            height: 104,
-                            width: 163,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: const [
-                                  Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    "Office Move",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-                  */
-
                 ],
               ),
             ),

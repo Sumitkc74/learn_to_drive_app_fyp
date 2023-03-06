@@ -1,18 +1,18 @@
-import 'package:first_app/SettingsScreens/settings.dart';
+import 'package:first_app/Screens/SettingsScreens/settings.dart';
 import 'package:first_app/Screens/tutorials.dart';
 import 'package:flutter/material.dart';
 
-import 'package:first_app/HomeScreens/home_page.dart';
+import 'package:first_app/Screens/HomeScreens/home_page.dart';
 
-class Navigation extends StatefulWidget {
-  const Navigation({super.key});
+class NavigationPage extends StatefulWidget {
+  const NavigationPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _NavigationState createState() => _NavigationState();
 }
 
-class _NavigationState extends State<Navigation> {
+class _NavigationState extends State<NavigationPage> {
 
   int _selectedIndex = 0;  
   final List<Widget> _children =[

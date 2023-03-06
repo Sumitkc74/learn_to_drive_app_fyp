@@ -5,7 +5,7 @@ const Map<String, String> headers = {"Content-Type": "application/json"};
 
 errorSnackBar(BuildContext context, String text) {
   ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
+    SnackBar( 
       backgroundColor: Colors.red,
       content: Text(text),
       duration: const Duration(seconds: 1),
@@ -14,37 +14,12 @@ errorSnackBar(BuildContext context, String text) {
 }
 
 String email = '';
-// String password = '';
-// String phoneNumber = '';
 
 getEmail(){
   return email.toString();
 }
 
-// getPassword(){
-//   return password;
-// }
-
-// getPhoneNumber(){
-//   return phoneNumber;
-// }
-
 setEmail(String enteredEmail){
   email = enteredEmail;
 }
 
-// setPassword(String enteredPassword){
-//   email = enteredPassword;
-// }
-
-
-// setPhoneNumber(String phoneNumber){
-//   return phoneNumber;
-// }
-
-// bool state = true;
-
-// bool loggedIn(){
-//   state? true:false;
-//   return state;
-// }

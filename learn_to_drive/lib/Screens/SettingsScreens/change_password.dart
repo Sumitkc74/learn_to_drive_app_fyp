@@ -1,57 +1,22 @@
-import 'dart:convert';
-
-import 'package:first_app/Services/globals.dart';
-import 'package:first_app/Services/auth_services.dart';
-import 'package:first_app/navigator.dart';
+import 'package:first_app/Controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
-class ChangePassword extends StatefulWidget {
-  const ChangePassword({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<ChangePassword> createState() => _ChangePasswordState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordState();
 }
 
-class _ChangePasswordState extends State<ChangePassword> {
+class _ChangePasswordState extends State<ChangePasswordScreen> {
   String _currentPassword = '';
   String _newPassword= '';
   String _confirmNewPassword = '';
   bool currentPasswordVisible=false;
   bool newPasswordVisible=false;
   bool confirmPasswordVisible=false;
-
-  onChangePasswordPressed() async {
-    if (_currentPassword.isNotEmpty && _newPassword.isNotEmpty && _confirmNewPassword.isNotEmpty) {
-      if(_newPassword == _confirmNewPassword){
-        if(_newPassword != _currentPassword){
-          http.Response response = await AuthServices.changePassword(_currentPassword, _newPassword);
-          Map responseMap = jsonDecode(response.body);
-          if (response.statusCode == 200) {
-            // ignore: use_build_context_synchronously
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => const Navigation(),
-              )
-            );
-            // ignore: use_build_context_synchronously
-            errorSnackBar(context, responseMap.values.first);
-          }else{
-            // ignore: use_build_context_synchronously
-            errorSnackBar(context, responseMap.values.first);
-          }
-        }else{
-          errorSnackBar(context, 'Current password and new password cannot be same');
-        }
-      } else {
-        // ignore: use_build_context_synchronously
-        errorSnackBar(context, 'Please enter same password in confirm password');
-      }
-    } else {
-      errorSnackBar(context, 'Enter all the required fields');
-    }
-  }
+  final authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +138,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     ),
 
                     child:(
-                      TextButton(onPressed: () =>  onChangePasswordPressed(),
+                      TextButton(onPressed: () =>  authController.changePassword( currentPassword: _currentPassword, newPassword: _newPassword, confirmNewPassword: _confirmNewPassword),
                         child: const Text(
                           'Change Password',
                           style: TextStyle(

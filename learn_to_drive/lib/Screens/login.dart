@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import '../Services/auth_services.dart';
+import 'package:get/get.dart';
 import '../Services/globals.dart';
-import 'package:first_app/navigator.dart';
-
+import 'package:first_app/Controllers/auth_controller.dart';
+import 'package:first_app/Screens/forgot_password.dart';
+import 'package:first_app/Screens/register.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,29 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email = '';
   String _password = '';
   bool passwordVisible = false;
-
-  onLoginPressed() async {
-    if (_email.isNotEmpty && _password.isNotEmpty) {
-      http.Response response = await AuthServices.login(_email, _password);
-      Map responseMap = jsonDecode(response.body);
-      if (response.statusCode == 200) {
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => const Navigation(),
-            ));
-            // ignore: use_build_context_synchronously
-            errorSnackBar(context, 'User Login Successfully');
-            
-      } else {
-        // ignore: use_build_context_synchronously
-        errorSnackBar(context, responseMap.values.first);
-      }
-    } else {
-      errorSnackBar(context, 'Enter all the required fields');
-    }
-  }
+  final loginController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -94,29 +70,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? Icons.visibility
                           : Icons.visibility_off),
                         onPressed: () {
-                            setState(() {
+                          setState(() {
                             passwordVisible = !passwordVisible; 
                           });
                         },
                       ),
                       border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                     ),
-                    onChanged: (value) {
-                      _password = value;
-                    },
+                    onChanged: (value) { _password = value; },
                   ),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(onPressed: () {
-                        // if(_email.isNotEmpty){
-                        //   Navigator.pushNamed(context, 'forgot_password');
-                        // }
-                        // else{
-                        //   errorSnackBar(context,'Enter your email address first');
-                        // }
-                        Navigator.pushNamed(context, 'forgot_password');
+                        Get.to(()=>const ForgotPasswordScreen());
                       }, 
                         child: const Text(
                           'Forgot Password?',
@@ -139,8 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child:(
-                      TextButton(onPressed: () =>  onLoginPressed(),
-                      //{ Navigator.pushNamed(context, 'HomePage');}, 
+                      TextButton(
+                        onPressed: () => loginController.login(email: _email, password: _password),
                         child: const Text(
                           'Login',
                           style: TextStyle(
@@ -157,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, 'register');
+                          Get.to(()=> const RegisterScreen());
                         }, 
                         child: const Text(
                           'Create a new account',
@@ -176,6 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ], 
       ),
-    );     
+    );
   }
 }

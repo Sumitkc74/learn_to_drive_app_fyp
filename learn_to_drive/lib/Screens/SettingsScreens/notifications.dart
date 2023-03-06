@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class TrafficSignsPage extends StatefulWidget {
-  const TrafficSignsPage({super.key});
+class NotificationsScreen extends StatefulWidget {
+  const NotificationsScreen({super.key});
 
   @override
-  State<TrafficSignsPage> createState() => _TrafficSignsPageState();
+  State<NotificationsScreen> createState() => _NotificationsState();
 }
 
-class _TrafficSignsPageState extends State<TrafficSignsPage> {
+class _NotificationsState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Traffic Signs',
+          "Notifications",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,

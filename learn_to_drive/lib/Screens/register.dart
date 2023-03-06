@@ -1,10 +1,6 @@
-import 'dart:convert';
-
+import 'package:first_app/Controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import '../Services/globals.dart';
-import 'package:first_app/Services/auth_services.dart';
-import 'package:first_app/navigator.dart';
+import 'package:get/get.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -23,41 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _confirmPassword = '';
   bool passwordVisible=false; 
   bool confirmPasswordVisible=false;
-
-  void onCreateAccountPressed() async {
-    if(_firstName.isEmpty || _lastName.isEmpty || _email.isEmpty || _phoneNumber.isEmpty || _password.isEmpty || _confirmPassword.isEmpty){
-      errorSnackBar(context, 'Enter all the fields');
-    }
-    else{
-      bool emailValid = RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-          .hasMatch(_email);        
-      if (emailValid) {
-        setEmail(email);
-        if(_password == _confirmPassword){
-          String name = "$_firstName $_lastName";
-          final http.Response response = await AuthServices.register(name, _email, _phoneNumber, _password);
-          Map<String, dynamic> responseMap = jsonDecode(response.body);
-          if (response.statusCode == 200) {
-            // ignore: use_build_context_synchronously
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder:(
-                BuildContext context) => const Navigation()));
-            // ignore: use_build_context_synchronously
-            errorSnackBar(context, 'User register successfully');
-          } else {
-            // ignore: use_build_context_synchronously
-            errorSnackBar(context, responseMap.values.first[0]);
-          }
-        }else{
-          errorSnackBar(context, 'Enter same password to confirm');
-        }
-      } else {
-        errorSnackBar(context, 'Email not valid');
-      }
-    }
-  }
+  final authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -98,14 +60,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           filled: true, 
                           fillColor: Colors.white,
                           ),
-                          onChanged: (value) {
-                            _firstName = value;
-                          }
+                          onChanged: (value) { _firstName = value; }
                         ),
                       ),
                       const SizedBox(width:10),
                       
-                        
                       Flexible(child: 
                         TextField(
                           decoration: InputDecoration(
@@ -114,9 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             filled: true, 
                             fillColor: Colors.white,
                           ),
-                          onChanged: (value) {
-                              _lastName = value;
-                          }
+                          onChanged: (value) { _lastName = value; }
                         ),
                       ),
                     ],
@@ -131,9 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                     ),
-                    onChanged: (value) {
-                      _email = value;
-                    }
+                    onChanged: (value) { _email = value; }
                   ),
                   const SizedBox(height: 25,),  
 
@@ -146,9 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                     ),
-                    onChanged: (value) {
-                      _phoneNumber = value;
-                    }
+                    onChanged: (value) { _phoneNumber = value; }
                   ),
                   const SizedBox(height: 25,),
 
@@ -173,9 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                     ),
-                    onChanged: (value) {
-                      _password = value;
-                    }
+                    onChanged: (value) { _password = value; }
                   ),
                   const SizedBox(height: 25,),
 
@@ -198,10 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                       ),
                     ),
-
-                    onChanged: (value) {
-                      _confirmPassword = value;
-                    }
+                    onChanged: (value) { _confirmPassword = value; }
                   ),
                   const SizedBox(height: 30,),
 
@@ -215,7 +163,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                     child:(
                       TextButton(
-                        onPressed: () => onCreateAccountPressed(),
+                        onPressed: () => 
+                        authController.register(
+                          firstName: _firstName, 
+                          lastName: _lastName, 
+                          email: _email, 
+                          phoneNumber: _phoneNumber, 
+                          password: _password, 
+                          confirmPassword: _confirmPassword
+                        ),
                         child: const Text(
                           'Sign Up',
                           style: TextStyle(

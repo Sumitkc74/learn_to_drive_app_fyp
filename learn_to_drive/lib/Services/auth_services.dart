@@ -18,8 +18,7 @@ class AuthServices {
       url,
       headers: headers,
       body: body,
-    );
-    
+    );  
     return response;
   }
 
@@ -35,7 +34,6 @@ class AuthServices {
       headers: headers,
       body: body,
     );
-    //print(response.body);
     return response;
   }
   
@@ -52,11 +50,10 @@ class AuthServices {
       headers: headers,
       body: body,
     );
-    //print(response.body);
     return response;
   }
 
-    static Future<http.Response> resetPassword(String email) async {
+  static Future<http.Response> resetPassword(String email) async {
     Map data = {
       "email": email,
     };
@@ -67,7 +64,6 @@ class AuthServices {
       headers: headers,
       body: body,
     );
-    //print(response.body);
     return response;
   }
 
@@ -82,7 +78,6 @@ class AuthServices {
       headers: headers,
       body: body,
     );
-    //print(response.body);
     return response;
   }
 }

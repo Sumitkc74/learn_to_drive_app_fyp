@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:first_app/Screens/HomeScreens/mock_exam.dart';
-import 'package:first_app/Screens/HomeScreens/reading_materials.dart';
+import 'package:first_app/Screens/HomeScreens/exam_information_page.dart';
+import 'package:first_app/Screens/HomeScreens/reading_materials_page.dart';
 import 'package:first_app/Screens/HomeScreens/traffic_sign_page.dart';
-import 'package:first_app/Screens/HomeScreens/trial_information.dart';
-import 'package:first_app/Screens/HomeScreens/vision_test.dart';
+import 'package:first_app/Screens/HomeScreens/vision_test_page.dart';
+import 'package:first_app/Screens/HomeScreens/mock_exam.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,10 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.circle, color:Color(0xFFFFDE17),),
-        ),
+        
         title: const Text(
           "Welcome",
           style: TextStyle(
@@ -64,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.to(()=> const TrafficSignsPage());
+                            Get.to(()=>  TrafficSignsPage());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -99,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.to(()=> const ReadingMaterials());
+                            Get.to(()=> ReadingMaterialsPage());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -169,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.to(()=> const TrialInformation());
+                            Get.to(()=> ExamInformationPage());
                             },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -203,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.to(()=> const VisionTest());
+                            Get.to(()=> VisionTestPage());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(

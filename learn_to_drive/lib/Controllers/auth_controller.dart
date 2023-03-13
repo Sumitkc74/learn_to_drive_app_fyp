@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:first_app/Services/auth_services.dart';
+import 'package:first_app/Services/auth_services_repo.dart';
 import 'package:first_app/navigator.dart';
 import 'package:first_app/Screens/login.dart';
 
@@ -19,7 +19,7 @@ class AuthController extends GetxController {
       http.Response response = await AuthServices.login(email, password);
       Map responseMap = await jsonDecode(response.body);
       if (response.statusCode == 200) {
-            Get.to(() => const NavigationPage());
+            Get.off(() => const NavigationPage());
             Get.snackbar("Success", responseMap["message"]);
             
       } else {

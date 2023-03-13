@@ -22,13 +22,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.account_circle, size: 80,),
-        ),
-        // actions: const [
-        //   Icon(Icons.account_circle, size: 80,),
-        // ],
         title: Text(
           "Welcome\n    $email",
           textAlign: TextAlign.center,

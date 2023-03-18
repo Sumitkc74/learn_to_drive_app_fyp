@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'package:first_app/models/traffic_sign.dart';
@@ -28,7 +27,7 @@ class TrafficSignsPage extends StatelessWidget {
         shadowColor: const Color(0xff00183F),
       ),
       
-      backgroundColor: const Color(0xFF303030),
+      // backgroundColor: const Color(0xFF303030),
       body:  Obx(
         () => (c.loading.value)
             ? const Center(child: CircularProgressIndicator())
@@ -64,22 +63,31 @@ class TrafficSignsPage extends StatelessWidget {
                                           
                                         //   child: Image.network(media.originalUrl!),
                                         // );
-                                        Text(media.originalUrl.toString());
+                                        // Text(media.originalUrl.toString());
                                       //  const Image(image: NetworkImage("http://localhost:8000/storage/3/no-right-turn.png"));
 
-                                              //            CachedNetworkImage(
-                                              //             imageUrl: media.originalUrl!,
-                                              //   placeholder: (BuildContext context, String url) => 
-                                              // const Image(image: NetworkImage("https://picsum.photos/300/300",),width: 30,height: 30,
-                                              // ),
-                                              // );
+                                                         Column(
+                                                           children: [
+                                                            Text(media.originalUrl!),
+                                                             CachedNetworkImage(
+                                                              imageUrl: media.originalUrl??"",
+                                                placeholder: (BuildContext context, String url) => 
+                                              const Image(image: NetworkImage("https://picsum.photos/300/300",),width: 30,height: 30,
+                                              ),
+                                              ),
+                                              Text(media.id.toString()),
+                                              Image(image: NetworkImage("http://172.16.16.57/storage/1/parking.png")),
+                                             
+                                              Image(image: NetworkImage(media.originalUrl!)),
+                                                           ],
+                                                         );
                                   
                                     }),
                                   )
                                 ],
                               ),
                             ),
-                            
+                            //
             //                 CachedNetworkImage(
             //   placeholder: (BuildContext context, String url) => Container(
             //     width: 320,

@@ -2,6 +2,7 @@ List<TrafficSign> trafficSignFromJson(
         List<dynamic> trafficSignJson) =>
     List<TrafficSign>.from(trafficSignJson.map((trafficSignJson) =>
         TrafficSign.fromJson(trafficSignJson)));
+        
 class TrafficSign {
   int? id;
   String? name;

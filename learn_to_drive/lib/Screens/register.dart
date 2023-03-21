@@ -29,9 +29,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          'Sign Up',
-          style: TextStyle(
+        title: Text(
+          'sign-up'.tr,
+          style: const TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.bold,
           ),
@@ -55,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Flexible(child:
                         TextField(
                           decoration: InputDecoration(
-                          hintText: 'First Name',
+                          hintText: 'first-name'.tr,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           filled: true, 
                           fillColor: Colors.white,
@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Flexible(child: 
                         TextField(
                           decoration: InputDecoration(
-                            hintText: 'Last Name',
+                            hintText: 'last-name'.tr,
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                             filled: true, 
                             fillColor: Colors.white,
@@ -83,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   TextField(
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.email),
-                      hintText: 'Email',
+                      hintText: 'email'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
                       fillColor: Colors.white,
@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.phone),
-                      hintText: 'Phone number',
+                      hintText: 'phone-number'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
                       fillColor: Colors.white,
@@ -109,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     obscureText: !passwordVisible,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Password',
+                      hintText: 'password'.tr,
                       helperText:"Password must contain atleast 8 letters, a uppercase and a special character",
                       helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -134,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     obscureText: !confirmPasswordVisible,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Confirm Password',
+                      hintText: 'confirm-password'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
                       fillColor: Colors.white,
@@ -172,9 +172,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           password: _password, 
                           confirmPassword: _confirmPassword
                         ),
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
+                        child: Text(
+                          'sign-up'.tr,
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           )

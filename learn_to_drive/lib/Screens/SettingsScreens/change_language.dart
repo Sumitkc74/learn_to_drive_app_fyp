@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChangeLanguageScreen extends StatefulWidget {
   const ChangeLanguageScreen({super.key});
@@ -8,13 +9,24 @@ class ChangeLanguageScreen extends StatefulWidget {
 }
 
 class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
+
+  // final List locale =[
+  //   {'name':'ENGLISH','locale': const Locale('en','US')},
+  //   {'name':'नेपाली','locale': const Locale('ne','NP')},
+  // ];
+
+  // updateLanguage(Locale locale){
+  //   Get.back();
+  //   Get.updateLocale(locale);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Change Language',
-          style: TextStyle(
+        title: Text(
+          'change-language'.tr,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
             color: Colors.black, 
@@ -34,12 +46,11 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 40),
-                    
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40),
                     child: Text(
-                      "Available Languages",
-                      style: TextStyle(
+                      'available-language'.tr,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
                         color: Colors.white,
@@ -60,6 +71,8 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                               color: Colors.black,
                               size: 30,
                             );
+                            var locale = const Locale('en','US');
+                            Get.updateLocale(locale);
                           },
                           child: SizedBox(
                             height: 60,
@@ -69,10 +82,10 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "English",
-                                    style: TextStyle(
+                                    "english".tr,
+                                    style: const TextStyle(
                                       color: Colors.black, 
                                       fontSize: 20
                                     ),
@@ -99,6 +112,8 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                               color: Colors.black,
                               size: 30,
                             );
+                            var locale = const Locale('ne','NP');
+                            Get.updateLocale(locale);
                           },
                           child: SizedBox(
                             height: 60,
@@ -108,10 +123,10 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "Nepali",
-                                    style: TextStyle(
+                                    "nepali".tr,
+                                    style: const TextStyle(
                                       color: Colors.black, 
                                       fontSize: 20
                                     ),

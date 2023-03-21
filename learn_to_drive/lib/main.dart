@@ -1,12 +1,16 @@
 
-import 'package:first_app/navigator.dart';
+import 'package:first_app/Screens/login.dart';
+import 'package:first_app/Screens/navigator.dart';
+import 'package:first_app/Services/locale_string.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const GetMaterialApp(
+  runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    home: NavigationPage()
+    translations: LocaleString(),
+    locale: const Locale('en','US'),
+    home: const NavigationPage()
   ));
 }

@@ -3,6 +3,7 @@ import 'package:first_app/Screens/tutorials.dart';
 import 'package:flutter/material.dart';
 
 import 'package:first_app/Screens/HomeScreens/home_page.dart';
+import 'package:get/get.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -37,10 +38,10 @@ class _NavigationState extends State<NavigationPage> {
         backgroundColor: const Color(0xFFFFDE17),
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Tutorials'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),      
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: const Icon(Icons.home), label: 'Home'.tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.tv), label: 'Tutorials'.tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.settings), label: 'Settings'.tr),      
         ]
       ),
     );

@@ -21,10 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
-        title: const Text(
-          "Welcome",
-          style: TextStyle(
+        title: Text(
+          "welcome".tr,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
             color: Colors.black,
@@ -72,10 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "Traffic Signs",
-                                    style: TextStyle(color: Colors.white, fontSize: 25),
+                                    "traffic-signs".tr,
+                                    style: const TextStyle(color: Colors.white, fontSize: 25),
                                   ),
                                 ],
                               ),
@@ -107,10 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "Reading Materials",
-                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                    "reading-materials".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
                                   ),
                                 ],
                               ),
@@ -143,10 +142,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "Written Mock Exam",
-                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                    "mock-exam".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
                                   ),
                                 ],
                               ),
@@ -177,10 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "Exam and Trial Information",
-                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                    "exam-trial-information".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
                                   ),
                                 ],
                               ),
@@ -211,10 +210,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
+                                children: [
                                   Text(
-                                    "Vision Test",
-                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                    "vision-tests".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
                                   ),
                                 ],
                               ),

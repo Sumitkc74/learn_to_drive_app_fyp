@@ -27,9 +27,12 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           Container(
             padding: const EdgeInsets.only(left: 35,top: 120),
-            child: const Text(
-              'Welcome to \nLearn to Drive', 
-              style:TextStyle( color: Colors.white, fontSize: 34,)
+            child: Text(
+              'welcome-to-app'.tr, 
+              style: const TextStyle( 
+                color: Colors.white, 
+                fontSize: 34,
+              )
             )
           ),
             
@@ -48,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                       prefixIcon: const Icon(Icons.email),
-                      hintText: 'Email',
+                      hintText: 'email'.tr,
                       border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                     ),
                     onChanged: (value) {
@@ -64,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Password',
+                      hintText: 'password'.tr,
                       suffixIcon: IconButton(
                           icon: Icon( !passwordVisible
                           ? Icons.visibility
@@ -86,9 +89,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextButton(onPressed: () {
                         Get.to(()=>const ForgotPasswordScreen());
                       }, 
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(
+                        child: Text(
+                          '${'forgot-password'.tr}?',
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                               color: Color(0xFFFFDE17),
                               fontSize: 14,
@@ -109,9 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child:(
                       TextButton(
                         onPressed: () => loginController.login(email: _email, password: _password),
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(
+                        child: Text(
+                          'login'.tr,
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                           )
@@ -127,9 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           Get.to(()=> const RegisterScreen());
                         }, 
-                        child: const Text(
-                          'Create a new account',
-                          style: TextStyle(
+                        child: Text(
+                          'create-new-account'.tr,
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                             fontSize: 18,
                             color: Color(0xFFFFDE17)

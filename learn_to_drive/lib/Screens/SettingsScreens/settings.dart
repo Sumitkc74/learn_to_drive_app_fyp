@@ -67,20 +67,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
-                                  Icon(
+                                children: [
+                                  const Icon(
                                     Icons.notifications_outlined,
                                     color: Colors.white,
                                     size: 30,
                                   ),
                                   Text(
-                                    "Notifications",
-                                    style: TextStyle(
+                                    "notifications".tr,
+                                    style: const TextStyle(
                                       color: Colors.white, 
                                       fontSize: 25
                                     ),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.keyboard_arrow_right,
                                     color: Colors.white,
                                     size: 30,
@@ -115,17 +115,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
-                                  Icon(
+                                children: [
+                                  const Icon(
                                     Icons.lock_outline,
                                     color: Colors.white,
                                     size: 30,
                                   ),
                                   Text(
-                                    "Change Password",
-                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                    "change-password".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.keyboard_arrow_right,
                                     color: Colors.white,
                                     size: 30,
@@ -160,17 +160,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
-                                  Icon(
+                                children: [
+                                  const Icon(
                                     Icons.language,
                                     color: Colors.white,
                                     size: 30,
                                   ),
                                   Text(
-                                    "Change Language",
-                                    style: TextStyle(color: Colors.white,  fontSize: 25),
+                                    "change-language".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.keyboard_arrow_right,
                                     color: Colors.white,
                                     size: 30,
@@ -202,15 +202,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
-                                children: const [
-                                  Icon(
+                                children: [
+                                  const Icon(
                                     Icons.logout,
                                     color: Colors.white,
                                     size: 25,
                                   ),
                                   Text(
-                                    "Logout",
-                                    style: TextStyle(color: Colors.white,  fontSize: 23),
+                                    "logout".tr,
+                                    style: const TextStyle(color: Colors.white,  fontSize: 23),
                                   ),
                                 ],
                               ),

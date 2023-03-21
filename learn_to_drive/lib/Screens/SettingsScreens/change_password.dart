@@ -22,9 +22,9 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Change Password",
-          style: TextStyle(
+        title: Text(
+          "change-password".tr,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
             color: Colors.black, 
@@ -55,7 +55,7 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                       filled: true, 
                       fillColor: Colors.white,
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Current Password',
+                      hintText: 'current-password'.tr,
                       suffixIcon: IconButton(
                         icon: Icon( !currentPasswordVisible
                           ? Icons.visibility
@@ -79,7 +79,7 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                     obscureText: !newPasswordVisible,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: 'New Password',
+                      hintText: 'new-password'.tr,
                       helperText:"New password must be diferent from current password",
                       helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -106,7 +106,7 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                     obscureText: !confirmPasswordVisible,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Confirm Password',
+                      hintText: 'confirm-password'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
                       fillColor: Colors.white,
@@ -139,11 +139,11 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
 
                     child:(
                       TextButton(onPressed: () =>  authController.changePassword( currentPassword: _currentPassword, newPassword: _newPassword, confirmNewPassword: _confirmNewPassword),
-                        child: const Text(
-                          'Change Password',
-                          style: TextStyle(
+                        child: Text(
+                          'change-password'.tr,
+                          style: const TextStyle(
                             fontSize: 18,
-                            color: Colors.white,
+                            color: Colors.black,
                           )
                         )
                       )

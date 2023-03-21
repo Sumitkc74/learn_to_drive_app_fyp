@@ -11,6 +11,7 @@ class Question {
   String? option3;
   String? option4;
   String? correctOption;
+  String? selectOption;
   String? createdAt;
   String? updatedAt;
 
@@ -22,6 +23,7 @@ class Question {
       this.option3,
       this.option4,
       this.correctOption,
+      this.selectOption,
       this.createdAt,
       this.updatedAt});
 

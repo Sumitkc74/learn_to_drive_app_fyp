@@ -34,9 +34,9 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 0,top: 20, bottom: 20),
-                  child: const Text(
-                    'Get Email Verfication', 
-                    style:TextStyle(color: Colors.white, fontSize: 28
+                  child: Text(
+                    'get-email-verification'.tr, 
+                    style:const TextStyle(color: Colors.white, fontSize: 28
                     )
                   )
                 ),
@@ -56,18 +56,18 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                 // const SizedBox( height: 20,),
 
                 TextField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.email),
+                  decoration: InputDecoration(
                     filled: true, 
                     fillColor: Colors.white,
-                    hintText: 'Enter email',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                    prefixIcon: const Icon(Icons.email),
+                    hintText: 'email'.tr,
+                    border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                   ),
                   onChanged: (value) {
-                    _email = value;
+                  _email = value;
                   },
                 ),
-                const SizedBox( height: 20,),
+                const SizedBox(height: 25,),
 
                 Container(
                   margin: const EdgeInsets.all(10),
@@ -80,9 +80,9 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                   child:(
                     TextButton(
                       onPressed: () => forgotPasswordController.forgotPassword(email: _email), 
-                      child: const Text(
-                        'Confirm',
-                        style: TextStyle(
+                      child: Text(
+                        'confirm'.tr,
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                         )
@@ -96,9 +96,9 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                   children: [
                     TextButton(
                       onPressed: () => forgotPasswordController.forgotPassword(email: _email), 
-                      child: const Text(
-                        'Send another code',
-                        style: TextStyle(
+                      child: Text(
+                        'send-another-code'.tr,
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           fontSize: 18,
                           color: Color(0xFFFFDE17)

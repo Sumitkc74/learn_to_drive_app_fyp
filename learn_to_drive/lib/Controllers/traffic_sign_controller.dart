@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:first_app/Services/traffic_sign_repo.dart';
-import 'package:first_app/models/traffic_sign.dart';
+import 'package:first_app/Services/Repo/traffic_sign_repo.dart';
+import 'package:first_app/Models/traffic_sign.dart';
 import 'package:get/get.dart';
 
 class TrafficSignController extends GetxController {

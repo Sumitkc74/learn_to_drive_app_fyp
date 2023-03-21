@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:first_app/Services/vision_test_repo.dart';
-import 'package:first_app/models/vision_test.dart';
+import 'package:first_app/Services/Repo/vision_test_repo.dart';
+import 'package:first_app/Models/vision_test.dart';
 import 'package:get/get.dart';
 
 class VisionTestController extends GetxController {

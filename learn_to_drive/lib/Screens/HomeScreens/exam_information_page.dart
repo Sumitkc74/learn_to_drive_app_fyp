@@ -1,5 +1,5 @@
 import 'package:first_app/Controllers/exam_information_controller.dart';
-import 'package:first_app/models/exam_information.dart';
+import 'package:first_app/Models/exam_information.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +11,9 @@ class ExamInformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Exam and Trial Information',
-          style: TextStyle(
+        title: Text(
+          'exam-trial-information'.tr,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
             color: Colors.black, 

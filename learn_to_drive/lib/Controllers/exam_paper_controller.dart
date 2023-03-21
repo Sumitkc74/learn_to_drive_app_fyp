@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:first_app/Services/exam_paper_repo.dart';
-import 'package:first_app/models/exam_paper.dart';
+import 'package:first_app/Services/Repo/exam_paper_repo.dart';
+import 'package:first_app/Models/exam_paper.dart';
 import 'package:get/get.dart';
 
 class ExamPaperController extends GetxController {

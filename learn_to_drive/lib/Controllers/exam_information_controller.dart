@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:first_app/Services/exam_information_repo.dart';
-import 'package:first_app/models/exam_information.dart';
+import 'package:first_app/Services/Repo/exam_information_repo.dart';
+import 'package:first_app/Models/exam_information.dart';
 import 'package:get/get.dart';
 
 class ExamInformationController extends GetxController {

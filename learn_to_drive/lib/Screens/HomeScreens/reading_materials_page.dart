@@ -1,5 +1,5 @@
 import 'package:first_app/Controllers/exam_paper_controller.dart';
-import 'package:first_app/models/exam_paper.dart';
+import 'package:first_app/Models/exam_paper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +11,9 @@ class ReadingMaterialsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Reading Materials',
-          style: TextStyle(
+        title: Text(
+          'reading-materials'.tr,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
             color: Colors.black, 

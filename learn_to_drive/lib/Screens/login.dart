@@ -77,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             passwordVisible = !passwordVisible; 
                           });
                         },
+                        
                       ),
                       border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
                     ),

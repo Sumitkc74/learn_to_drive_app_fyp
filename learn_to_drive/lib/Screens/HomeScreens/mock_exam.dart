@@ -1,6 +1,7 @@
 import 'package:first_app/Controllers/question_controller.dart';
 import 'package:first_app/Services/Repo/question_repo.dart';
 import 'package:first_app/Models/question.dart';
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,10 @@ class MockExam extends StatefulWidget {
 }
 
 class _MockExamState extends State<MockExam> {
-List<Question> questions = [];
+  List<Question> questions = [];
+  int userScore=0;
+  int currentQuestion=1;
+
   @override
   void initState() {
     super.initState();
@@ -22,10 +26,31 @@ List<Question> questions = [];
         
       });
     }, onError: (onError){});
+  }
 
+  void reset(){  
+    userScore = 0;
+    currentQuestion = 1;
+  }
 
+  void checkAnswer(String correctOption, String chosenOption){
+    setState(() {
+      if(correctOption == chosenOption){
+        userScore++;
+      }
 
-
+      if(currentQuestion == 9){
+        showDialog(context: context, builder:(context) => AlertDialog(
+          title: const Text("Result"),
+          content: Text('Your score is $userScore out of 25'),
+          actions: [
+            TextButton(onPressed: (){reset();}, child: const Text('Try Again!'))
+          ],
+        ));
+        return;
+      }
+      currentQuestion++;
+    });
   }
 
   // final c = Get.put(QuestionController());
@@ -44,12 +69,12 @@ List<Question> questions = [];
           ),
         ),
         toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        foregroundColor: AppColors.primaryBlack,
+        backgroundColor: AppColors.primaryYellow,
+        shadowColor: AppColors.primaryBlack,
       ),
       
-      backgroundColor: const Color(0xFF303030),
+      backgroundColor: AppColors.secondaryBlack,
 
       body:question.isNotEmpty? Column(
                 children: [  
@@ -66,7 +91,7 @@ List<Question> questions = [];
             ),
             height: 100,
             width: double.infinity,
-            child: Center(child: Text(question.first.question.toString(), style: const TextStyle(fontSize: 18, color: Colors.black))),
+            child: Center(child: Text("$currentQuestion. ${question.first.question}", style: const TextStyle(fontSize: 18, color: Colors.black))),
           ),
     
           MaterialButton(
@@ -75,10 +100,7 @@ List<Question> questions = [];
             child: Text(question.first.option1.toString(), style: const TextStyle(fontSize: 15),),
             onPressed: () {  
               question.first.selectOption = question.first.option1;
-              setState(() {
-                
-              });
-             
+              checkAnswer(question.first.correctOption.toString(),'1');
              
             },
           ),
@@ -89,10 +111,10 @@ List<Question> questions = [];
             child: Text(question.first.option2.toString(), style: const TextStyle(fontSize: 15),),
             onPressed: () {
                question.first.selectOption = question.first.option2;
-              setState(() {
+              // setState(() {
                 
-              });
-              // checkAnswer('2');
+              // });
+              checkAnswer(question.first.correctOption.toString(),'2');
             },
           ),
 
@@ -102,9 +124,10 @@ List<Question> questions = [];
             child: Text(question.first.option3.toString(), style: const TextStyle(fontSize: 15),),
             onPressed: () {
               question.first.selectOption = question.first.option3;
-              setState(() {
+              // setState(() {
                 
-              });
+              // });
+              checkAnswer(question.first.correctOption.toString(),'3');
               },
           ),
 
@@ -114,9 +137,10 @@ List<Question> questions = [];
             child: Text(question.first.option4.toString(), style: const TextStyle(fontSize: 15),),
             onPressed: () {
              question.first.selectOption = question.first.option4;
-              setState(() {
+            //   setState(() {
                 
-              });
+            //   });
+              checkAnswer(question.first.correctOption.toString(),'4');
             },
           ),
         ],

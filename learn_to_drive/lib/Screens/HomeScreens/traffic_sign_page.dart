@@ -1,14 +1,33 @@
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:math';
 
 import 'package:first_app/Models/traffic_sign.dart';
 import '../../Controllers/traffic_sign_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class TrafficSignsPage extends StatelessWidget {
-   TrafficSignsPage({super.key});
+class TrafficSignsPage extends StatefulWidget {
+   const TrafficSignsPage({super.key});
+
+  @override
+  State<TrafficSignsPage> createState() => _TrafficSignsPageState();
+}
+
+class _TrafficSignsPageState extends State<TrafficSignsPage> {
+    //declare the isBack bool
+  bool isBack = true;
+
+  double angle = 0;
+
+  void _flip() {
+    setState(() {
+      angle = (angle + pi) % (2 * pi);
+    });
+  }
 
   final c = Get.put(TrafficSignController());
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -22,12 +41,12 @@ class TrafficSignsPage extends StatelessWidget {
           ),
         ),
         toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        foregroundColor: AppColors.primaryBlack,
+        backgroundColor: AppColors.primaryYellow,
+        shadowColor: AppColors.primaryBlack,
       ),
       
-      backgroundColor: const Color(0xFF303030),
+      backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (c.loading.value)
           ? const Center(child: CircularProgressIndicator())
@@ -49,35 +68,90 @@ class TrafficSignsPage extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Column(
                       children: [
-                        Text(
-                          trafficSign.name??"",style: const TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          trafficSign.description??"",style: const TextStyle(color: Colors.white),
-                        ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: trafficSign.media!.length,
-                          itemBuilder: (context,index){
-                            Media media= trafficSign.media![index];
-                            return CachedNetworkImage(
-                              placeholder: (BuildContext context, String url) => const Center(child: CircularProgressIndicator()), imageUrl: media.originalUrl??"",
-                              height: 100,
-                              width: 100,
-                              errorWidget: (context, url, error) {
-                                return const Text("no text");
-                              },
+
+                        GestureDetector(
+                          onTap: _flip,
+                          child: TweenAnimationBuilder(
+                          tween: Tween<double>(begin: 0, end: angle),
+                          duration: const Duration(seconds: 1),
+                          builder: (BuildContext context, double val, __) {
+                            //here we will change the isBack val so we can change the content of the card
+                            if (val >= (pi / 2)) {
+                              isBack = false;
+                            } else {
+                              isBack = true;
+                            }
+                            return (Transform(
+                              //let's make the card flip by it's center
+                              alignment: Alignment.center,
+                              transform: Matrix4.identity()
+                                ..setEntry(3, 2, 0.001)
+                                ..rotateY(val),
+                              child: SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: isBack
+                                    ? Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: trafficSign.media!.length,
+                                        itemBuilder: (context,index){
+                                          Media media= trafficSign.media![index];
+                                          return
+                                          
+                                          
+                                           CachedNetworkImage(
+                                            placeholder: (BuildContext context, String url) => const Center(child: CircularProgressIndicator()), imageUrl: media.originalUrl??"",
+                                            height: 100,
+                                            width: 100,
+                                            errorWidget: (context, url, error) {
+                                              return const Text("no text");
+                                            },
+                                          );
+                                        }
+                                      ),  
+                                    )
+                                     //if it's back we will display here
+                                    : Transform(
+                                      alignment: Alignment.center,
+                                      transform: Matrix4.identity()
+                                        ..rotateY(
+                                            pi), // it will flip horizontally the container
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      child: Center(
+                                        child: 
+                                          Text(
+                                            trafficSign.name??"",style: const TextStyle(color: Colors.white),
+                                          ),
+                                          //  Text(
+                                          //   trafficSign.description??"",style: const TextStyle(color: Colors.white),
+                                          // ),
+                                          
+                                      ),
+                                    ),
+                                ),
+                              ),
+                            )
                             );
-                          }
-                        ),    
-                      ],
-                    ),
+                          } //else we will display it here,
+                        ),
+                      )]
+                    )
                   );
                 }
-              ),
-            )
-      )
-            
+          ),
+        ),         
+      ),
+    );
+  }     
+}  
             // Column(
             //     children: [
             //       SizedBox(
@@ -189,6 +263,3 @@ class TrafficSignsPage extends StatelessWidget {
       //     }
       //   },
       // )
-    );
-  }
-}

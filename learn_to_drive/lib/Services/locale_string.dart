@@ -74,7 +74,7 @@ class LocaleString extends Translations{
       'mock-exam':'परीक्षा अभ्यास',
       'exam-trial-information':'परीक्षा र ट्राइल जानकारी',
       'welcome': 'स्वागतम',
-      'welcome-to-app': 'Learn To Drive मा\n स्वागतम छ',
+      'welcome-to-app': 'Learn To Drive मा\n स्वागत छ',
     },
   };
 }

@@ -1,5 +1,6 @@
 import 'package:first_app/Controllers/exam_paper_controller.dart';
 import 'package:first_app/Models/exam_paper.dart';
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,12 +21,12 @@ class ReadingMaterialsPage extends StatelessWidget {
           ),
         ),
         toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        foregroundColor: AppColors.primaryBlack,
+        backgroundColor: AppColors.primaryYellow,
+        shadowColor: AppColors.primaryBlack,
       ),
       
-      backgroundColor: const Color(0xFF303030),
+      backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (c.loading.value)
             ? const Center(child: CircularProgressIndicator())

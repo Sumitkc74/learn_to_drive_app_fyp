@@ -39,9 +39,9 @@ class _NavigationState extends State<NavigationPage> {
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: const Icon(Icons.home), label: 'Home'.tr),
-          BottomNavigationBarItem(icon: const Icon(Icons.tv), label: 'Tutorials'.tr),
-          BottomNavigationBarItem(icon: const Icon(Icons.settings), label: 'Settings'.tr),      
+          BottomNavigationBarItem(icon: const Icon(Icons.home), label: 'home'.tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.tv), label: 'tutorials'.tr),
+          BottomNavigationBarItem(icon: const Icon(Icons.settings), label: 'settings'.tr),      
         ]
       ),
     );

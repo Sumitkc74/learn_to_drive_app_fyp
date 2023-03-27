@@ -1,3 +1,4 @@
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        foregroundColor: AppColors.primaryBlack,
+        backgroundColor: AppColors.primaryYellow,
+        shadowColor: AppColors.primaryBlack,
         actions: [
           IconButton(
             onPressed: () {},
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       
-      backgroundColor: const Color(0xFF303030),
+      backgroundColor: AppColors.secondaryBlack,
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.to(()=>  TrafficSignsPage());
+                            Get.to(()=>  const TrafficSignsPage());
                           },
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Material(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
+                        color: AppColors.shadowBlack,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
@@ -126,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Material(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
+                        color: AppColors.shadowBlack,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
@@ -161,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Material(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
+                        color: AppColors.shadowBlack,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
@@ -195,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Material(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
+                        color: AppColors.shadowBlack,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {

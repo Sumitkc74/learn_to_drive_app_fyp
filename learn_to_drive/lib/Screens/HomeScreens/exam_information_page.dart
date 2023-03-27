@@ -1,5 +1,7 @@
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_app/Controllers/exam_information_controller.dart';
 import 'package:first_app/Models/exam_information.dart';
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,33 +22,55 @@ class ExamInformationPage extends StatelessWidget {
           ),
         ),
         toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        foregroundColor: AppColors.primaryBlack,
+        backgroundColor: AppColors.primaryYellow,
+        shadowColor: AppColors.primaryBlack,
       ),
       
-      backgroundColor: const Color(0xFF303030),
+      backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (c.loading.value)
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  SizedBox(
-                    height: Get.height - 140,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: c.examInformations.length,
+          ? const Center(child: CircularProgressIndicator())
+          : Container(
+              margin: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: GridView.builder(
+                itemCount: c.examInformations.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: 150,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20.0,
+                  mainAxisSpacing: 20.0,
+                ),
+                itemBuilder: (context, index) {
+                  ExamInformation examInformation =
+                    c.examInformations[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Column(
+                      children: [
+                        Text(
+                          examInformation.name??"",style: const TextStyle(color: Colors.white),
+                        ),
 
-                      itemBuilder: (context, index) {
-                        ExamInformation examInformation =
-                            c.examInformations[index];
-                        return Text(examInformation.name??"",style: const TextStyle(color: Colors.white),);
-                      },
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: examInformation.media!.length,
+                          itemBuilder: (context,index){
+                            Media media= examInformation.media![index];
+                            return IconButton(onPressed: (){
+                              c.launchInBrowser(media.originalUrl??"");
+                            }, icon: const Icon(Icons.access_time), color: Colors.white,);
+                            
+                          }
+                        ),    
+                      ],
                     ),
-                  )
-                ],
+                  );
+                }
               ),
-      ),
+            )
+      )
     );
   }
 }

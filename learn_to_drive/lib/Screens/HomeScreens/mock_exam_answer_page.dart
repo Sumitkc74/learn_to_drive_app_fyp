@@ -1,22 +1,27 @@
+import 'package:first_app/Screens/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TutorialsScreen extends StatefulWidget {
-  const TutorialsScreen({super.key});
+class MockExamAnswer extends StatefulWidget {
+  const MockExamAnswer({super.key});
 
   @override
-  State<TutorialsScreen> createState() => _TutorialsScreenState();
+  State<MockExamAnswer> createState() => _MockExamAnswerState();
 }
 
-class _TutorialsScreenState extends State<TutorialsScreen> {
-
+class _MockExamAnswerState extends State<MockExamAnswer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Get.off(const NavigationPage());
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: Text(
-          'tutorials'.tr,
+          "mock-exam-answer".tr,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -28,10 +33,11 @@ class _TutorialsScreenState extends State<TutorialsScreen> {
         backgroundColor: const Color(0xFFFFDE17),
         shadowColor: const Color(0xff00183F),
       ),
-
+      
       backgroundColor: const Color(0xFF303030),
       body: Stack(
-      )
+        
+      ),
     );
   }
 }

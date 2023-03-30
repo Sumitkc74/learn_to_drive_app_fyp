@@ -6,7 +6,7 @@ import 'package:first_app/Screens/HomeScreens/exam_information_page.dart';
 import 'package:first_app/Screens/HomeScreens/reading_materials_page.dart';
 import 'package:first_app/Screens/HomeScreens/traffic_sign_page.dart';
 import 'package:first_app/Screens/HomeScreens/vision_test_page.dart';
-import 'package:first_app/Screens/HomeScreens/mock_exam.dart';
+import 'package:first_app/Screens/HomeScreens/mock_exam_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "welcome".tr,
           style: const TextStyle(
@@ -47,12 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           SingleChildScrollView(
             child:Container( 
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30,),
-          
+        
                   Row(
                     children: [
                       Material(

@@ -19,7 +19,7 @@ class TrafficSignRepo {
       // print('----------->>>>>>>>>>$data');
       if (data['status']) {
         // print(trafficSignFromJson(data['data']['categories']));
-        onSuccess(trafficSignFromJson(data['data']['categories']));
+        onSuccess(trafficSignFromJson(data['data']['trafficSigns']));
       }
     } catch (e) {
       log("-->>>>$e");

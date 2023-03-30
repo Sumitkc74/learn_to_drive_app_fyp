@@ -1,4 +1,3 @@
-// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_app/Controllers/exam_information_controller.dart';
 import 'package:first_app/Models/exam_information.dart';
 import 'package:first_app/utils/colors.dart';
@@ -30,46 +29,45 @@ class ExamInformationPage extends StatelessWidget {
       backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (c.loading.value)
-          ? const Center(child: CircularProgressIndicator())
-          : Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: GridView.builder(
-                itemCount: c.examInformations.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 150,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 20.0,
-                ),
-                itemBuilder: (context, index) {
-                  ExamInformation examInformation =
-                    c.examInformations[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Column(
-                      children: [
-                        Text(
-                          examInformation.name??"",style: const TextStyle(color: Colors.white),
-                        ),
-
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: examInformation.media!.length,
-                          itemBuilder: (context,index){
-                            Media media= examInformation.media![index];
-                            return IconButton(onPressed: (){
-                              c.launchInBrowser(media.originalUrl??"");
-                            }, icon: const Icon(Icons.access_time), color: Colors.white,);
-                            
-                          }
-                        ),    
-                      ],
+        ? const Center(child: CircularProgressIndicator())
+        : Container(
+          margin: const EdgeInsets.only(top: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: GridView.builder(
+            itemCount: c.examInformations.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisExtent: 150,
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
+            ),
+            itemBuilder: (context, index) {
+              ExamInformation examInformation = c.examInformations[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Column(
+                  children: [
+                    Text(
+                      examInformation.name??"",
+                      style: const TextStyle(color: Colors.white),
                     ),
-                  );
-                }
-              ),
-            )
+
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: examInformation.media!.length,
+                      itemBuilder: (context,index){
+                       Media media= examInformation.media![index];
+                        return IconButton(onPressed: (){
+                          c.launchInBrowser(media.originalUrl??"");
+                        }, icon: const Icon(Icons.document_scanner_outlined), color: Colors.white,);
+                      }
+                    ),    
+                  ],
+                ),
+              );
+            }
+          ),
+        )
       )
     );
   }

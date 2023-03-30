@@ -29,24 +29,22 @@ class ReadingMaterialsPage extends StatelessWidget {
       backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (c.loading.value)
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  SizedBox(
-                    height: Get.height - 140,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: c.examPapers.length,
-
-                      itemBuilder: (context, index) {
-                        ExamPaper examPaper =
-                            c.examPapers[index];
-                        return Text(examPaper.name??"",style: const TextStyle(color: Colors.white),);
-                      },
-                    ),
-                  )
-                ],
+        ? const Center(child: CircularProgressIndicator())
+        : Column(
+          children: [
+            SizedBox(
+              height: Get.height - 140,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: c.examPapers.length,
+                itemBuilder: (context, index) {
+                  ExamPaper examPaper = c.examPapers[index];
+                  return Text(examPaper.name??"",style: const TextStyle(color: Colors.white),);
+                },
               ),
+            )
+          ],
+        ),
       ),
     );
   }

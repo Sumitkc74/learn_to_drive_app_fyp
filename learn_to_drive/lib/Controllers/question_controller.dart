@@ -8,9 +8,11 @@ class QuestionController extends GetxController {
   RxBool loading = false.obs;
   @override
   void onInit() {
+   
     getAllQuestions();
     super.onInit();
   }
+
 
   getAllQuestions() async {
     loading.value = true;

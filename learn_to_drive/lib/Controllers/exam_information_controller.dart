@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:first_app/Services/Repo/exam_information_repo.dart';
+import 'package:first_app/Services/repo/exam_information_repo.dart';
 import 'package:first_app/Models/exam_information.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';

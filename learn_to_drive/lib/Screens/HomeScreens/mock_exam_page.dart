@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:first_app/Controllers/question_controller.dart';
 import 'package:first_app/Screens/HomeScreens/mock_exam_answer_page.dart';
 import 'package:first_app/Screens/navigator.dart';
-import 'package:first_app/Services/Repo/question_repo.dart';
+import 'package:first_app/Services/repo/question_repo.dart';
 import 'package:first_app/Models/question.dart';
 import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +125,7 @@ class _MockExamState extends State<MockExam> {
             TextButton(
               child: const Text('Go Back', style: TextStyle(color: Colors.white),),
               onPressed: () {
-                Get.off(const NavigationPage());
+                Get.off(() => const NavigationPage());
               }, 
             ),
             TextButton(

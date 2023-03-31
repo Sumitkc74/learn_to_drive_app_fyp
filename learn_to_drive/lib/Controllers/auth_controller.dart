@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:first_app/Services/Repo/auth_services_repo.dart';
+import 'package:first_app/Services/repo/auth_services_repo.dart';
 import 'package:first_app/Screens/navigator.dart';
 import 'package:first_app/Screens/login.dart';
 

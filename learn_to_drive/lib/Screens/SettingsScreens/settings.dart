@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
                             height: 80,
-                            width: 370,
+                            width: Get.width/1.15,
                             child: Center(
                               child: Wrap(
                                 alignment: WrapAlignment.center,
@@ -81,6 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       fontSize: 25
                                     ),
                                   ),
+                                  const SizedBox(width:50),
                                   const Icon(
                                     Icons.keyboard_arrow_right,
                                     color: Colors.white,
@@ -110,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
                             height: 80,
-                            width: 370,
+                            width: Get.width/1.15,
                             child: Center(
                               child: Wrap(
                                 alignment: WrapAlignment.center,
@@ -155,7 +156,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
                             height: 80,
-                            width: 370,
+                            width: Get.width/1.15,
                             child: Center(
                               child: Wrap(
                                 alignment: WrapAlignment.center,
@@ -197,7 +198,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           splashColor: Colors.grey.withOpacity(0.1),
                           child: SizedBox(
                             height: 80,
-                            width: 370,
+                            width: Get.width/1.15,
                             child: Center(
                               child: Wrap(
                                 alignment: WrapAlignment.center,

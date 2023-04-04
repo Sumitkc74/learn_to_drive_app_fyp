@@ -30,22 +30,45 @@ class ReadingMaterialsPage extends StatelessWidget {
       body:  Obx(
         () => (c.loading.value)
         ? const Center(child: CircularProgressIndicator())
-        : Column(
-          children: [
-            SizedBox(
-              height: Get.height - 140,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: c.examPapers.length,
-                itemBuilder: (context, index) {
-                  ExamPaper examPaper = c.examPapers[index];
-                  return Text(examPaper.name??"",style: const TextStyle(color: Colors.white),);
-                },
-              ),
-            )
-          ],
-        ),
-      ),
+        : Container(
+          margin: const EdgeInsets.only(top: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: GridView.builder(
+            itemCount: c.examPapers.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisExtent: 150,
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
+            ),
+            itemBuilder: (context, index) {
+              ExamPaper examPaper = c.examPapers[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Column(
+                  children: [
+                    Text(
+                      examPaper.name??"",
+                      style: const TextStyle(color: Colors.white),
+                    ),
+
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: examPaper.media!.length,
+                      itemBuilder: (context,index){
+                       Media media= examPaper.media![index];
+                        return IconButton(onPressed: (){
+                          c.launchInBrowser(media.originalUrl??"");
+                        }, icon: const Icon(Icons.document_scanner_outlined), color: Colors.white,);
+                      }
+                    ),    
+                  ],
+                ),
+              );
+            }
+          ),
+        )
+      )
     );
   }
 }

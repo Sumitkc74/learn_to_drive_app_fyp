@@ -49,184 +49,186 @@ class _HomeScreenState extends State<HomeScreen> {
           SingleChildScrollView(
             child:Container( 
               padding: const EdgeInsets.all(30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 30,),
-        
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
-                        child: InkWell(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20,),
+                      
+                    Row(
+                      children: [
+                        Material(
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=>  const TrafficSignsPage());
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 120,
-                            width: 350,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "traffic-signs".tr,
-                                    style: const TextStyle(color: Colors.white, fontSize: 25),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30,),
-
-                  
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.shadowBlack,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=> ReadingMaterialsPage());
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 120,
-                            width: 350,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "reading-materials".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30,),
-
-
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.shadowBlack,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=> const MockExam());
-                            // Navigator.pushNamed(context, 'mockExam');
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 120,
-                            width: 350,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "mock-exam".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30,),
-
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.shadowBlack,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=> ExamInformationPage());
+                          color: const Color(0xFF3C3C3C),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Get.to(()=>  const TrafficSignsPage());
                             },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 120,
-                            width: 350,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "exam-trial-information".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
-                                  ),
-                                ],
+                            splashColor: Colors.grey.withOpacity(0.1),
+                            child: SizedBox(
+                              height: 120,
+                              width: Get.width/1.2,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "traffic-signs".tr,
+                                      style: const TextStyle(color: Colors.white, fontSize: 25),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30,),
-
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.shadowBlack,
-                        child: InkWell(
+                      ],
+                    ),
+                    const SizedBox(height: 30,),
+              
+                    
+                    Row(
+                      children: [
+                        Material(
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=> VisionTestPage());
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 120,
-                            width: 350,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "vision-tests".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
-                                  ),
-                                ],
+                          color: AppColors.shadowBlack,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Get.to(()=> ReadingMaterialsPage());
+                            },
+                            splashColor: Colors.grey.withOpacity(0.1),
+                            child: SizedBox(
+                              height: 120,
+                              width: Get.width/1.2,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "reading-materials".tr,
+                                      style: const TextStyle(color: Colors.white,  fontSize: 25),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30,),
-                ],
+                      ],
+                    ),
+                    const SizedBox(height: 30,),
+              
+              
+                    Row(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.shadowBlack,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Get.to(()=> const MockExam());
+                              // Navigator.pushNamed(context, 'mockExam');
+                            },
+                            splashColor: Colors.grey.withOpacity(0.1),
+                            child: SizedBox(
+                              height: 120,
+                              width: Get.width/1.2,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "mock-exam".tr,
+                                      style: const TextStyle(color: Colors.white,  fontSize: 25),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30,),
+              
+                    Row(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.shadowBlack,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Get.to(()=> ExamInformationPage());
+                              },
+                            splashColor: Colors.grey.withOpacity(0.1),
+                            child: SizedBox(
+                              height: 120,
+                              width: Get.width/1.2,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "exam-trial-information".tr,
+                                      style: const TextStyle(color: Colors.white,  fontSize: 25),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30,),
+              
+                    Row(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.shadowBlack,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Get.to(()=> VisionTestPage());
+                            },
+                            splashColor: Colors.grey.withOpacity(0.1),
+                            child: SizedBox(
+                              height: 120,
+                              width: Get.width/1.2,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "vision-tests".tr,
+                                      style: const TextStyle(color: Colors.white,  fontSize: 25),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30,),
+                  ],
+                ),
               ),
             ),
           ),

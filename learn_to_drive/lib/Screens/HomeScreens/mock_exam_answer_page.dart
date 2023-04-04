@@ -16,7 +16,7 @@ class _MockExamAnswerState extends State<MockExamAnswer> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Get.off(const NavigationPage());
+            Get.off(() => const NavigationPage());
           },
           icon: const Icon(Icons.arrow_back),
         ),

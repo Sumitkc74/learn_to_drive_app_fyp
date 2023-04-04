@@ -6,41 +6,12 @@ List<VisionTest> visionTestFromJson(
 class VisionTest {
   int? id;
   String? testNumber;
-  List<Media>? media;
-
-  VisionTest({this.id, this.testNumber, this.media});
-
-  VisionTest.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    testNumber = json['testNumber'];
-    if (json['media'] != null) {
-      media = <Media>[];
-      json['media'].forEach((v) {
-        media!.add(Media.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['testNumber'] = testNumber;
-    if (media != null) {
-      data['media'] = media!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class VisionTests {
-  int? id;
-  String? testNumber;
   String? image;
   List<Media>? media;
 
-  VisionTests({this.id, this.testNumber, this.image, this.media});
+  VisionTest({this.id, this.testNumber, this.image, this.media});
 
-  VisionTests.fromJson(Map<String, dynamic> json) {
+  VisionTest.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     testNumber = json['testNumber'];
     image = json['image'];

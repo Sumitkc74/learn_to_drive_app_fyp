@@ -49,16 +49,16 @@ class _FlippableImageState extends State<FlippableImage> {
               ..setEntry(3, 2, 0.001)
               ..rotateY(val),
             child: SizedBox(
-              width: 100,
-              height: 100,
+              width: 120,
+              height: 120,
               child: isFlipped
               ? CachedNetworkImage(
                 placeholder: 
                   (BuildContext context, String url) => 
                   const Center(child: CircularProgressIndicator()),
                   imageUrl: widget.imageUrl,
-                height: 100,
-                width: 100,
+                height: 120,
+                width: 120,
                 errorWidget: (context, url, error) {
                   return const Text("Error Loading Image");
                 },

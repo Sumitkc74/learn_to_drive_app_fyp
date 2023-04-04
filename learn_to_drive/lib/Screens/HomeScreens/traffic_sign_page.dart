@@ -39,7 +39,7 @@ class _TrafficSignsPageState extends State<TrafficSignsPage> {
         () => (c.loading.value)
         ? const Center(child: CircularProgressIndicator())
         : Container(
-          margin: const EdgeInsets.only(top: 15),
+          margin: const EdgeInsets.only(top: 30),
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: GridView.builder(
             itemCount: c.trafficSigns.length,

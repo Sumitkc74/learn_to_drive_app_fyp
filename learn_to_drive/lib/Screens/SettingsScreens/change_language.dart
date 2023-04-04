@@ -41,107 +41,109 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
       backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [
-            Container( 
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40),
-                    child: Text(
-                      'available-language'.tr,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.white,
+            Center(
+              child: Container( 
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Text(
+                        'available-language'.tr,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20,),
-          
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () {
-                            const Icon(
-                              Icons.check,
-                              color: Colors.black,
-                              size: 30,
-                            );
-                            var locale = const Locale('en','US');
-                            Get.updateLocale(locale);
-                          },
-                          child: SizedBox(
-                            height: 60,
-                            width: 390,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "english".tr,
-                                    style: const TextStyle(
-                                      color: Colors.black, 
-                                      fontSize: 20
+                    const SizedBox(height: 20,),
+                      
+                    Row(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.white,
+                          child: InkWell(
+                            onTap: () {
+                              const Icon(
+                                Icons.check,
+                                color: Colors.black,
+                                size: 30,
+                              );
+                              var locale = const Locale('en','US');
+                              Get.updateLocale(locale);
+                            },
+                            child: SizedBox(
+                              height: 60,
+                              width: Get.width/1.1,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "english".tr,
+                                      style: const TextStyle(
+                                        color: Colors.black, 
+                                        fontSize: 20
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 2,),
-
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () {
-                            const Icon(
-                              Icons.check,
-                              color: Colors.black,
-                              size: 30,
-                            );
-                            var locale = const Locale('ne','NP');
-                            Get.updateLocale(locale);
-                          },
-                          child: SizedBox(
-                            height: 60,
-                            width: 390,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  Text(
-                                    "nepali".tr,
-                                    style: const TextStyle(
-                                      color: Colors.black, 
-                                      fontSize: 20
+                      ],
+                    ),
+                    const SizedBox(height: 2,),
+            
+                    Row(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.white,
+                          child: InkWell(
+                            onTap: () {
+                              const Icon(
+                                Icons.check,
+                                color: Colors.black,
+                                size: 30,
+                              );
+                              var locale = const Locale('ne','NP');
+                              Get.updateLocale(locale);
+                            },
+                            child: SizedBox(
+                              height: 60,
+                              width: Get.width/1.1,
+                              child: Center(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  spacing: 10.0,
+                                  children: [
+                                    Text(
+                                      "nepali".tr,
+                                      style: const TextStyle(
+                                        color: Colors.black, 
+                                        fontSize: 20
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20,),
-                ]
-              )
+                      ],
+                    ),
+                    const SizedBox(height: 20,),
+                  ]
+                )
+              ),
             )
         ] 
       )

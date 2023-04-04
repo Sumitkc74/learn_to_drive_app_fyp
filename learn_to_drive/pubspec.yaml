@@ -46,6 +46,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^21.1.37
   khalti_flutter: ^2.2.1
   get_storage: ^2.1.1
+  image_picker: ^0.8.7+1
 
 dev_dependencies:
   flutter_test:

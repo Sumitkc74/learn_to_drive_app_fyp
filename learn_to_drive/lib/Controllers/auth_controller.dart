@@ -20,7 +20,7 @@ class AuthController extends GetxController {
       Map responseMap = await jsonDecode(response.body);
       if (response.statusCode == 200) {
         currentUser = CurrentUser.fromJson(responseMap['user']);
-        userAccessToken = UserAccessToken.fromJson(responseMap['token']);
+        accessToken = AccessToken.fromJson(responseMap['token']);
         Get.off(() => const NavigationPage());
         Get.snackbar("Success", responseMap["message"]);
       } else {

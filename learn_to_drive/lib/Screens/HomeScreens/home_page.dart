@@ -1,3 +1,4 @@
+import 'package:first_app/Screens/SettingsScreens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +22,10 @@ class HomeScreen extends StatelessWidget {
         title: '${'welcome'.tr}, ${currentUser.name}', 
         automaticallyImplyLeading: false,
         action: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.account_circle),
+          onPressed: () {
+            Get.to(NotificationsScreen());
+          },
+          icon: const Icon(Icons.notifications_outlined),
         ),
       ),
       

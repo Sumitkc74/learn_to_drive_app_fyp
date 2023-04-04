@@ -14,7 +14,7 @@ class AuthServices {
     };
 
     var body = json.encode(data);
-    var url = Uri.parse('${baseURL}auth/register');
+    var url = Uri.parse(registerAPI);
     http.Response response = await http.post(
       url,
       headers: headers,
@@ -29,7 +29,7 @@ class AuthServices {
       "password": password,
     };
     var body = json.encode(data);
-    var url = Uri.parse('${baseURL}auth/login');
+    var url = Uri.parse(loginAPI);
     http.Response response = await http.post(
       url,
       headers: headers,
@@ -45,7 +45,7 @@ class AuthServices {
       "new_password": newPassword.trim(),
     };
     var body = json.encode(data);
-    var url = Uri.parse('${baseURL}auth/changePassword');
+    var url = Uri.parse(changePasswordAPI);
     http.Response response = await http.post(
       url,
       headers: headers,
@@ -73,7 +73,7 @@ class AuthServices {
 
     };
     var body = json.encode(data);
-    var url = Uri.parse('${baseURL}auth/logout');
+    var url = Uri.parse(logoutAPI);
     http.Response response = await http.post(
       url,
       headers: headers,

@@ -1,9 +1,9 @@
-import 'package:first_app/Controllers/notice_controller.dart';
-import 'package:first_app/Models/notice_model.dart';
-import 'package:first_app/utils/colors.dart';
-import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:first_app/Controllers/notice_controller.dart';
+import 'package:first_app/Models/notice_model.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
+
 
 class NotificationsScreen extends StatelessWidget {
   NotificationsScreen({super.key});
@@ -20,28 +20,31 @@ class NotificationsScreen extends StatelessWidget {
         }
       ),
       
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: Get.height,
-                width: Get.width, 
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: noticeController.notices.length,
-                  itemBuilder: (context,index){ 
-                    Notice notice = noticeController.notices[index];
-                    return  Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Column(
-                        children: [
-                          ListTile(
+      body: Obx(
+        () => (noticeController.loading.value)
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: Get.height,
+                  width: Get.width, 
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: noticeController.notices.length,
+                    itemBuilder: (context,index){ 
+                      Notice notice = noticeController.notices[noticeController.notices.length - 1 - index];
+                      return  Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Card(
+                          elevation: 4,
+                          child: ListTile(
                             leading: const Icon(Icons.campaign,size: 26,),
                             title: Text(
                               notice.title??"",
                               style: const TextStyle(
-                                fontWeight:FontWeight.bold,fontSize: 20
+                                fontWeight:FontWeight.bold,fontSize: 18
                               ),
                             ),
                             subtitle: Text(
@@ -51,13 +54,13 @@ class NotificationsScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  }
+                        ),
+                      );
+                    }
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

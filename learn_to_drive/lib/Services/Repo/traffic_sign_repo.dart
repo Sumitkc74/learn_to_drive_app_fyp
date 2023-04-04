@@ -9,7 +9,7 @@ class TrafficSignRepo {
       {required Function(List<TrafficSign>) onSuccess,
       required Function(String message) onError}) async {
     try {     
-      var url = Uri.parse('${baseURL}trafficSign');
+      var url = Uri.parse(trafficSignAPI);
       http.Response response = await http.get(
         url,
         headers: headers,
@@ -22,8 +22,8 @@ class TrafficSignRepo {
         onSuccess(trafficSignFromJson(data['data']['trafficSigns']));
       }
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

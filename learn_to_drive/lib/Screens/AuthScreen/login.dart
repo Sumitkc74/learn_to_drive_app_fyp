@@ -95,26 +95,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (value) { password = value; },
                   ),
 
-
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.end,
-                  //   children: [
-                  //     TextButton(onPressed: () {
-                  //       Get.to(()=>const ForgotPasswordScreen());
-                  //     }, 
-                  //       child: Text(
-                  //         '${'forgot-password'.tr}?',
-                  //         style: const TextStyle(
-                  //           decoration: TextDecoration.underline,
-                  //             color: Color(0xFFFFDE17),
-                  //             fontSize: 14,
-                  //         )
-                  //       )
-                  //     )
-                  //   ],
-                  // ),
-
                   TextOnlyButtonWidget(
                     label: '${'forgot-password'.tr}?', 
                     onPressed: () {
@@ -131,46 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     loginController.login(email: email, password: password), 
                     margin: 10
                   ),
-                    
-                  // Container(
-                  //   margin: const EdgeInsets.all(10),
-                  //   width: double.infinity,
-                  //   decoration: BoxDecoration(
-                  //     color: const Color(0xFFFFDE17),
-                  //     borderRadius: BorderRadius.circular(10),
-                  //   ),
-                  //   child:(
-                  //     TextButton(
-                  //       onPressed: () => loginController.login(email: email, password: password),
-                  //       child: Text(
-                  //         'login'.tr,
-                  //         style: const TextStyle(
-                  //           fontSize: 18,
-                  //           color: Colors.white,
-                  //         )
-                  //       )
-                  //     )
-                  //     ),
-                  // ),
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         Get.to(()=> const RegisterScreen());
-                  //       }, 
-                  //       child: Text(
-                  //         'create-new-account'.tr,
-                  //         style: const TextStyle(
-                  //           decoration: TextDecoration.underline,
-                  //           fontSize: 18,
-                  //           color: AppColors.primaryYellow
-                  //         )
-                  //       )
-                  //     )
-                  //   ],
-                  // )
 
                   TextOnlyButtonWidget(
                     label: 'create-new-account'.tr, 

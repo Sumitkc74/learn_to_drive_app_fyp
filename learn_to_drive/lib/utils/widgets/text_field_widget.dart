@@ -33,7 +33,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       ),
     );
   }
-  String get value => _controller.text;
+  String get value => _controller.text.toString();
 }
 
 // class TextFieldWidget extends StatefulWidget {

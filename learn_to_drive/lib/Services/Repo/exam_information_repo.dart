@@ -9,7 +9,7 @@ class ExamInformationRepo {
       {required Function(List<ExamInformation>) onSuccess,
       required Function(String message) onError}) async {
     try {     
-      var url = Uri.parse('${baseURL}examInformation');
+      var url = Uri.parse(examInformationAPI);
 
       http.Response response = await http.get(
         url,
@@ -21,8 +21,8 @@ class ExamInformationRepo {
         onSuccess(examInformationFromJson(data['data']['examInformations']));
       }
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

@@ -1,5 +1,9 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:first_app/Controllers/dark_mode_controller.dart';
 import 'package:first_app/Controllers/auth_controller.dart';
@@ -10,10 +14,26 @@ import 'package:first_app/utils/colors.dart';
 
 import 'package:first_app/Screens/SettingsScreens/change_language.dart';
 import 'package:first_app/Screens/SettingsScreens/change_password.dart';
-import 'package:first_app/Screens/SettingsScreens/notifications.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
+
+final picker = ImagePicker();
+  Rxn<File> image = Rxn<File>();
+  void pickImage() async {
+    log("Picking image");
+    final pickedImage = await picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 40,
+        maxHeight: 500,
+        maxWidth: 500);
+
+
+
+    if (pickedImage != null) {
+      image.value = File(pickedImage.path);
+    }
+  }
 
   final logoutController = Get.put(AuthController());
   final darkModeController = Get.put(DarkModeController());
@@ -25,6 +45,80 @@ class SettingsScreen extends StatelessWidget {
         title: 'Welcome\n ${currentUser.email}',
         automaticallyImplyLeading: false,
         height: 150,
+        action: IconButton(
+          onPressed: () {
+            Get.bottomSheet(
+              backgroundColor: Colors.grey,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+                side: const BorderSide(
+                  color: Colors.white,
+                  style: BorderStyle.solid,
+                  width: 2,
+                ),
+              ),
+              SizedBox(
+                height: Get.height / 1.1,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15,),
+                      const Text(
+                        "Update User",
+                        style: TextStyle(fontSize: 25, color: Colors.black),
+                      ),
+                      const SizedBox(height: 15,),
+
+                      TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.account_circle),
+                            hintText: 'name'.tr,
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                            filled: true, 
+                            // fillColor: Colors.white,
+                          ),
+                        // onChanged: (value) { _email = value; }
+                      ),
+                      const SizedBox(height: 15,),
+
+                      TextField(
+                          decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.email),
+                          hintText: 'email'.tr,
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          filled: true, 
+                          // fillColor: Colors.white,
+                        ),
+                        // onChanged: (value) { _email = value; }
+                      ),
+                      const SizedBox(height: 15,),
+
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.phone),
+                          hintText: 'phone-number'.tr,
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          filled: true, 
+                        ),
+                        // onChanged: (value) { _phoneNumber = value; }
+                      ),
+                      const SizedBox(height: 25,),
+                      TextButton(
+                      onPressed: pickImage,
+                      child: const Center(
+                        child: Text("Upload Image"),
+                      ),
+                    ),
+                      
+                     ]
+                  )
+                )
+              )
+            );
+          },
+          icon: const Icon(Icons.edit),
+        ),
       ),
       
       body: Stack(
@@ -51,11 +145,11 @@ class SettingsScreen extends StatelessWidget {
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
                                 children: [
-                                  Icon(
-                                    darkModeController.isDarkModeOn.value ? Icons.wb_sunny : Icons.nightlight_round,
+                                  Obx(() => Icon(
+                                    darkModeController.isDarkModeOn.value ? Icons.nightlight_round : Icons.wb_sunny,
                                     color: Colors.white,
                                     size: 30,
-                                  ),
+                                  ),),
                                   Text(
                                     "dark-mode".tr,
                                     style: const TextStyle(
@@ -94,13 +188,13 @@ class SettingsScreen extends StatelessWidget {
                   // ),
                   const SizedBox(height: 20,),
 
-                  SettingsWidget(
-                    onTap: (() => Get.to(() => NotificationsScreen())),
-                    label: "notifications".tr, 
-                    icon: Icons.notifications_outlined, 
-                    arrowIcon: Icons.keyboard_arrow_right,
-                  ),
-                  const SizedBox(height: 20,),
+                  // SettingsWidget(
+                  //   onTap: (() => Get.to(() => NotificationsScreen())),
+                  //   label: "notifications".tr, 
+                  //   icon: Icons.notifications_outlined, 
+                  //   arrowIcon: Icons.keyboard_arrow_right,
+                  // ),
+                  // const SizedBox(height: 20,),
 
                   SettingsWidget(
                     onTap: (() => Get.to(() => const ChangePasswordScreen())),
@@ -133,3 +227,111 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// import 'dart:io';
+
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:week_one_project/components/app_button.dart';
+// import 'package:week_one_project/controllers/category_controller.dart';
+// import 'package:week_one_project/utils/messages.dart';
+
+// class CategoryPage extends StatefulWidget {
+//   const CategoryPage({super.key});
+
+//   @override
+//   State<CategoryPage> createState() => _CategoryPageState();
+// }
+
+// class _CategoryPageState extends State<CategoryPage> {
+//   TextEditingController name = TextEditingController();
+//   CategoryController categoryController = Get.put(CategoryController());
+//   final _formKey = GlobalKey<FormState>();
+
+//   final ImagePicker _picker = ImagePicker();
+
+//   XFile? image;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: Get.height,
+//       color: Colors.white,
+//       child: Form(
+//         key: _formKey,
+//         child: Padding(
+//           padding: const EdgeInsets.all(8.0),
+//           child: SingleChildScrollView(
+//             child: Column(
+//               children: [
+//                 const Text(
+//                   "Package",
+//                   style: TextStyle(fontSize: 30),
+//                 ),
+//                 const SizedBox(
+//                   height: 20,
+//                 ),
+//                 TextFormField(
+//                   controller: name,
+//                   decoration: const InputDecoration(
+//                     hintText: "Enter your Package",
+//                     labelText: "Package",
+//                     border: OutlineInputBorder(),
+//                   ),
+//                   validator: (value) {
+//                     if (value!.isEmpty) {
+//                       return "Field cannot be empty";
+//                     }
+//                     return null;
+//                   },
+//                 ),
+//                 InkWell(
+//                   onTap: () async {
+//                     image =
+//                         await _picker.pickImage(source: ImageSource.gallery);
+//                     setState(() {});
+//                   },
+//                   child: SizedBox(
+//                     height: 200,
+//                     width: 200,
+//                     child: image != null
+//                         ? Image.file(
+//                             File(image!.path),
+//                             fit: BoxFit.cover,
+//                           )
+//                         : Image.network(
+//                             "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"),
+//                   ),
+//                 ),
+//                 Container(
+//                   child: categoryController.isLoading.value
+//                       ? const CircularProgressIndicator()
+//                       : AppButton(
+//                           label: "Add",
+//                           onPressed: () {
+//                             var isValid = _formKey.currentState!.validate();
+
+//                             if (image == null) {
+//                               errorMessage("File not provided");
+//                             }
+//                             if (isValid) {
+//                               var data = {'name': name.text};
+//                               categoryController.submit(
+//                                   data: data, image: File(image!.path));
+//                             }
+//                           },
+//                           width: Get.width,
+//                         ),
+//                 )
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

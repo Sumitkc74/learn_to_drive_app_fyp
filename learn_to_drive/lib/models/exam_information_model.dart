@@ -4,17 +4,19 @@ List<ExamInformation> examInformationFromJson(
         ExamInformation.fromJson(examInformationJson)));
 
 class ExamInformation {
-
   int? id;
   String? name;
+  String? nepaliName;
   String? description;
   List<Media>? media;
 
-  ExamInformation({this.id, this.name, this.description, this.media});
+  ExamInformation(
+      {this.id, this.name, this.nepaliName, this.description, this.media});
 
   ExamInformation.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    nepaliName = json['nepaliName'];
     description = json['description'];
     if (json['media'] != null) {
       media = <Media>[];
@@ -28,38 +30,7 @@ class ExamInformation {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data['description'] = description;
-    if (media != null) {
-      data['media'] = media!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class ExamInformations {
-  int? id;
-  String? name;
-  String? description;
-  List<Media>? media;
-
-  ExamInformations({this.id, this.name, this.description, this.media});
-
-  ExamInformations.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    description = json['description'];
-    if (json['media'] != null) {
-      media = <Media>[];
-      json['media'].forEach((v) {
-        media!.add(Media.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
+    data['nepaliName'] = nepaliName;
     data['description'] = description;
     if (media != null) {
       data['media'] = media!.map((v) => v.toJson()).toList();

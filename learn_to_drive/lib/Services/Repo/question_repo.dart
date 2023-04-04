@@ -10,7 +10,7 @@ class QuestionRepo {
       required Function(String message) onError}) async {
         
     try {
-      var url = Uri.parse("${baseURL}question");
+      var url = Uri.parse(questionAPI);
 
       http.Response response = await http.get(
         url,
@@ -24,8 +24,8 @@ class QuestionRepo {
       }
 
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

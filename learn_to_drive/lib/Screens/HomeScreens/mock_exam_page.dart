@@ -23,10 +23,13 @@ class MockExam extends StatefulWidget {
 class _MockExamState extends State<MockExam> {
 
   final c = Get.put(QuestionController());
+  
   List<Question> questions = [];
   int userScore=0, currentQuestion=1;
-  int seconds = 20, minutes = 00;
-  String digitSeconds = "20", digitMinutes = "00";
+  static const int startingSeconds=0, startingMinutes = 30;
+  static int seconds = startingSeconds, minutes = startingMinutes;
+  static String digitSeconds = (startingSeconds >= 10) ? '$seconds': '0$startingSeconds';
+  static String digitMinutes = (startingMinutes >= 10) ? '$minutes': '0$startingMinutes';
   Timer? timer;
   bool started = false;
 
@@ -42,10 +45,10 @@ class _MockExamState extends State<MockExam> {
   void resetTimer() {
     timer!.cancel();
     setState ((){
-      seconds = 20;
-      minutes = 00;
-      digitSeconds = "20";
-      digitMinutes = "00";
+      seconds = startingSeconds;
+      minutes = startingMinutes;
+      digitSeconds = (startingSeconds >= 10) ? '$seconds': '0$startingSeconds';
+      digitMinutes = (startingMinutes >= 10) ? '$minutes': '0$startingMinutes';
     });
   }
 
@@ -111,7 +114,7 @@ class _MockExamState extends State<MockExam> {
     startTimer();
   }
 
-  Future<void> showStartDialog(context) async {
+  showStartDialog(context) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -277,7 +280,7 @@ class _MockExamState extends State<MockExam> {
                     ),
 
                     QuestionOptionButtonWidget(
-                      option: '${'D'.tr}. ${question.first.option3}',
+                      option: '${'D'.tr}. ${question.first.option4}',
                       onPressed: () {
                         question.first.selectOption = 'D';
                         checkAnswer(question.first.correctOption.toString(),'D');

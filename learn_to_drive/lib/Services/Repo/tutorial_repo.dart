@@ -10,22 +10,20 @@ class TutorialRepo {
       required Function(String message) onError}) async {
         
     try {
-      var url = Uri.parse("${baseURL}tutorial");
+      var url = Uri.parse(tutorialAPI);
 
       http.Response response = await http.get(
         url,
         headers: headers,
       );
-
       var data = json.decode(response.body);
 
       if (data['status']) {
         onSuccess(tutorialFromJson(data['data']['tutorials']));
       }
-
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

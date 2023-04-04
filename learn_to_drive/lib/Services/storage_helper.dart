@@ -23,10 +23,10 @@ class StorageHelper {
     }
   }
 
-  static UserAccessToken? getToken() {
+  static AccessToken? getToken() {
     try {
       final box = GetStorage();
-      UserAccessToken token = UserAccessToken.fromJson(
+      AccessToken token = AccessToken.fromJson(
           jsonDecode(box.read(StorageKey.ACCESS_TOKEN)) ?? "");
       log("--------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>${StorageKey.ACCESS_TOKEN}");
       return token;

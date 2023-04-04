@@ -10,22 +10,20 @@ class VisionTestRepo {
       required Function(String message) onError}) async {
         
     try {
-      var url = Uri.parse("${baseURL}visionTest");
+      var url = Uri.parse(visionTestAPI);
 
       http.Response response = await http.get(
         url,
         headers: headers,
       );
-
       var data = json.decode(response.body);
 
       if (data['status']) {
         onSuccess(visionTestFromJson(data['data']['visionTests']));
       }
-
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

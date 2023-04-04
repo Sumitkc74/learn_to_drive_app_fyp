@@ -10,7 +10,7 @@ class NoticeRepo {
       {required Function(List<Notice>) onSuccess,
       required Function(String message) onError}) async {
     try {
-      var url = Uri.parse("${baseURL}notice");
+      var url = Uri.parse(noticeAPI);
 
       http.Response response = await http.get(
         url,
@@ -22,8 +22,8 @@ class NoticeRepo {
         onSuccess(noticeFromJson(data['data']['notices']));
       }
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

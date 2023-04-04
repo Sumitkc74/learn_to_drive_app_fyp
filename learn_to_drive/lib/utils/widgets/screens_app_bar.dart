@@ -36,9 +36,9 @@ class ScreensAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       toolbarHeight: height ?? 80,
-      foregroundColor: AppColors.primaryBlack,
+      foregroundColor: AppColors.shadowBlack,
       backgroundColor: AppColors.primaryYellow,
-      shadowColor: AppColors.primaryBlack,
+      shadowColor: AppColors.shadowBlack,
       actions: action != null ? [action!] : null,
     );
   }

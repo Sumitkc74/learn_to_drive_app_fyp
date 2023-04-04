@@ -9,7 +9,7 @@ class ExamPaperRepo {
       {required Function(List<ExamPaper>) onSuccess,
       required Function(String message) onError}) async {
     try {
-      var url = Uri.parse("${baseURL}examPaper");
+      var url = Uri.parse(examPaperAPI);
 
       http.Response response = await http.get(
         url,
@@ -20,8 +20,8 @@ class ExamPaperRepo {
         onSuccess(examPaperFromJson(data['data']['examPapers']));
       }
     } catch (e) {
-      log("-->>>>$e");
-      onError("Sorry something went wrong. Please try again");
+      log('-->>>>$e');
+      onError('Sorry something went wrong. Please try again');
     }
   }
 }

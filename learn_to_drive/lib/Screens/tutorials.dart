@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:first_app/Controllers/tutorial_controller.dart';
 import 'package:first_app/Models/tutorial_model.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/Screens/SettingsScreens/notifications.dart';
 
 class TutorialsScreen extends StatelessWidget {
   TutorialsScreen({super.key});
@@ -16,6 +17,12 @@ class TutorialsScreen extends StatelessWidget {
       appBar: ScreensAppBar(
         title: 'tutorials'.tr,
         automaticallyImplyLeading: false,
+        action: IconButton(
+          onPressed: () {
+            Get.to(NotificationsScreen());
+          },
+          icon: const Icon(Icons.notifications_outlined),
+        ),
       ),
 
       body: Obx(

@@ -6,14 +6,17 @@ List<ExamPaper> examPaperFromJson(
 class ExamPaper {
   int? id;
   String? name;
+  String? nepaliName;
   String? description;
   List<Media>? media;
 
-  ExamPaper({this.id, this.name, this.description, this.media});
+  ExamPaper(
+      {this.id, this.name, this.nepaliName, this.description, this.media});
 
   ExamPaper.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    nepaliName = json['nepaliName'];
     description = json['description'];
     if (json['media'] != null) {
       media = <Media>[];
@@ -27,6 +30,7 @@ class ExamPaper {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
+    data['nepaliName'] = nepaliName;
     data['description'] = description;
     if (media != null) {
       data['media'] = media!.map((v) => v.toJson()).toList();

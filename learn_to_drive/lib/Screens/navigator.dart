@@ -1,3 +1,4 @@
+import 'package:first_app/Screens/SettingsScreens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:first_app/utils/colors.dart';
@@ -20,6 +21,7 @@ class _NavigationState extends State<NavigationPage> {
   final List<Widget> _children =[
     const HomeScreen(),
     TutorialsScreen(),
+    // NotificationsScreen(),
     SettingsScreen(),
   ];  
   
@@ -35,14 +37,16 @@ class _NavigationState extends State<NavigationPage> {
       body: _children[_selectedIndex],
 
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 45,
         backgroundColor: AppColors.primaryYellow,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: AppColors.secondaryBlack,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: AppColors.shadowBlack,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: const Icon(Icons.home), label: 'home'.tr),
           BottomNavigationBarItem(icon: const Icon(Icons.tv), label: 'tutorials'.tr),
+          // BottomNavigationBarItem(icon: const Icon(Icons.notifications_outlined), label: 'notifications'.tr),
           BottomNavigationBarItem(icon: const Icon(Icons.settings), label: 'settings'.tr),      
         ]
       ),

@@ -1,3 +1,5 @@
+import 'package:first_app/Services/globals.dart';
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,12 +35,12 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
           ),
         ),
         toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        foregroundColor: AppColors.primaryBlack,
+        backgroundColor: AppColors.primaryYellow,
+        shadowColor: AppColors.primaryBlack,
       ),
 
-      backgroundColor: const Color(0xFF303030),
+      // backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [
             Center(
@@ -54,7 +56,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 20,
-                          color: Colors.white,
+                          // color: Colors.white,
                         ),
                       ),
                     ),
@@ -64,16 +66,17 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                       children: [
                         Material(
                           borderRadius: BorderRadius.circular(5),
-                          color: Colors.white,
+                          color: Colors.grey,
                           child: InkWell(
                             onTap: () {
                               const Icon(
                                 Icons.check,
-                                color: Colors.black,
+                                // color: Colors.black,
                                 size: 30,
                               );
                               var locale = const Locale('en','US');
                               Get.updateLocale(locale);
+                              setIsEnglish(true);
                             },
                             child: SizedBox(
                               height: 60,
@@ -87,7 +90,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                     Text(
                                       "english".tr,
                                       style: const TextStyle(
-                                        color: Colors.black, 
+                                        // color: Colors.black, 
                                         fontSize: 20
                                       ),
                                     ),
@@ -105,16 +108,17 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                       children: [
                         Material(
                           borderRadius: BorderRadius.circular(5),
-                          color: Colors.white,
+                          color: Colors.grey,
                           child: InkWell(
                             onTap: () {
                               const Icon(
                                 Icons.check,
-                                color: Colors.black,
+                                // color: Colors.black,
                                 size: 30,
                               );
                               var locale = const Locale('ne','NP');
                               Get.updateLocale(locale);
+                              setIsEnglish(false);
                             },
                             child: SizedBox(
                               height: 60,
@@ -128,7 +132,7 @@ class _ChangeLanguageScreenState extends State<ChangeLanguageScreen> {
                                     Text(
                                       "nepali".tr,
                                       style: const TextStyle(
-                                        color: Colors.black, 
+                                        // color: Colors.black, 
                                         fontSize: 20
                                       ),
                                     ),

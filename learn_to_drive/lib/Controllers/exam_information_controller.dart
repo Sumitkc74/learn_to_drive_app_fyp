@@ -1,8 +1,7 @@
 import 'dart:developer';
 import 'package:first_app/Services/repo/exam_information_repo.dart';
-import 'package:first_app/Models/exam_information.dart';
+import 'package:first_app/Models/exam_information_model.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ExamInformationController extends GetxController {
   RxList<ExamInformation> examInformations = RxList();
@@ -26,14 +25,5 @@ class ExamInformationController extends GetxController {
         log("error ");
       }),
     );
-  }
-
-  Future<void> launchInBrowser(String url) async {
-    try {
-      final Uri toLaunch = Uri.parse(url);
-      await launchUrl(toLaunch, mode: LaunchMode.externalApplication);
-    } catch (e) {
-      log("couldnot launch ------->");
-    }
   }
 }

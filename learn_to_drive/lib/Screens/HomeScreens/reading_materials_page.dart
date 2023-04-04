@@ -1,68 +1,70 @@
-import 'package:first_app/Controllers/exam_paper_controller.dart';
-import 'package:first_app/Models/exam_paper.dart';
-import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/Controllers/exam_paper_controller.dart';
+import 'package:first_app/Models/exam_paper_model.dart';
+import 'package:first_app/utils/pdf_reader.dart';
 
 class ReadingMaterialsPage extends StatelessWidget {
   ReadingMaterialsPage({super.key});
 
- final c = Get.put(ExamPaperController());
+ final readingMaterialController = Get.put(ExamPaperController());
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'reading-materials'.tr,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, 
-          ),
-        ),
-        toolbarHeight: 80,
-        foregroundColor: AppColors.primaryBlack,
-        backgroundColor: AppColors.primaryYellow,
-        shadowColor: AppColors.primaryBlack,
+      appBar: ScreensAppBar(
+        title: 'reading-materials'.tr, 
+        onPressed: () => Get.back(),
       ),
       
-      backgroundColor: AppColors.secondaryBlack,
+      // backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
-        () => (c.loading.value)
+        () => (readingMaterialController.loading.value)
         ? const Center(child: CircularProgressIndicator())
         : Container(
+          height: Get.height,
           margin: const EdgeInsets.only(top: 15),
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: GridView.builder(
-            itemCount: c.examPapers.length,
+            itemCount: readingMaterialController.examPapers.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisExtent: 150,
-              crossAxisCount: 2,
-              crossAxisSpacing: 20.0,
-              mainAxisSpacing: 20.0,
+              mainAxisExtent: 100,
+              crossAxisCount: 1,
+              crossAxisSpacing: 10.0,
+              mainAxisSpacing: 0.0,
             ),
             itemBuilder: (context, index) {
-              ExamPaper examPaper = c.examPapers[index];
+              ExamPaper examPaper = readingMaterialController.examPapers[index];
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
-                child: Column(
-                  children: [
-                    Text(
-                      examPaper.name??"",
-                      style: const TextStyle(color: Colors.white),
-                    ),
-
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: examPaper.media!.length,
-                      itemBuilder: (context,index){
-                       Media media= examPaper.media![index];
-                        return IconButton(onPressed: (){
-                          c.launchInBrowser(media.originalUrl??"");
-                        }, icon: const Icon(Icons.document_scanner_outlined), color: Colors.white,);
-                      }
-                    ),    
-                  ],
+                child: SizedBox(
+                  height: 50,
+                  width: 200,
+                  child: Row(
+                    children: [
+                      ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: examPaper.media!.length,
+                        itemBuilder: (context,index){
+                         Media media = examPaper.media![index];
+                          return IconButton(
+                            onPressed: (){
+                              Get.to(() => PdfReaderScreen(title: examPaper.name??"", url: media.originalUrl??""));
+                            }, 
+                            icon: const Icon(Icons.picture_as_pdf), 
+                            color: Colors.red, 
+                            iconSize: 50,
+                          );
+                        }
+                      ), 
+                      Text(
+                        examPaper.name??"",
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }

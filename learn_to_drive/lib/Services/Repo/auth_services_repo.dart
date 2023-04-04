@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:first_app/Models/current_user_model.dart';
 import 'package:first_app/Services/globals.dart';
 import 'package:http/http.dart' as http;
 
@@ -39,7 +40,7 @@ class AuthServices {
   
   static Future<http.Response> changePassword(String currentPassword, String newPassword) async {
     Map data = {
-      "email": getEmail(),
+      "email": currentUser.email,
       "password": currentPassword.trim(),
       "new_password": newPassword.trim(),
     };

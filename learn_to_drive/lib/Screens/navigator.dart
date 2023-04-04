@@ -1,9 +1,10 @@
-import 'package:first_app/Screens/SettingsScreens/settings.dart';
-import 'package:first_app/Screens/tutorials.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:first_app/utils/colors.dart';
 
 import 'package:first_app/Screens/HomeScreens/home_page.dart';
-import 'package:get/get.dart';
+import 'package:first_app/Screens/SettingsScreens/settings.dart';
+import 'package:first_app/Screens/tutorials.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -18,8 +19,8 @@ class _NavigationState extends State<NavigationPage> {
   int _selectedIndex = 0;  
   final List<Widget> _children =[
     const HomeScreen(),
-    const TutorialsScreen(),
-    const SettingsScreen(),
+    TutorialsScreen(),
+    SettingsScreen(),
   ];  
   
   void _onItemTapped(int index) {  
@@ -28,14 +29,15 @@ class _NavigationState extends State<NavigationPage> {
     });  
   }  
   
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _children[_selectedIndex],
 
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFFFFDE17),
+        backgroundColor: AppColors.primaryYellow,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: AppColors.secondaryBlack,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: <BottomNavigationBarItem>[

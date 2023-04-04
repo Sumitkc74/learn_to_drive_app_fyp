@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:first_app/Services/repo/question_repo.dart';
-import 'package:first_app/Models/question.dart';
+import 'package:first_app/Models/question_model.dart';
 import 'package:get/get.dart';
 
 class QuestionController extends GetxController {

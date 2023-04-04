@@ -6,14 +6,16 @@ List<TrafficSign> trafficSignFromJson(
 class TrafficSign {
   int? id;
   String? name;
+  String? nepaliSignName;
   String? description;
   List<Media>? media;
 
-  TrafficSign({this.id, this.name, this.description, this.media});
+  TrafficSign({this.id, this.name, this.nepaliSignName, this.description, this.media});
 
   TrafficSign.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    nepaliSignName = json['nepaliSignName'];
     description = json['description'];
     if (json['media'] != null) {
       media = <Media>[];
@@ -27,6 +29,7 @@ class TrafficSign {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
+    data['nepaliSignName'] = nepaliSignName;
     data['description'] = description;
     if (media != null) {
       data['media'] = media!.map((v) => v.toJson()).toList();
@@ -47,7 +50,6 @@ class Media {
   String? disk;
   String? conversionsDisk;
   int? size;
- 
   int? orderColumn;
   String? createdAt;
   String? updatedAt;
@@ -66,7 +68,6 @@ class Media {
       this.disk,
       this.conversionsDisk,
       this.size,
-      
       this.orderColumn,
       this.createdAt,
       this.updatedAt,
@@ -84,8 +85,7 @@ class Media {
     mimeType = json['mime_type'];
     disk = json['disk'];
     conversionsDisk = json['conversions_disk'];
-    size = json['size'];
-    
+    size = json['size']; 
     orderColumn = json['order_column'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

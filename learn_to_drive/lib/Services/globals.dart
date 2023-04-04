@@ -1,4 +1,6 @@
-const String baseURL = "http://172.16.18.151:8000/api/"; //emulator localhost
+import 'package:first_app/Models/current_user_model.dart';
+
+const String baseURL = "http://192.168.1.68:8000/api/"; //emulator localhost
 const Map<String, String> headers = {
   "Accept": "application/json",
   "Content-Type": "application/json",
@@ -14,13 +16,21 @@ const Map<String, String> headers = {
 //   );
 // }
 
-String email = '';
+bool isEnglish = true;
 
-getEmail(){
-  return email.toString();
+setIsEnglish(bool isenglish){
+  isEnglish = isenglish;
 }
 
-setEmail(String enteredEmail){
-  email = enteredEmail;
+getIsEnglish(){
+  return isEnglish;
 }
 
+checkLanguage(String english, String nepali){
+  if(getIsEnglish()){
+    return english;
+  }
+  else{
+    return nepali;
+  }
+}

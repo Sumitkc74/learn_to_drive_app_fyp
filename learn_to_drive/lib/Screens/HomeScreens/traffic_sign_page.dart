@@ -1,5 +1,6 @@
-import 'package:first_app/utils/colors.dart';
+import 'package:first_app/Services/globals.dart';
 import 'package:first_app/utils/flip_image.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,35 +15,24 @@ class TrafficSignsPage extends StatefulWidget {
 }
 
 class _TrafficSignsPageState extends State<TrafficSignsPage> {
-  final c = Get.put(TrafficSignController());
+  final trafficSignController = Get.put(TrafficSignController());
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'traffic-signs'.tr,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, 
-          ),
-        ),
-        toolbarHeight: 80,
-        foregroundColor: AppColors.primaryBlack,
-        backgroundColor: AppColors.primaryYellow,
-        shadowColor: AppColors.primaryBlack,
+      appBar: ScreensAppBar(
+        title: 'traffic-signs'.tr,
+        onPressed: () => Get.back(),
       ),
       
-      backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
-        () => (c.loading.value)
+        () => (trafficSignController.loading.value)
         ? const Center(child: CircularProgressIndicator())
         : Container(
-          margin: const EdgeInsets.only(top: 30),
+          margin: const EdgeInsets.only(top: 30,),
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: GridView.builder(
-            itemCount: c.trafficSigns.length,
+            itemCount: trafficSignController.trafficSigns.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisExtent: 150,
               crossAxisCount: 2,
@@ -50,7 +40,7 @@ class _TrafficSignsPageState extends State<TrafficSignsPage> {
               mainAxisSpacing: 20.0,
             ),
             itemBuilder: (context, index) {
-              TrafficSign trafficSign = c.trafficSigns[index];
+              TrafficSign trafficSign = trafficSignController.trafficSigns[index];
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                   child: Column(
@@ -66,7 +56,7 @@ class _TrafficSignsPageState extends State<TrafficSignsPage> {
                           Media media= trafficSign.media![index];
                           return FlippableImage(
                             imageUrl: media.originalUrl ?? "",
-                            name: trafficSign.name ?? "",
+                            name: checkLanguage(trafficSign.name??"", trafficSign.nepaliSignName??""),
                           );
                         }
                       )
@@ -76,8 +66,8 @@ class _TrafficSignsPageState extends State<TrafficSignsPage> {
               );
             }
           ),
-        ),         
+        ),
       ),
     );
-  }     
-}       
+  }
+}

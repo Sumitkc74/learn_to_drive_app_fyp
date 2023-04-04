@@ -6,7 +6,7 @@ class AppColors {
   static const secondaryBlack = Color(0xFF303030);
   static const shadowBlack = Color(0xFF3C3C3C);
 
-  static Color hexToColor(String code) {
-    return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
-  }
+  // static Color hexToColor(String code) {
+  //   return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+  // }
 }

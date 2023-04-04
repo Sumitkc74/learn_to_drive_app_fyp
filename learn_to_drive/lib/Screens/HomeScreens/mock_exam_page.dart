@@ -1,12 +1,17 @@
 import 'dart:async';
-import 'package:first_app/Controllers/question_controller.dart';
-import 'package:first_app/Screens/HomeScreens/mock_exam_answer_page.dart';
-import 'package:first_app/Screens/navigator.dart';
-import 'package:first_app/Services/repo/question_repo.dart';
-import 'package:first_app/Models/question.dart';
-import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:first_app/Screens/HomeScreens/mock_exam_answer_page.dart';
+import 'package:first_app/Screens/navigator.dart';
+
+import 'package:first_app/Controllers/question_controller.dart';
+import 'package:first_app/Services/repo/question_repo.dart';
+import 'package:first_app/Models/question_model.dart';
+
+import 'package:first_app/utils/colors.dart';
+import 'package:first_app/utils/widgets/button_widget.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 
 class MockExam extends StatefulWidget {
   const MockExam({super.key});
@@ -95,6 +100,7 @@ class _MockExamState extends State<MockExam> {
     QuestionRepo.getQuestion(onSuccess: (question){
       questions = question..shuffle();
       // setState(() { });
+      attemptedQuestions = questions;
     }, onError: (onError){});
   }
 
@@ -115,21 +121,21 @@ class _MockExamState extends State<MockExam> {
           backgroundColor: AppColors.secondaryBlack,
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text('This is a demo alert dialog.', style: TextStyle(color: Colors.white),),
-                Text('Would you start the mock exam?', style: TextStyle(color: Colors.white),),
+              children: <Widget>[
+                const Text('This is a demo alert dialog.', style: TextStyle(color: Colors.white),),
+                Text('start-mock-exam'.tr, style: const TextStyle(color: Colors.white),),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Go Back', style: TextStyle(color: Colors.white),),
+              child: Text('go-back'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: () {
                 Get.off(() => const NavigationPage());
               }, 
             ),
             TextButton(
-              child: const Text('Start', style: TextStyle(color: Colors.white),),
+              child: Text('start'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: () {
                 Navigator.of(context).pop();
                 startTimer();
@@ -148,14 +154,14 @@ class _MockExamState extends State<MockExam> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: AppColors.secondaryBlack,
-          title: const Text("Result", style: TextStyle(color: Colors.white),),
+          title: Text("result".tr, style: const TextStyle(color: Colors.white),),
           content: Text(
             'Your score is $userScore out of 25', 
             style: const TextStyle(color: Colors.white),
           ),
           actions:  <Widget>[
             TextButton(
-              child: const Text('View Answer', style: TextStyle(color: Colors.white),),
+              child: Text('view-answer'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: () {
                 stopTimer();
                 Get.to(() => const MockExamAnswer());
@@ -163,7 +169,7 @@ class _MockExamState extends State<MockExam> {
             ),
 
             TextButton(
-              child: const Text('Try Again', style: TextStyle(color: Colors.white),),
+              child: Text('try-again'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: (){
                 Navigator.pop(context);
                 resetQuiz();
@@ -189,30 +195,19 @@ class _MockExamState extends State<MockExam> {
     List<Question> question = (questions.where((element) => element.selectOption == null,).toList());
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'mock-exam'.tr,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, 
-          ),
+      appBar: ScreensAppBar(
+        title: 'mock-exam'.tr, 
+        onPressed: () {
+          endQuiz();
+          Get.off(() => const NavigationPage());
+        },
+        action: IconButton(
+          onPressed: () {
+            resetQuiz();
+          },
+          icon: const Icon(Icons.replay_outlined),
         ),
-        toolbarHeight: 80,
-        foregroundColor: AppColors.primaryBlack,
-        backgroundColor: AppColors.primaryYellow,
-        shadowColor: AppColors.primaryBlack,
-        actions: [
-          IconButton(
-            onPressed: () {
-              resetQuiz();
-            },
-            icon: const Icon(Icons.replay_outlined),
-          ),
-        ],
       ),
-      
-      backgroundColor: AppColors.secondaryBlack,
 
       body:question.isNotEmpty
       ? Column(
@@ -227,7 +222,7 @@ class _MockExamState extends State<MockExam> {
                       child : Text(
                         "$digitMinutes:$digitSeconds", 
                         style : const TextStyle( 
-                          color : Colors.white, 
+                          // color : Colors.white, 
                           fontSize : 30.0, 
                           fontWeight : FontWeight.bold,
                         )
@@ -237,7 +232,6 @@ class _MockExamState extends State<MockExam> {
                     
                     Text(
                       "$currentQuestion out of 25", 
-                      style: const TextStyle(color: Colors.white),
                     ),
                     const SizedBox(height: 25,),
 
@@ -247,55 +241,65 @@ class _MockExamState extends State<MockExam> {
                       ),
                       height: 100,
                       width: double.infinity,
-                      child: Center(child: Text("$currentQuestion. ${question.first.question}", style: const TextStyle(fontSize: 18, color: Colors.black))),
+                      child: Center(
+                        child: Text(
+                          "$currentQuestion. ${question.first.question}", 
+                          style: const TextStyle(
+                            fontSize: 18, 
+                            color: Colors.black
+                          )
+                        )
+                      ),
+                    ),
+
+                    QuestionOptionButtonWidget(
+                      option: '${'A'.tr}. ${question.first.option1}',
+                      onPressed: () {
+                        question.first.selectOption = 'A';
+                        checkAnswer(question.first.correctOption.toString(),'1');
+                      }, 
+                    ),
+
+                    QuestionOptionButtonWidget(
+                      option: '${'B'.tr}. ${question.first.option2}',
+                      onPressed: () {
+                        question.first.selectOption = 'B';
+                        checkAnswer(question.first.correctOption.toString(),'2');
+                      }, 
+                    ),
+
+                    QuestionOptionButtonWidget(
+                      option: '${'C'.tr}. ${question.first.option3}',
+                      onPressed: () {
+                        question.first.selectOption = 'C';
+                        checkAnswer(question.first.correctOption.toString(),'3');
+                      }, 
+                    ),
+
+                    QuestionOptionButtonWidget(
+                      option: '${'D'.tr}. ${question.first.option3}',
+                      onPressed: () {
+                        question.first.selectOption = 'D';
+                        checkAnswer(question.first.correctOption.toString(),'D');
+                      }, 
                     ),
               
-                    MaterialButton(
-                      color: Colors.blue,
-                      minWidth: double.infinity,
-                      child: Text('A. ${question.first.option1}', style: const TextStyle(fontSize: 15),),
-                      onPressed: () {  
-                        question.first.selectOption = question.first.option1;
-                        checkAnswer(question.first.correctOption.toString(),'1');
-                      },
-                    ),
-
-                    MaterialButton(
-                      color: Colors.blue,
-                      minWidth: double.infinity,
-                      child: Text('B. ${question.first.option2}', style: const TextStyle(fontSize: 15),),
-                      onPressed: () {
-                        question.first.selectOption = question.first.option2;
-                        checkAnswer(question.first.correctOption.toString(),'2');
-                      },
-                    ),
-
-                    MaterialButton(
-                      color: Colors.blue,
-                      minWidth: double.infinity,
-                      child: Text('C. ${question.first.option3}', style: const TextStyle(fontSize: 15),),
-                      onPressed: () {
-                        question.first.selectOption = question.first.option3;
-                        checkAnswer(question.first.correctOption.toString(),'3');
-                      },
-                    ),
-
-                    MaterialButton(
-                      color: Colors.blue,
-                      minWidth: double.infinity,
-                      child: Text('D. ${question.first.option4}', style: const TextStyle(fontSize: 15),),
-                      onPressed: () {
-                        question.first.selectOption = question.first.option4;
-                        checkAnswer(question.first.correctOption.toString(),'4');
-                      },
-                    ),
+                    // MaterialButton(
+                    //   color: Colors.blue,
+                    //   minWidth: double.infinity,
+                    //   child: Text('${'A'.tr}. ${question.first.option1}', style: const TextStyle(fontSize: 15),),
+                    //   onPressed: () {  
+                    //     question.first.selectOption = 'A';
+                    //     checkAnswer(question.first.correctOption.toString(),'1');
+                    //   },
+                    // ),
                   ]
                 )
               ),
             )
           ],
         )
-      :const CircularProgressIndicator()
+      :const Center(child: CircularProgressIndicator())
     );
   }
 }

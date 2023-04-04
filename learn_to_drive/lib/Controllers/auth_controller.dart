@@ -1,13 +1,13 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:first_app/Models/access_token_model.dart';
+import 'package:first_app/Models/current_user_model.dart';
+
 import 'package:first_app/Services/repo/auth_services_repo.dart';
 import 'package:first_app/Screens/navigator.dart';
-import 'package:first_app/Screens/login.dart';
-
-import '../Services/globals.dart';
+import 'package:first_app/Screens/AuthScreen/login.dart';
 
 class AuthController extends GetxController {
   // final AuthService authService = AuthService();
@@ -19,9 +19,10 @@ class AuthController extends GetxController {
       http.Response response = await AuthServices.login(email, password);
       Map responseMap = await jsonDecode(response.body);
       if (response.statusCode == 200) {
-            Get.off(() => const NavigationPage());
-            Get.snackbar("Success", responseMap["message"]);
-            
+        currentUser = CurrentUser.fromJson(responseMap['user']);
+        userAccessToken = UserAccessToken.fromJson(responseMap['token']);
+        Get.off(() => const NavigationPage());
+        Get.snackbar("Success", responseMap["message"]);
       } else {
         Get.snackbar("Failed", responseMap["message"]);
       }
@@ -32,23 +33,22 @@ class AuthController extends GetxController {
 
   Future<void> register({required String firstName, required String lastName, required String email, required String phoneNumber, required String password, required String confirmPassword}) async {
     bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);        
-    if (!emailValid) {
-      setEmail(email);
+    if (emailValid) {
       if(password == confirmPassword){
         String name = "$firstName $lastName";
         final http.Response response = await AuthServices.register(name, email, phoneNumber, password);
         Map<String, dynamic> responseMap = jsonDecode(response.body);
         if (response.statusCode == 200) {
           Get.to(const NavigationPage());
-          Get.snackbar("Success", "User register successfully");
+          Get.snackbar("Registration Successful", "User has been registered successfully");
         } else {
-          Get.snackbar("Failed", responseMap.values.first[0]);
+          Get.snackbar("Failed", responseMap['message']);
         }
       } else{
         Get.snackbar("Failed", 'Enter same password to confirm');
       }
     } else {
-      Get.snackbar("Failed", 'Email not valid');
+      Get.snackbar("Invalid Email", 'Enter a valid email address');
     }
   }
 
@@ -66,14 +66,14 @@ class AuthController extends GetxController {
   }
 
 
-    Future<void> changePassword({required String currentPassword, required String newPassword, required String confirmNewPassword}) async {
+  Future<void> changePassword({required String currentPassword, required String newPassword, required String confirmNewPassword}) async {
     if (currentPassword.isNotEmpty && newPassword.isNotEmpty && confirmNewPassword.isNotEmpty) {
       if(newPassword == confirmNewPassword){
         if(newPassword != currentPassword){
           http.Response response = await AuthServices.changePassword(currentPassword, newPassword);
           Map responseMap = jsonDecode(response.body);
           if (response.statusCode == 200) {
-            Get.to(const NavigationPage());
+            Get.back();
             Get.snackbar("Success", responseMap["message"]); 
           }else{
             Get.snackbar("Failed", responseMap["message"]); 
@@ -89,7 +89,7 @@ class AuthController extends GetxController {
     }
   }
 
-    Future<void> forgotPassword({required String email}) async {
+  Future<void> forgotPassword({required String email}) async {
     if(email.isNotEmpty){
       
       http.Response response = await AuthServices.resetPassword(email);

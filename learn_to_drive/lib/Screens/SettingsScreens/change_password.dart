@@ -1,4 +1,5 @@
 import 'package:first_app/Controllers/auth_controller.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,22 +22,13 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "change-password".tr,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, 
-          ),
-        ),
-        toolbarHeight: 80,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+      appBar: ScreensAppBar(
+        title: 'change-password'.tr, 
+        onPressed: (){
+          Get.back();
+        }
       ),
       
-      backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -53,7 +45,7 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                     obscureText: !currentPasswordVisible,
                     decoration: InputDecoration(
                       filled: true, 
-                      fillColor: Colors.white,
+                      // fillColor: Colors.white,
                       prefixIcon: const Icon(Icons.lock),
                       hintText: 'current-password'.tr,
                       suffixIcon: IconButton(
@@ -84,7 +76,7 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                       helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
-                      fillColor: Colors.white,
+                      // fillColor: Colors.white,
                       suffixIcon: IconButton(
                         icon: Icon( !newPasswordVisible
                           ? Icons.visibility
@@ -109,7 +101,7 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                       hintText: 'confirm-password'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
-                      fillColor: Colors.white,
+                      // fillColor: Colors.white,
                       suffixIcon: IconButton(                          
                         icon: Icon( 
                           !confirmPasswordVisible

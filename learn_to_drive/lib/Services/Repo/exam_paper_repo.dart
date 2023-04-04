@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:first_app/Services/globals.dart';
-import 'package:first_app/Models/exam_paper.dart';
+import 'package:first_app/Models/exam_paper_model.dart';
 import 'package:http/http.dart' as http;
 
 class ExamPaperRepo {

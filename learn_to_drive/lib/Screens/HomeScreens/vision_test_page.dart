@@ -1,35 +1,24 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:first_app/Controllers/vision_test_controller.dart';
 import 'package:first_app/Models/vision_test.dart';
-import 'package:first_app/utils/colors.dart';
 import 'package:first_app/utils/flip_image.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisionTestPage extends StatelessWidget {
   VisionTestPage({super.key});
 
-
   final c = Get.put(VisionTestController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'vision-tests'.tr,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, 
-          ),
-        ),
-        toolbarHeight: 80,
-        foregroundColor: AppColors.primaryBlack,
-        backgroundColor: AppColors.primaryYellow,
-        shadowColor: AppColors.primaryBlack,
+      appBar: ScreensAppBar(
+        title: 'vision-tests'.tr, 
+        onPressed: (){
+          Get.back();
+        }
       ),
       
-      backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (c.loading.value)
         ? const Center(child: CircularProgressIndicator())

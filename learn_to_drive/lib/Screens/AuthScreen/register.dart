@@ -38,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
 
-      backgroundColor: const Color(0xFF303030),
+      // backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -58,7 +58,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hintText: 'first-name'.tr,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           filled: true, 
-                          fillColor: Colors.white,
                           ),
                           onChanged: (value) { _firstName = value; }
                         ),
@@ -71,7 +70,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             hintText: 'last-name'.tr,
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                             filled: true, 
-                            fillColor: Colors.white,
                           ),
                           onChanged: (value) { _lastName = value; }
                         ),
@@ -86,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'email'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
-                      fillColor: Colors.white,
+                      // fillColor: Colors.white,
                     ),
                     onChanged: (value) { _email = value; }
                   ),
@@ -99,7 +97,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'phone-number'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
-                      fillColor: Colors.white,
                     ),
                     onChanged: (value) { _phoneNumber = value; }
                   ),
@@ -110,11 +107,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
                       hintText: 'password'.tr,
-                      helperText:"Password must contain atleast 8 letters, a uppercase and a special character",
+                      helperText:"Password must contain 8 letters, a uppercase and a special character",
                       helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
-                      fillColor: Colors.white,
                       suffixIcon: IconButton(
                         icon: Icon( !passwordVisible
                           ? Icons.visibility
@@ -137,7 +133,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'confirm-password'.tr,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       filled: true, 
-                      fillColor: Colors.white,
                       suffixIcon: IconButton(
                         icon: Icon( !confirmPasswordVisible
                           ? Icons.visibility

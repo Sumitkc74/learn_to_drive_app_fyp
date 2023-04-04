@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:first_app/Services/globals.dart';
-import 'package:first_app/Models/exam_information.dart';
+import 'package:first_app/Models/exam_information_model.dart';
 import 'package:http/http.dart' as http;
 
 class ExamInformationRepo {
@@ -18,7 +18,6 @@ class ExamInformationRepo {
       
       var data = json.decode(response.body);
       if (data['status']) {
-        // log("--------------------------------${(data['data']['examInformations'])}");
         onSuccess(examInformationFromJson(data['data']['examInformations']));
       }
     } catch (e) {

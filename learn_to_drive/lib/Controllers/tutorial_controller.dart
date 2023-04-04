@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:first_app/Models/tutorial.dart';
+import 'package:first_app/Models/tutorial_model.dart';
 import 'package:first_app/Services/repo/tutorial_repo.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';

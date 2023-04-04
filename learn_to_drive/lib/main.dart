@@ -8,8 +8,11 @@ import 'package:get/get.dart';
 void main() {
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
+    themeMode: ThemeMode.dark,
+    theme: ThemeData.light(),
+    darkTheme: ThemeData.dark(),
     translations: LocaleString(),
     locale: const Locale('en','US'),
-    home: const NavigationPage()
+    home: const SplashScreen()
   ));
 }

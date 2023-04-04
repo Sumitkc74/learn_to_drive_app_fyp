@@ -1,3 +1,5 @@
+List<Question> attemptedQuestions = [];
+
 List<Question> questionFromJson(
         List<dynamic> questionJson) =>
     List<Question>.from(questionJson.map((questionJson) =>

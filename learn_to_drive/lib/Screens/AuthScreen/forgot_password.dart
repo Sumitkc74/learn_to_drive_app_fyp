@@ -21,7 +21,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
         elevation: 0,
       ),
 
-      backgroundColor: const Color(0xFF303030),
+      // backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [                        
           Container(
@@ -36,7 +36,9 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                   padding: const EdgeInsets.only(left: 0,top: 20, bottom: 20),
                   child: Text(
                     'get-email-verification'.tr, 
-                    style:const TextStyle(color: Colors.white, fontSize: 28
+                    style:const TextStyle(
+                      // color: Colors.white, 
+                      fontSize: 28,
                     )
                   )
                 ),
@@ -58,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPasswordScreen> {
                 TextField(
                   decoration: InputDecoration(
                     filled: true, 
-                    fillColor: Colors.white,
+                    // fillColor: Colors.white,
                     prefixIcon: const Icon(Icons.email),
                     hintText: 'email'.tr,
                     border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))

@@ -1,6 +1,8 @@
 import 'dart:async';
 
-import 'package:first_app/Screens/login.dart';
+import 'package:first_app/Controllers/core_controller.dart';
+import 'package:first_app/Screens/AuthScreen/login.dart';
+import 'package:first_app/Screens/HomeScreens/home_page.dart';
 import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +23,6 @@ class VideoState extends State<SplashScreen>
   late Animation<double> animation;
 
   // final coreController = Get.find<CoreController>();
-
   // final coreController = Get.put(CoreController());
 
   startTime() async {
@@ -31,12 +32,10 @@ class VideoState extends State<SplashScreen>
 
   void navigationPage() {
     Get.off(() => const LoginScreen());
-    // if (coreController.isFirstTimeUser()) {
-    //   Get.off(() => const OnBoarding());
-    // } else if (coreController.isUserLoggedIn()) {
-    //   Get.off(() => HomePage());
+    // if (coreController.isUserLoggedIn()) {
+    //   Get.off(() => const HomeScreen());
     // } else {
-    //   Get.off(() => Login());
+    //   Get.off(() => const LoginScreen());
     // }
   }
 
@@ -63,13 +62,13 @@ class VideoState extends State<SplashScreen>
     Timer(const Duration(seconds: 3), () {
       Get.off(() => const LoginScreen());
       // if (c.isUserLoggedIn()) {
-      //   Get.offAndToNamed(HomePage.routeName);
-      // } else if (coreController.isFirstTimeUser()) {
-      //   Get.off(() => const OnBoarding());
+      //   Get.to(() => const HomeScreen());
       // } else {
-      //   Get.offAndToNamed(Login.routeName);
+      //   Get.to(() => const LoginScreen());
+      //   // Get.offAndToNamed(Login.routeName);
       // }
     });
+
     return Scaffold(
       backgroundColor: AppColors.secondaryBlack,
       body: Stack(

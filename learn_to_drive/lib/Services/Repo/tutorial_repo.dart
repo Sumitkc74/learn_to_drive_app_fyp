@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:first_app/Models/tutorial.dart';
+import 'package:first_app/Models/tutorial_model.dart';
 import 'package:first_app/Services/globals.dart';
 import 'package:http/http.dart' as http;
 

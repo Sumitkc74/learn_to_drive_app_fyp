@@ -1,7 +1,6 @@
-import 'dart:math';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:math';
 
 class FlippableImage extends StatefulWidget {
   final String imageUrl;
@@ -60,7 +59,7 @@ class _FlippableImageState extends State<FlippableImage> {
                 height: 120,
                 width: 120,
                 errorWidget: (context, url, error) {
-                  return const Text("Error Loading Image");
+                  return const Center(child: Text("Error Loading Image", style: TextStyle(color: Colors.white),),);
                 },
               )
               : Transform(
@@ -73,7 +72,7 @@ class _FlippableImageState extends State<FlippableImage> {
                   ),
                   child: Center(
                     child: Text(
-                      widget.name,style: const TextStyle(color: Colors.white),
+                      widget.name,style: const TextStyle(fontSize: 25),
                     ), 
                   ),
                 ),

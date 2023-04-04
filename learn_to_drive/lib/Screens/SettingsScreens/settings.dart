@@ -1,44 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:first_app/Controllers/dark_mode_controller.dart';
 import 'package:first_app/Controllers/auth_controller.dart';
-import 'package:first_app/Services/globals.dart';
+import 'package:first_app/Models/current_user_model.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/utils/widgets/settings_widget.dart';
+import 'package:first_app/utils/colors.dart';
+
 import 'package:first_app/Screens/SettingsScreens/change_language.dart';
 import 'package:first_app/Screens/SettingsScreens/change_password.dart';
 import 'package:first_app/Screens/SettingsScreens/notifications.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-
+class SettingsScreen extends StatelessWidget {
+  SettingsScreen({super.key});
 
   final logoutController = Get.put(AuthController());
+  final darkModeController = Get.put(DarkModeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: ScreensAppBar(
+        title: 'Welcome\n ${currentUser.email}',
         automaticallyImplyLeading: false,
-        title: Text(
-          "Welcome\n    $email",
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, 
-          ),
-        ),
-        toolbarHeight: 150,
-        foregroundColor: const Color(0xff00183F),
-        backgroundColor: const Color(0xFFFFDE17),
-        shadowColor: const Color(0xff00183F),
+        height: 150,
       ),
       
-      backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -48,20 +36,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20,),
-          
+
                   Row(
                     children: [
                       Material(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=>const NotificationsScreen());
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 80,
+                        color: AppColors.shadowBlack,
+                        child: SizedBox(
+                          height: 80,
                             width: Get.width/1.15,
                             child: Center(
                               child: Wrap(
@@ -69,158 +51,77 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 spacing: 10.0,
                                 children: [
-                                  const Icon(
-                                    Icons.notifications_outlined,
+                                  Icon(
+                                    darkModeController.isDarkModeOn.value ? Icons.wb_sunny : Icons.nightlight_round,
                                     color: Colors.white,
                                     size: 30,
                                   ),
                                   Text(
-                                    "notifications".tr,
+                                    "dark-mode".tr,
                                     style: const TextStyle(
                                       color: Colors.white, 
                                       fontSize: 25
                                     ),
                                   ),
-                                  const SizedBox(width:50),
-                                  const Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: Colors.white,
-                                    size: 30,
+                                  Obx(
+                                    () => Switch(
+                                      value: darkModeController.isDarkModeOn.value,
+                                      onChanged: (value) {
+                                        darkModeController.toggleDarkMode(value);
+                                      },
+                                    ),
                                   ),
                                 ],
-                              ),
-                            ),
-                          ),
+                              )
+                            )
                         ),
                       ),
                     ],
                   ),
+                  // SettingsWidget(
+                  //   label: "dark-mode".tr, 
+                  //   icon: darkModeController.isDarkModeOn.value 
+                  //     ? Icons.wb_sunny 
+                  //     : Icons.nightlight_round,
+                  //   obx: Obx(
+                  //     () => Switch(
+                  //       value: darkModeController.isDarkModeOn.value,
+                  //       onChanged: (value) {
+                  //         darkModeController.toggleDarkMode(value);
+                  //       },
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: 20,),
 
-                  
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=>const ChangePasswordScreen());
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 80,
-                            width: Get.width/1.15,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  const Icon(
-                                    Icons.lock_outline,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                  Text(
-                                    "change-password".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
-                                  ),
-                                  const Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SettingsWidget(
+                    onTap: (() => Get.to(() => NotificationsScreen())),
+                    label: "notifications".tr, 
+                    icon: Icons.notifications_outlined, 
+                    arrowIcon: Icons.keyboard_arrow_right,
                   ),
                   const SizedBox(height: 20,),
 
-
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () {
-                            Get.to(()=>const ChangeLanguageScreen());
-                          },
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 80,
-                            width: Get.width/1.15,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  const Icon(
-                                    Icons.language,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                  Text(
-                                    "change-language".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 25),
-                                  ),
-                                  const Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SettingsWidget(
+                    onTap: (() => Get.to(() => const ChangePasswordScreen())),
+                    label: "change-password".tr, 
+                    icon: Icons.lock_outline, 
+                    arrowIcon: Icons.keyboard_arrow_right,
                   ),
                   const SizedBox(height: 20,),
 
-                  Row(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFF3C3C3C),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () => logoutController.logout(),
-                          splashColor: Colors.grey.withOpacity(0.1),
-                          child: SizedBox(
-                            height: 80,
-                            width: Get.width/1.15,
-                            child: Center(
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 10.0,
-                                children: [
-                                  const Icon(
-                                    Icons.logout,
-                                    color: Colors.white,
-                                    size: 25,
-                                  ),
-                                  Text(
-                                    "logout".tr,
-                                    style: const TextStyle(color: Colors.white,  fontSize: 23),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SettingsWidget(
+                    onTap: (() => Get.to(() => const ChangeLanguageScreen())),
+                    label: "change-language".tr, 
+                    icon: Icons.language, 
+                    arrowIcon: Icons.keyboard_arrow_right,
+                  ),
+                  const SizedBox(height: 20,),
+
+                  SettingsWidget(
+                    onTap: () => logoutController.logout(),
+                    label: "logout".tr, 
+                    icon: Icons.logout, 
                   ),
                   const SizedBox(height: 20,),
                 ],

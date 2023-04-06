@@ -98,8 +98,8 @@ class QuestionOptionButtonWidget extends StatelessWidget {
   }
 }
 
-class ChooseLanguageButtonWidget extends StatelessWidget {
-  const ChooseLanguageButtonWidget({
+class PdfLanguageButtonWidget extends StatelessWidget {
+  const PdfLanguageButtonWidget({
     Key? key,
     required this.buttonLanguage,
     required this.chosenLanguage,
@@ -125,7 +125,7 @@ class ChooseLanguageButtonWidget extends StatelessWidget {
         side : const BorderSide (color : Colors.blue), 
       ),
       child : Text( 
-        buttonLanguage == 'Englsih' ? 'englsih'.tr : 'nepali'.tr,
+        buttonLanguage == 'English' ? 'english'.tr : 'nepali'.tr,
       ),  
     );
   }

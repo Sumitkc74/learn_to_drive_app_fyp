@@ -84,7 +84,7 @@ class MockExamAnswer extends StatelessWidget {
                         children: [
                           ListTile(
                             title: Text(
-                              '. ${question.question}',
+                              '${index+1}. ${question.question}',
                               style: const TextStyle(
                                 fontSize: 20
                               ),

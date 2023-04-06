@@ -1,17 +1,17 @@
-import 'dart:convert';
-
-import 'package:first_app/Models/user_history_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:first_app/Models/user_history_model.dart';
 import 'package:first_app/Controllers/user_history_controller.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
 
 class IndividualUserHistory extends StatelessWidget {
   final UserHistory userHistory;
+  final int? index;
 
   IndividualUserHistory({
     required this.userHistory,
+    this.index,
     Key? key, 
   }) : super(key: key);
 
@@ -21,13 +21,12 @@ class IndividualUserHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ScreensAppBar(
-        title: '${"User History".tr} {}', 
+        title: '${"User History".tr} ${index!+1}', 
         onPressed: () {
           Get.back();
         },
       ),
       
-      // backgroundColor: const Color(0xFF303030),
       body:  SingleChildScrollView(
         child: Center(
           child: Column(
@@ -46,7 +45,7 @@ class IndividualUserHistory extends StatelessWidget {
                         children: [
                           ListTile(
                             title: Text(
-                            '. ${individualUserHistory['questions']![index]}',
+                            '${index+1}. ${individualUserHistory['questions']![index]}',
                               style: const TextStyle(
                                 fontSize: 20
                               ),

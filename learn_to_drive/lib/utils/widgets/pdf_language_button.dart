@@ -27,7 +27,7 @@ class _CustomChoosePdfLanguageState extends State<CustomChoosePdfLanguage> {
     return Row( 
       children : [ 
         Expanded ( 
-          child : ChooseLanguageButtonWidget(
+          child : PdfLanguageButtonWidget(
             buttonLanguage: 'English',
             chosenLanguage: widget.chosenLanguage.toString(), 
             onPressed: (){
@@ -36,7 +36,7 @@ class _CustomChoosePdfLanguageState extends State<CustomChoosePdfLanguage> {
           )
         ),
         Expanded ( 
-          child : ChooseLanguageButtonWidget(
+          child : PdfLanguageButtonWidget(
             buttonLanguage: 'Nepali',
             chosenLanguage: widget.chosenLanguage.toString(), 
             onPressed: (){

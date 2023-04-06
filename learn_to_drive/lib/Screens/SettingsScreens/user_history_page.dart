@@ -36,28 +36,32 @@ class UserHistoryScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: currentUserHistories.length,
                     itemBuilder: (context,index){ 
-                      UserHistory userHistory = currentUserHistories.toList()[currentUserHistories.length - 1 - index];
+                      UserHistory userHistory = currentUserHistories.toList()[currentUserHistories.length - index -1];
                       return  Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(IndividualUserHistory(userHistory: userHistory,));
+                            Get.to(IndividualUserHistory(userHistory: userHistory, index: currentUserHistories.length - index - 1));
                           },
                           child: Card(
                             elevation: 4,
                             child: ListTile(
-                              leading: const Icon(Icons.campaign,size: 26,),
+                              leading: const Icon(Icons.question_answer,size: 30,),
                               title: Text(
-                                "Question History ${userHistory.id}",
+                                "Question History ${currentUserHistories.length - index}",
                                 style: const TextStyle(
                                   fontWeight:FontWeight.bold,fontSize: 18
                                 ),
                               ),
-                              subtitle: Text(
-                                userHistory.updatedAt??"",
-                                style: const TextStyle(
-                                  fontSize: 18
-                                ),
+                              subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  const SizedBox(height: 10,),
+                                  Text( 
+                                    userHistory.updatedAt??"",
+                                    style: const TextStyle( fontSize: 18),
+                                  ),
+                                ],
                               ),
                             ),
                           ),

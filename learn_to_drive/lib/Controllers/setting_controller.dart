@@ -42,7 +42,7 @@ class SettingsController extends GetxController{
       context) {
     KhaltiScope.of(context).pay(
       config: PaymentConfig(
-        amount: 2000,
+        amount: 50000,
         productIdentity: "jhasdklas",
         productName: "dsdjksldasd",
       ),

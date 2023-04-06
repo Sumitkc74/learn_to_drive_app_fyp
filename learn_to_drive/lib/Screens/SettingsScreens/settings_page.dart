@@ -1,10 +1,10 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
+import 'package:first_app/Screens/SettingsScreens/change_language_page.dart';
+import 'package:first_app/Screens/SettingsScreens/change_password_page.dart';
+import 'package:first_app/Screens/SettingsScreens/user_history_page.dart';
+import 'package:first_app/Controllers/setting_controller.dart';
 import 'package:first_app/Controllers/dark_mode_controller.dart';
 import 'package:first_app/Controllers/auth_controller.dart';
 import 'package:first_app/Models/current_user_model.dart';
@@ -12,29 +12,10 @@ import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:first_app/utils/widgets/settings_widget.dart';
 import 'package:first_app/utils/colors.dart';
 
-import 'package:first_app/Screens/SettingsScreens/change_language.dart';
-import 'package:first_app/Screens/SettingsScreens/change_password.dart';
-
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
 
-final picker = ImagePicker();
-  Rxn<File> image = Rxn<File>();
-  void pickImage() async {
-    log("Picking image");
-    final pickedImage = await picker.pickImage(
-        source: ImageSource.gallery,
-        imageQuality: 40,
-        maxHeight: 500,
-        maxWidth: 500);
-
-
-
-    if (pickedImage != null) {
-      image.value = File(pickedImage.path);
-    }
-  }
-
+  final settingsController = Get.put(SettingsController());
   final logoutController = Get.put(AuthController());
   final darkModeController = Get.put(DarkModeController());
 
@@ -105,13 +86,12 @@ final picker = ImagePicker();
                       ),
                       const SizedBox(height: 25,),
                       TextButton(
-                      onPressed: pickImage,
-                      child: const Center(
-                        child: Text("Upload Image"),
+                        onPressed: settingsController.pickImage,
+                        child: const Center(
+                          child: Text("Upload Image"),
+                        ),
                       ),
-                    ),
-                      
-                     ]
+                    ]
                   )
                 )
               )
@@ -130,7 +110,6 @@ final picker = ImagePicker();
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20,),
-
                   Row(
                     children: [
                       Material(
@@ -172,29 +151,7 @@ final picker = ImagePicker();
                       ),
                     ],
                   ),
-                  // SettingsWidget(
-                  //   label: "dark-mode".tr, 
-                  //   icon: darkModeController.isDarkModeOn.value 
-                  //     ? Icons.wb_sunny 
-                  //     : Icons.nightlight_round,
-                  //   obx: Obx(
-                  //     () => Switch(
-                  //       value: darkModeController.isDarkModeOn.value,
-                  //       onChanged: (value) {
-                  //         darkModeController.toggleDarkMode(value);
-                  //       },
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(height: 20,),
-
-                  // SettingsWidget(
-                  //   onTap: (() => Get.to(() => NotificationsScreen())),
-                  //   label: "notifications".tr, 
-                  //   icon: Icons.notifications_outlined, 
-                  //   arrowIcon: Icons.keyboard_arrow_right,
-                  // ),
-                  // const SizedBox(height: 20,),
 
                   SettingsWidget(
                     onTap: (() => Get.to(() => const ChangePasswordScreen())),
@@ -205,11 +162,30 @@ final picker = ImagePicker();
                   const SizedBox(height: 20,),
 
                   SettingsWidget(
-                    onTap: (() => Get.to(() => const ChangeLanguageScreen())),
+                    onTap: (() => Get.to(() => ChangeLanguageScreen())),
                     label: "change-language".tr, 
                     icon: Icons.language, 
                     arrowIcon: Icons.keyboard_arrow_right,
                   ),
+                  const SizedBox(height: 20,),
+
+                  (currentUser.role == 'User')
+                  ? SettingsWidget(
+                    onTap: (){
+                      // log("message");
+                      settingsController.payWithKhalti(context);
+                    },
+                    label: "upgrade-to-premium".tr, 
+                    icon: Icons.payment, 
+                    arrowIcon: Icons.keyboard_arrow_right,
+                  )
+                  : SettingsWidget(
+                    onTap: (() => Get.to(() => UserHistoryScreen())),
+                    label: "user-history".tr, 
+                    icon: Icons.history, 
+                    arrowIcon: Icons.keyboard_arrow_right,
+                  ),
+
                   const SizedBox(height: 20,),
 
                   SettingsWidget(

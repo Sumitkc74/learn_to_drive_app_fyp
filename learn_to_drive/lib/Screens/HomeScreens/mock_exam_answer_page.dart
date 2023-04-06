@@ -1,3 +1,6 @@
+import 'package:first_app/Controllers/user_history_controller.dart';
+import 'package:first_app/Models/current_user_model.dart';
+import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,14 +11,50 @@ import 'package:first_app/Screens/HomeScreens/mock_exam_page.dart';
 import 'package:first_app/Screens/navigator.dart';
 
 class MockExamAnswer extends StatelessWidget {
-  const MockExamAnswer({super.key});
+  MockExamAnswer({Key? key}) : super(key: key);
+
+  final userHistoryController = Get.put(UserHistoryController());
+
+  Future<void> showResultDialog(context) async {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false, 
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: AppColors.secondaryBlack,
+          title: Text("result".tr, style: const TextStyle(color: Colors.white),),
+          content: const Text(
+            'Do you want to save the question history?', 
+            style: TextStyle(color: Colors.white),
+          ),
+          actions:  <Widget>[
+            TextButton(
+              child: Text('no'.tr, style: const TextStyle(color: Colors.white),),
+              onPressed: () => Get.to(() => const NavigationPage()), 
+            ),
+
+            TextButton(
+              child: Text('yes'.tr, style: const TextStyle(color: Colors.white),),
+              onPressed: () async {
+                Map<String, List<String>> questionMap = await userHistoryController.getAllQuestions();
+                userHistoryController.recordUserHistory(attemptedQuestions: questionMap);
+              }, 
+            )
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ScreensAppBar(
         title: "mock-exam-answer".tr, 
         onPressed: () {
-          Get.off(() => const NavigationPage());
+          (currentUser.role == 'User')
+          ? Get.off(const NavigationPage())
+          : showResultDialog(context);
         },
         action: IconButton(
           onPressed: () {

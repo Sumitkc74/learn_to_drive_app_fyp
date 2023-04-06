@@ -1,4 +1,4 @@
-import 'package:first_app/Screens/SettingsScreens/notifications.dart';
+import 'package:first_app/Screens/HomeScreens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,13 +43,13 @@ class HomeScreen extends StatelessWidget {
                       
                     HomeBoxWidget(
                       label: "traffic-signs".tr, 
-                      onTap: (() => Get.to(() => const TrafficSignsPage()))
+                      onTap: (() => Get.to(() => TrafficSignsPage()))
                     ),
                     const SizedBox(height: 30,),
 
                     HomeBoxWidget(
                       label: "reading-materials".tr, 
-                      onTap: (() => Get.to(() => ReadingMaterialsPage()))
+                      onTap: (() => Get.to(() => const ReadingMaterialsPage()))
                     ),
                     const SizedBox(height: 30,),
 
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
 
                     HomeBoxWidget(
                       label: "exam-trial-information".tr, 
-                      onTap: (() => Get.to(() => ExamInformationPage()))
+                      onTap: (() => Get.to(() => const ExamInformationPage()))
                     ),
                     const SizedBox(height: 30,),
 

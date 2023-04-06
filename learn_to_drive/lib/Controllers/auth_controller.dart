@@ -10,13 +10,11 @@ import 'package:first_app/Screens/navigator.dart';
 import 'package:first_app/Screens/AuthScreen/login.dart';
 
 class AuthController extends GetxController {
-  // final AuthService authService = AuthService();
-
   var loading = false.obs;
 
   Future<void> login({required String email, required String password}) async {
     if (email.isNotEmpty && password.isNotEmpty) {
-      http.Response response = await AuthServices.login(email, password);
+      http.Response response = await AuthServicesRepo.login(email, password);
       Map responseMap = await jsonDecode(response.body);
       if (response.statusCode == 200) {
         currentUser = CurrentUser.fromJson(responseMap['user']);
@@ -36,7 +34,7 @@ class AuthController extends GetxController {
     if (emailValid) {
       if(password == confirmPassword){
         String name = "$firstName $lastName";
-        final http.Response response = await AuthServices.register(name, email, phoneNumber, password);
+        final http.Response response = await AuthServicesRepo.register(name, email, phoneNumber, password);
         Map<String, dynamic> responseMap = jsonDecode(response.body);
         if (response.statusCode == 200) {
           Get.to(const NavigationPage());
@@ -53,11 +51,11 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
-    http.Response response = await AuthServices.logout();
+    http.Response response = await AuthServicesRepo.logout();
     // Map responseMap = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      Get.to(()=>const LoginScreen());
+      Get.offAll(()=>const LoginScreen());
       Get.snackbar("Success", "User Logout Successfully");     
     } 
     else {
@@ -70,7 +68,7 @@ class AuthController extends GetxController {
     if (currentPassword.isNotEmpty && newPassword.isNotEmpty && confirmNewPassword.isNotEmpty) {
       if(newPassword == confirmNewPassword){
         if(newPassword != currentPassword){
-          http.Response response = await AuthServices.changePassword(currentPassword, newPassword);
+          http.Response response = await AuthServicesRepo.changePassword(currentPassword, newPassword);
           Map responseMap = jsonDecode(response.body);
           if (response.statusCode == 200) {
             Get.back();
@@ -92,7 +90,7 @@ class AuthController extends GetxController {
   Future<void> forgotPassword({required String email}) async {
     if(email.isNotEmpty){
       
-      http.Response response = await AuthServices.resetPassword(email);
+      http.Response response = await AuthServicesRepo.resetPassword(email);
       Map responseMap = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.to(()=>const NavigationPage());

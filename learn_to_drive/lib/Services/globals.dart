@@ -17,7 +17,9 @@ const String examInformationAPI = '${baseURL}examInformation';
 const String tutorialAPI = '${baseURL}tutorial';
 const String noticeAPI = '${baseURL}notice';
 const String questionAPI = '${baseURL}question';
+const String paymentAPI = '${baseURL}khalti/payment';
 
+const String userHistoryAPI = '${baseURL}userHistory';
 
 // errorSnackBar(BuildContext context, String text) {
 //   ScaffoldMessenger.of(context).showSnackBar(
@@ -29,21 +31,3 @@ const String questionAPI = '${baseURL}question';
 //   );
 // }
 
-bool isEnglish = true;
-
-setIsEnglish(bool isenglish){
-  isEnglish = isenglish;
-}
-
-getIsEnglish(){
-  return isEnglish;
-}
-
-checkLanguage(String english, String nepali){
-  if(getIsEnglish()){
-    return english;
-  }
-  else{
-    return nepali;
-  }
-}

@@ -1,10 +1,10 @@
-import 'package:first_app/Screens/SettingsScreens/notifications.dart';
+import 'package:first_app/Screens/HomeScreens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:first_app/utils/colors.dart';
 
 import 'package:first_app/Screens/HomeScreens/home_page.dart';
-import 'package:first_app/Screens/SettingsScreens/settings.dart';
+import 'package:first_app/Screens/SettingsScreens/settings_page.dart';
 import 'package:first_app/Screens/tutorials.dart';
 
 class NavigationPage extends StatefulWidget {

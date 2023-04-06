@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TextOnlyButtonWidget extends StatelessWidget {
   const TextOnlyButtonWidget({
@@ -96,3 +97,37 @@ class QuestionOptionButtonWidget extends StatelessWidget {
     );
   }
 }
+
+class ChooseLanguageButtonWidget extends StatelessWidget {
+  const ChooseLanguageButtonWidget({
+    Key? key,
+    required this.buttonLanguage,
+    required this.chosenLanguage,
+    required this.onPressed,
+  }) : super(key: key);
+
+  final String buttonLanguage;
+  final String chosenLanguage;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton( 
+      onPressed : onPressed,
+      textStyle: TextStyle(
+        color: chosenLanguage == buttonLanguage 
+          ? Colors.white : Colors.black,
+        fontSize: 18,
+      ),
+      fillColor : chosenLanguage == buttonLanguage ? Colors.blue : Colors.white, 
+      shape : RoundedRectangleBorder( 
+        borderRadius: BorderRadius.circular(0),
+        side : const BorderSide (color : Colors.blue), 
+      ),
+      child : Text( 
+        buttonLanguage == 'Englsih' ? 'englsih'.tr : 'nepali'.tr,
+      ),  
+    );
+  }
+}
+

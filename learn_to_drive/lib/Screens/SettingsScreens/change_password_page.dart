@@ -1,7 +1,8 @@
-import 'package:first_app/Controllers/auth_controller.dart';
-import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:first_app/Controllers/auth_controller.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -130,7 +131,12 @@ class _ChangePasswordState extends State<ChangePasswordScreen> {
                     ),
 
                     child:(
-                      TextButton(onPressed: () =>  authController.changePassword( currentPassword: _currentPassword, newPassword: _newPassword, confirmNewPassword: _confirmNewPassword),
+                      TextButton(onPressed: 
+                        () =>  authController.changePassword( 
+                          currentPassword: _currentPassword, 
+                          newPassword: _newPassword, 
+                          confirmNewPassword: _confirmNewPassword
+                        ),
                         child: Text(
                           'change-password'.tr,
                           style: const TextStyle(

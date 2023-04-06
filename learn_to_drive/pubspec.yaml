@@ -47,6 +47,9 @@ dependencies:
   khalti_flutter: ^2.2.1
   get_storage: ^2.1.1
   image_picker: ^0.8.7+1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:

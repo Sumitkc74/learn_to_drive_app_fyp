@@ -5,12 +5,15 @@ class CurrentUser {
   String? name;
   String? email;
   String? phoneNumber;
+  String? role;
 
   CurrentUser(
       {this.id,
       this.name,
       this.email,
-      this.phoneNumber,});
+      this.phoneNumber,
+      this.role
+    });
 
   factory CurrentUser.fromJson(Map<String, dynamic> json) {
     return CurrentUser(
@@ -18,6 +21,7 @@ class CurrentUser {
       name : json['name'],
       email : json['email'],
       phoneNumber : json['phoneNumber'],
+      role : json['role'],
     );
   }
 
@@ -27,6 +31,7 @@ class CurrentUser {
     data['name'] = name;
     data['email'] = email;
     data['phoneNumber'] = phoneNumber;
+    data['role'] = role;
     return data;
   }
 }

@@ -1,21 +1,18 @@
-import 'package:first_app/Services/globals.dart';
-import 'package:first_app/utils/flip_image.dart';
-import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:first_app/Models/traffic_sign.dart';
-import '../../Controllers/traffic_sign_controller.dart';
+import 'package:first_app/Controllers/traffic_sign_controller.dart';
+import 'package:first_app/Controllers/setting_controller.dart';
+import 'package:first_app/utils/flip_image.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 
-class TrafficSignsPage extends StatefulWidget {
-   const TrafficSignsPage({super.key});
+class TrafficSignsPage extends StatelessWidget {
+  TrafficSignsPage({super.key});
 
-  @override
-  State<TrafficSignsPage> createState() => _TrafficSignsPageState();
-}
-
-class _TrafficSignsPageState extends State<TrafficSignsPage> {
   final trafficSignController = Get.put(TrafficSignController());
+
+  final settingsController = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +53,7 @@ class _TrafficSignsPageState extends State<TrafficSignsPage> {
                           Media media= trafficSign.media![index];
                           return FlippableImage(
                             imageUrl: media.originalUrl ?? "",
-                            name: checkLanguage(trafficSign.name??"", trafficSign.nepaliSignName??""),
+                            name: settingsController.checkLanguage(trafficSign.name??"", trafficSign.nepaliSignName??""),
                           );
                         }
                       )

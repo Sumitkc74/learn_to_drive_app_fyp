@@ -4,7 +4,7 @@ import 'package:first_app/Models/current_user_model.dart';
 import 'package:first_app/Services/globals.dart';
 import 'package:http/http.dart' as http;
 
-class AuthServices {
+class AuthServicesRepo {
   static Future<http.Response> register(String name, String email, String phoneNumber, String password) async {
     Map<String, dynamic> data = {
       "name": name,
@@ -70,7 +70,7 @@ class AuthServices {
 
   static Future<http.Response> logout() async {
     Map data = {
-
+      'user' : currentUser.id,
     };
     var body = json.encode(data);
     var url = Uri.parse(logoutAPI);

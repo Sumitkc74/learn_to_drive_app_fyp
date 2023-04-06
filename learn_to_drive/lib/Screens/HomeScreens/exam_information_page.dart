@@ -1,21 +1,23 @@
-import 'package:first_app/Services/globals.dart';
+import 'package:first_app/utils/widgets/pdf_language_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:first_app/Controllers/exam_information_controller.dart';
+import 'package:first_app/Controllers/setting_controller.dart';
 import 'package:first_app/Models/exam_information_model.dart';
 import 'package:first_app/utils/pdf_reader.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
 
 class ExamInformationPage extends StatefulWidget {
-  ExamInformationPage({super.key});
+  const ExamInformationPage({super.key});
 
   @override
   State<ExamInformationPage> createState() => _ExamInformationPageState();
 }
 
 class _ExamInformationPageState extends State<ExamInformationPage> {
-String chosenLanguage = 'English';
+  final settingsController = Get.put(SettingsController());
+  String chosenLanguage = 'English';
   int index = 0;
 
   int changeMediaIndex(){
@@ -26,15 +28,7 @@ String chosenLanguage = 'English';
       return index = 1;
     }
   }
-
-  void changeLanguage(String language) {
-    setState(() {
-      chosenLanguage = language;
-    });
-  }
-
   final examInformationController = Get.put(ExamInformationController());
-
  
   @override
   void initState() {
@@ -58,43 +52,7 @@ String chosenLanguage = 'English';
         SingleChildScrollView(
           child: Column(
             children: [
-               Row( 
-              mainAxisAlignment : MainAxisAlignment.spaceBetween, 
-              children : [ 
-                Expanded ( 
-                  child : RawMaterialButton( 
-                    highlightColor: Colors.red,
-                    onPressed : () {
-                      changeLanguage('English');
-                    } ,
-                    textStyle: TextStyle(color: chosenLanguage == 'English' ? Colors.white : Colors.black),
-                    fillColor : chosenLanguage == 'English' ? Colors.blue : Colors.white, 
-                    shape : const StadiumBorder( 
-                      side : BorderSide (
-                        color : Colors.blue), 
-                    ),
-                    child : Text( 
-                      'english'.tr, 
-                      // style : const TextStyle(color : Colors.white), 
-                    ),  
-                  ), 
-                ),  
-                Expanded ( 
-                  child : RawMaterialButton( 
-                    onPressed : () {
-                      changeLanguage('Nepali');
-                    }, 
-                    textStyle: TextStyle(color: chosenLanguage == 'Nepali' ? Colors.white : Colors.black),
-                    fillColor : chosenLanguage == 'Nepali' ? Colors.blue : Colors.white,
-                    shape : const StadiumBorder (), 
-                    child : Text( 
-                      'nepali'.tr, 
-                      // style : TextStyle(color : Colors.white), 
-                      ),
-                    ),
-                  ),
-            ]
-          ),
+              CustomChoosePdfLanguage(chosenLanguage: chosenLanguage),
               SizedBox(
                 height: Get.height,
                 child: GridView.builder(
@@ -122,7 +80,12 @@ String chosenLanguage = 'English';
                                Media media = examInformation.media![changeMediaIndex()];
                                 return IconButton(
                                   onPressed: (){
-                                    Get.to(() => PdfReaderScreen(title: checkLanguage(examInformation.name??'', examInformation.nepaliName??''), url: media.originalUrl??""));
+                                    Get.to(() => PdfReaderScreen(
+                                      title: settingsController.checkLanguage(
+                                        examInformation.name??'', 
+                                        examInformation.nepaliName??''), 
+                                      url: media.originalUrl??""
+                                    ));
                                   }, 
                                   icon: const Icon(Icons.picture_as_pdf), 
                                   color: Colors.red, 
@@ -131,7 +94,10 @@ String chosenLanguage = 'English';
                               }
                             ), 
                             Text(
-                              checkLanguage(examInformation.name??'', examInformation.nepaliName??''),
+                              settingsController.checkLanguage(
+                                examInformation.name??'', 
+                                examInformation.nepaliName??''
+                              ),
                               style: const TextStyle(fontSize: 20),
                             ),
                           ],

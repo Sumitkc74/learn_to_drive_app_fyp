@@ -167,7 +167,7 @@ class _MockExamState extends State<MockExam> {
               child: Text('view-answer'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: () {
                 stopTimer();
-                Get.to(() => const MockExamAnswer());
+                Get.to(() => MockExamAnswer());
               }, 
             ),
 

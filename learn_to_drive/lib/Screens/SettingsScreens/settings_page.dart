@@ -181,7 +181,7 @@ class SettingsScreen extends StatelessWidget {
                   )
                   : SettingsWidget(
                     onTap: (() => Get.to(() => UserHistoryScreen())),
-                    label: "user-history".tr, 
+                    label: "mock-exam-history".tr, 
                     icon: Icons.history, 
                     arrowIcon: Icons.keyboard_arrow_right,
                   ),

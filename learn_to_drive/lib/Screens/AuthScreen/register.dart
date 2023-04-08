@@ -1,6 +1,7 @@
-import 'package:first_app/Controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:first_app/Controllers/auth_controller.dart';
+import 'package:first_app/utils/widgets/text_field_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -17,8 +18,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _lastName = '';
   String _phoneNumber = '';
   String _confirmPassword = '';
-  bool passwordVisible=false; 
-  bool confirmPasswordVisible=false;
   final authController = Get.put(AuthController());
 
   @override
@@ -102,49 +101,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   const SizedBox(height: 25,),
 
-                  TextField(
-                    obscureText: !passwordVisible,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
-                      hintText: 'password'.tr,
-                      helperText:"Password must contain 8 letters, a uppercase and a special character",
-                      helperStyle:const TextStyle(color:Color(0xFFFFDE17)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                      filled: true, 
-                      suffixIcon: IconButton(
-                        icon: Icon( !passwordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            passwordVisible = !passwordVisible; 
-                          });
-                        },
-                      ),
-                    ),
-                    onChanged: (value) { _password = value; }
+                  CustomPasswordFieldWidget(
+                    label: 'password'.tr,
+                    onChanged: (value) {
+                      _password = value;
+                    },
                   ),
                   const SizedBox(height: 25,),
 
-                  TextField(
-                    obscureText: !confirmPasswordVisible,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
-                      hintText: 'confirm-password'.tr,
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                      filled: true, 
-                      suffixIcon: IconButton(
-                        icon: Icon( !confirmPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            confirmPasswordVisible = !confirmPasswordVisible; 
-                          });
-                        },
-                      ),
-                    ),
-                    onChanged: (value) { _confirmPassword = value; }
+                  CustomPasswordFieldWidget(
+                    label: 'confirm-password'.tr,
+                    onChanged: (value) {
+                      _confirmPassword = value;
+                    },
                   ),
                   const SizedBox(height: 30,),
 

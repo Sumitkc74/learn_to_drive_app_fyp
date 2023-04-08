@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:first_app/Models/access_token_model.dart';
 import 'package:first_app/Models/current_user_model.dart';
-
 import 'package:first_app/Services/repo/auth_services_repo.dart';
 import 'package:first_app/Screens/navigator.dart';
 import 'package:first_app/Screens/AuthScreen/login.dart';
@@ -35,12 +34,14 @@ class AuthController extends GetxController {
       if(password == confirmPassword){
         String name = "$firstName $lastName";
         final http.Response response = await AuthServicesRepo.register(name, email, phoneNumber, password);
-        Map<String, dynamic> responseMap = jsonDecode(response.body);
+        Map responseMap = await jsonDecode(response.body);
         if (response.statusCode == 200) {
-          Get.to(const NavigationPage());
-          Get.snackbar("Registration Successful", "User has been registered successfully");
+          currentUser = CurrentUser.fromJson(responseMap['data']['user']);
+          accessToken = AccessToken.fromJson(responseMap['data']['token']);
+          Get.off(() => const NavigationPage());
+          Get.snackbar("Registration Successful", responseMap["message"]);
         } else {
-          Get.snackbar("Failed", responseMap['message']);
+          Get.snackbar("Failed", responseMap["message"]);
         }
       } else{
         Get.snackbar("Failed", 'Enter same password to confirm');
@@ -52,8 +53,6 @@ class AuthController extends GetxController {
 
   Future<void> logout() async {
     http.Response response = await AuthServicesRepo.logout();
-    // Map responseMap = jsonDecode(response.body);
-
     if (response.statusCode == 200) {
       Get.offAll(()=>const LoginScreen());
       Get.snackbar("Success", "User Logout Successfully");     
@@ -88,12 +87,11 @@ class AuthController extends GetxController {
   }
 
   Future<void> forgotPassword({required String email}) async {
-    if(email.isNotEmpty){
-      
+    if(email.isNotEmpty){  
       http.Response response = await AuthServicesRepo.resetPassword(email);
       Map responseMap = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        Get.to(()=>const NavigationPage());
+        Get.off(()=>const NavigationPage());
         Get.snackbar('Success', 'Password Changed');
             
       } else {
@@ -102,6 +100,5 @@ class AuthController extends GetxController {
     } else {
       Get.snackbar('Failed', 'Enter your email address');
     }
-
-    }
+  }
 }

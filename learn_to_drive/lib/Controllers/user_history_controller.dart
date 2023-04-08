@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:first_app/Models/user_history_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:first_app/Models/question_model.dart';
+import 'package:first_app/Models/user_history_model.dart';
 import 'package:first_app/Services/repo/user_history_repo.dart';
 import 'package:first_app/Screens/navigator.dart';
 
@@ -40,28 +40,18 @@ class UserHistoryController extends GetxController {
     };
   }
 
-  
   Map<String, List<String>> decodeAllLists(UserHistory userHistory){
-    List<String> questions = List<String>.from(json.decode(userHistory.attemptedQuestions??'[]'));
-    List<String> option1 = List<String>.from(json.decode(userHistory.optionA??'[]'));
-    List<String> option2 = List<String>.from(json.decode(userHistory.optionB??'[]'));
-    List<String> option3 = List<String>.from(json.decode(userHistory.optionC??'[]'));
-    List<String> option4 = List<String>.from(json.decode(userHistory.optionD??'[]'));
-    List<String> correctOptions = List<String>.from(json.decode(userHistory.correctOptions??'[]'));
-    List<String> selectedOptions = List<String>.from(json.decode(userHistory.selectedOptions??'[]'));
-
     return {
-      'questions': questions,
-      'option1': option1,
-      'option2': option2,
-      'option3': option3,
-      'option4': option4,
-      'correct_options': correctOptions,
-      'selected_options': selectedOptions,
+      'questions': List<String>.from(json.decode(userHistory.attemptedQuestions??'[]')),
+      'option1': List<String>.from(json.decode(userHistory.optionA??'[]')),
+      'option2': List<String>.from(json.decode(userHistory.optionB??'[]')),
+      'option3': List<String>.from(json.decode(userHistory.optionC??'[]')),
+      'option4': List<String>.from(json.decode(userHistory.optionD??'[]')),
+      'correct_options': List<String>.from(json.decode(userHistory.correctOptions??'[]')),
+      'selected_options': List<String>.from(json.decode(userHistory.selectedOptions??'[]')),
     };
   }
   
-
   Future<void> recordUserHistory({required Map<String, List<String>> attemptedQuestions}) async {
       http.Response response = await UserHistoryRepo.recordHistory(attemptedQuestions);
       Map responseMap = await jsonDecode(response.body);
@@ -79,18 +69,15 @@ class GetUserHistoryController extends GetxController {
   RxBool loading = false.obs;
   @override
   void onInit() {
-   
     getUserHistories();
     super.onInit();
   }
-
 
   getUserHistories() async {
     loading.value = true;
     await GetUserHistoryRepo.getUserHistory(
       onSuccess: (userHistory) {
         loading.value = false;
-
         userHistories.addAll(userHistory);
       },
       onError: ((message) {

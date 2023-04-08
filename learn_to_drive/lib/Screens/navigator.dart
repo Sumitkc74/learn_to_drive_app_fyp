@@ -1,11 +1,9 @@
-import 'package:first_app/Screens/HomeScreens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:first_app/utils/colors.dart';
-
 import 'package:first_app/Screens/HomeScreens/home_page.dart';
 import 'package:first_app/Screens/SettingsScreens/settings_page.dart';
 import 'package:first_app/Screens/tutorials.dart';
+import 'package:first_app/utils/colors.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -21,7 +19,6 @@ class _NavigationState extends State<NavigationPage> {
   final List<Widget> _children =[
     const HomeScreen(),
     TutorialsScreen(),
-    // NotificationsScreen(),
     SettingsScreen(),
   ];  
   
@@ -46,7 +43,6 @@ class _NavigationState extends State<NavigationPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: const Icon(Icons.home), label: 'home'.tr),
           BottomNavigationBarItem(icon: const Icon(Icons.tv), label: 'tutorials'.tr),
-          // BottomNavigationBarItem(icon: const Icon(Icons.notifications_outlined), label: 'notifications'.tr),
           BottomNavigationBarItem(icon: const Icon(Icons.settings), label: 'settings'.tr),      
         ]
       ),

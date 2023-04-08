@@ -1,7 +1,7 @@
 import 'dart:developer';
+import 'package:get/get.dart';
 import 'package:first_app/Services/repo/traffic_sign_repo.dart';
 import 'package:first_app/Models/traffic_sign.dart';
-import 'package:get/get.dart';
 
 class TrafficSignController extends GetxController {
   RxList<TrafficSign> trafficSigns = RxList();
@@ -17,7 +17,6 @@ class TrafficSignController extends GetxController {
     await TrafficSignRepo.getTrafficSign(
       onSuccess: (trafficSign) {
         loading.value = false;
-
         trafficSigns.addAll(trafficSign);
       },
       onError: ((message) {

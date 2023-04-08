@@ -1,11 +1,11 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:first_app/Controllers/core_controller.dart';
 import 'package:first_app/Screens/AuthScreen/login.dart';
 import 'package:first_app/Screens/HomeScreens/home_page.dart';
 import 'package:first_app/utils/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash/screen';

@@ -1,11 +1,11 @@
-import 'package:first_app/Controllers/setting_controller.dart';
-import 'package:first_app/utils/widgets/pdf_language_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/Controllers/setting_controller.dart';
 import 'package:first_app/Controllers/exam_paper_controller.dart';
 import 'package:first_app/Models/exam_paper_model.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/utils/widgets/button_widget.dart';
 import 'package:first_app/utils/pdf_reader.dart';
 
 class ReadingMaterialsPage extends StatefulWidget {
@@ -18,23 +18,7 @@ class ReadingMaterialsPage extends StatefulWidget {
 class _ReadingMaterialsPageState extends State<ReadingMaterialsPage> {
   final readingMaterialController = Get.put(ExamPaperController());
   final settingsController = Get.put(SettingsController());
-  String chosenLanguage = 'English';
-  int index = 0;
-
-  int changeMediaIndex(){
-    if(chosenLanguage == 'English'){
-      return index = 0;
-    }
-    else{
-      return index = 1;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    chosenLanguage = 'English';
-  }
+  var chosenLanguage = 'English'.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +28,6 @@ class _ReadingMaterialsPageState extends State<ReadingMaterialsPage> {
         onPressed: () => Get.back(),
       ),
       
-      // backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (readingMaterialController.loading.value)
         ? const Center(child: CircularProgressIndicator())
@@ -52,7 +35,28 @@ class _ReadingMaterialsPageState extends State<ReadingMaterialsPage> {
         SingleChildScrollView(
           child: Column(
             children: [
-              CustomChoosePdfLanguage(chosenLanguage: chosenLanguage),
+              Row( 
+                children : [ 
+                  Expanded ( 
+                    child : PdfLanguageButtonWidget(
+                      buttonLanguage: 'English',
+                      chosenLanguage: chosenLanguage.value, 
+                      onPressed: (){
+                        chosenLanguage.value = 'English';
+                      } ,
+                    )
+                  ),
+                  Expanded ( 
+                    child : PdfLanguageButtonWidget(
+                      buttonLanguage: 'Nepali',
+                      chosenLanguage: chosenLanguage.value, 
+                      onPressed: (){
+                        chosenLanguage.value = 'Nepali';
+                      },
+                    )
+                  ),
+                ]
+              ),
               SizedBox(
                 height: Get.height,
                 child: GridView.builder(
@@ -77,11 +81,15 @@ class _ReadingMaterialsPageState extends State<ReadingMaterialsPage> {
                               shrinkWrap: true,
                               itemCount: 1,
                               itemBuilder: (context,index){
-                               Media media = examPaper.media![changeMediaIndex()];
+                               Media media = examPaper.media![(chosenLanguage.value == 'English') ? 0 : 1];
                                 return IconButton(
                                   onPressed: (){
                                     Get.to(() => PdfReaderScreen(
-                                      title: settingsController.checkLanguage(examPaper.name??'', examPaper.nepaliName??''), url: media.originalUrl??""));
+                                      title: settingsController.checkLanguage(
+                                        examPaper.name??'', 
+                                        examPaper.nepaliName??''), 
+                                      url: media.originalUrl??""
+                                    ));
                                   }, 
                                   icon: const Icon(Icons.picture_as_pdf), 
                                   color: Colors.red, 
@@ -90,7 +98,10 @@ class _ReadingMaterialsPageState extends State<ReadingMaterialsPage> {
                               }
                             ), 
                             Text(
-                              settingsController.checkLanguage(examPaper.name??'', examPaper.nepaliName??''),
+                              settingsController.checkLanguage(
+                                examPaper.name??'', 
+                                examPaper.nepaliName??''
+                              ),
                               style: const TextStyle(fontSize: 20),
                             ),
                           ],

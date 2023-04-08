@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 
-class PasswordTextField extends StatefulWidget {
+class CustomPasswordFieldWidget extends StatefulWidget {
   final String label;
-  const PasswordTextField({super.key, required this.label});
+  final Function(String)? onChanged;
+  const CustomPasswordFieldWidget({Key? key, required this.label, this.onChanged}) : super(key: key);
 
   @override
-  _PasswordTextFieldState createState() => _PasswordTextFieldState();
+  _CustomPasswordFieldWidgetState createState() => _CustomPasswordFieldWidgetState();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> {
-  final TextEditingController _controller = TextEditingController();
-  bool isPasswordVisible = false;
+class _CustomPasswordFieldWidgetState extends State<CustomPasswordFieldWidget> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: _controller,
-      obscureText: !isPasswordVisible,
+      obscureText: _obscureText,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
-        filled: true,
+        filled: true, 
         prefixIcon: const Icon(Icons.lock),
         hintText: widget.label,
         suffixIcon: IconButton(
-          icon: Icon(!isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+          icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
           onPressed: () {
             setState(() {
-              isPasswordVisible = !isPasswordVisible;
+              _obscureText = !_obscureText;
             });
           },
         ),
@@ -33,44 +33,33 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       ),
     );
   }
-  String get value => _controller.text.toString();
 }
 
-// class TextFieldWidget extends StatefulWidget {
-//   final String label;
-//   final IconData icon;
-//   final Function(String)? onChanged;
+class CustomTextFieldWidget extends StatelessWidget {
+  final String label;
+  final IconData? icon;
+  final Function(String)? onChanged;
 
-//   const TextFieldWidget({
-//     super.key, 
-//     required this.label, 
-//     required this.icon, 
-//     this.onChanged,
-//   });
+  const CustomTextFieldWidget({
+    Key? key,
+    required this.label,
+    this.icon,
+    this.onChanged,
+  }) : super(key: key);
 
-//   @override
-//   _TextFieldWidgetState createState() => _TextFieldWidgetState();
-// }
-
-// class _TextFieldWidgetState extends State<TextFieldWidget> {
-//   final TextEditingController _controller = TextEditingController();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextField(
-//       controller: _controller,
-//       decoration: InputDecoration(
-//         filled: true, 
-//         prefixIcon: Icon(widget.icon),
-//         hintText: widget.label,
-//         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-//       ),
-//       onChanged: (value) {
-//         if (widget.onChanged != null) {
-//           widget.onChanged!(value);
-//         }
-//       },
-//     );
-//   }
-//   String get value => _controller.text;
-// }
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        filled: true,
+        prefixIcon: Icon(icon),
+        hintText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      onChanged: onChanged,
+    );
+  }
+}

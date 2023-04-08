@@ -1,4 +1,3 @@
-
 const String baseURL = "http://192.168.1.68:8000/api/"; //emulator localhost
 const Map<String, String> headers = {
   "Accept": "application/json",
@@ -17,8 +16,7 @@ const String examInformationAPI = '${baseURL}examInformation';
 const String tutorialAPI = '${baseURL}tutorial';
 const String noticeAPI = '${baseURL}notice';
 const String questionAPI = '${baseURL}question';
-const String paymentAPI = '${baseURL}khalti/payment';
-
+const String paymentAPI = '${baseURL}payment';
 const String userHistoryAPI = '${baseURL}userHistory';
 
 // errorSnackBar(BuildContext context, String text) {

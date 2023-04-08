@@ -1,10 +1,10 @@
-import 'package:first_app/utils/widgets/button_widget.dart';
-import 'package:first_app/utils/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:first_app/Controllers/auth_controller.dart';
 import 'package:first_app/Screens/AuthScreen/forgot_password.dart';
 import 'package:first_app/Screens/AuthScreen/register.dart';
+import 'package:first_app/utils/widgets/button_widget.dart';
+import 'package:first_app/utils/widgets/text_field_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xFF303030),
       body: Stack(
         children: [
           Container(
@@ -47,55 +46,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
               child: Column(
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true, 
-                      // fillColor: Colors.grey[800],
-                      prefixIcon: const Icon(Icons.email),
-                      hintText: 'email'.tr,
-                      border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
-                    ),
+                  CustomTextFieldWidget(
+                    label: 'email'.tr, 
+                    icon: Icons.email, 
                     onChanged: (value) {
                       email = value;
                     },
                   ),
-
-                  // TextFieldWidget(
-                  //   label: 'email'.tr, 
-                  //   icon: Icons.email, 
-                  //   onChanged: (value) {
-                  //     email = value;
-                  //   },
-                  // ),
-
                   const SizedBox(height: 25,),
 
-                  // PasswordTextField(label: 'password'.tr,),
-
-                  TextField(
-                    obscureText: !passwordVisible,
-                    decoration: InputDecoration(
-                      filled: true, 
-                      // fillColor: Colors.grey[800],
-                      prefixIcon: const Icon(Icons.lock),
-                      hintText: 'password'.tr,
-                      suffixIcon: IconButton(
-                          icon: Icon( !passwordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            passwordVisible = !passwordVisible; 
-                          });
-                        },
-                        
-                      ),
-                      border: OutlineInputBorder( borderRadius: BorderRadius.circular(10))
-                    ),
-                    onChanged: (value) { password = value; },
+                  CustomPasswordFieldWidget(
+                    label: 'password'.tr,
+                    onChanged: (value) {
+                      password = value;
+                    },
                   ),
 
-                  TextOnlyButtonWidget(
+                  CustomTextButtonWidget(
                     label: '${'forgot-password'.tr}?', 
                     onPressed: () {
                       Get.to(()=>const ForgotPasswordScreen());
@@ -105,14 +72,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 30),
 
-                  FilledButtonWidget(
+                  CustomFilledButtonWidget(
                     label: 'login'.tr,
                     onPressed: () => 
                     loginController.login(email: email, password: password), 
                     margin: 10
                   ),
 
-                  TextOnlyButtonWidget(
+                  CustomTextButtonWidget(
                     label: 'create-new-account'.tr, 
                     onPressed: () {
                       Get.to(()=>const RegisterScreen());
@@ -120,7 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     size: 18,
                   ),
-
                 ],
               )
             ),

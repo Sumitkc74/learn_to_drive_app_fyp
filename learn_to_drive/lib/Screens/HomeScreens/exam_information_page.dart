@@ -1,4 +1,3 @@
-import 'package:first_app/utils/widgets/pdf_language_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +6,7 @@ import 'package:first_app/Controllers/setting_controller.dart';
 import 'package:first_app/Models/exam_information_model.dart';
 import 'package:first_app/utils/pdf_reader.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/utils/widgets/button_widget.dart';
 
 class ExamInformationPage extends StatefulWidget {
   const ExamInformationPage({super.key});
@@ -17,24 +17,8 @@ class ExamInformationPage extends StatefulWidget {
 
 class _ExamInformationPageState extends State<ExamInformationPage> {
   final settingsController = Get.put(SettingsController());
-  String chosenLanguage = 'English';
-  int index = 0;
-
-  int changeMediaIndex(){
-    if(chosenLanguage == 'English'){
-      return index = 0;
-    }
-    else{
-      return index = 1;
-    }
-  }
   final examInformationController = Get.put(ExamInformationController());
- 
-  @override
-  void initState() {
-    super.initState();
-    chosenLanguage = 'English';
-  }
+  var chosenLanguage = 'English'.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +28,6 @@ class _ExamInformationPageState extends State<ExamInformationPage> {
         onPressed: () => Get.back(),
       ),
       
-      // backgroundColor: AppColors.secondaryBlack,
       body:  Obx(
         () => (examInformationController.loading.value)
         ? const Center(child: CircularProgressIndicator())
@@ -52,7 +35,28 @@ class _ExamInformationPageState extends State<ExamInformationPage> {
         SingleChildScrollView(
           child: Column(
             children: [
-              CustomChoosePdfLanguage(chosenLanguage: chosenLanguage),
+              Row( 
+                children : [ 
+                  Expanded ( 
+                    child : PdfLanguageButtonWidget(
+                      buttonLanguage: 'English',
+                      chosenLanguage: chosenLanguage.value, 
+                      onPressed: (){
+                        chosenLanguage.value = 'English';
+                      } ,
+                    )
+                  ),
+                  Expanded ( 
+                    child : PdfLanguageButtonWidget(
+                      buttonLanguage: 'Nepali',
+                      chosenLanguage: chosenLanguage.value, 
+                      onPressed: (){
+                        chosenLanguage.value = 'Nepali';
+                      },
+                    )
+                  ),
+                ]
+              ),
               SizedBox(
                 height: Get.height,
                 child: GridView.builder(
@@ -77,7 +81,7 @@ class _ExamInformationPageState extends State<ExamInformationPage> {
                               shrinkWrap: true,
                               itemCount: 1,
                               itemBuilder: (context,index){
-                               Media media = examInformation.media![changeMediaIndex()];
+                               Media media = examInformation.media![(chosenLanguage.value == 'English') ? 0 : 1];
                                 return IconButton(
                                   onPressed: (){
                                     Get.to(() => PdfReaderScreen(

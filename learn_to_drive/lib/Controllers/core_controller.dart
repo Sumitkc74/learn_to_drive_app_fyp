@@ -1,12 +1,12 @@
 import 'dart:developer';
-
-import 'package:first_app/Models/current_user_model.dart';
-import 'package:first_app/Screens/AuthScreen/login.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../Services/storage_helper.dart';
 import '../Services/storage_keys.dart';
+
+import 'package:first_app/Models/current_user_model.dart';
+import 'package:first_app/Screens/AuthScreen/login.dart';
 
 class CoreController extends GetxController {
   RxBool darkTheme = RxBool(false);

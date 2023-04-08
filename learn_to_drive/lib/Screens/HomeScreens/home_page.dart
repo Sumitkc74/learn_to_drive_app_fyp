@@ -1,16 +1,15 @@
-import 'package:first_app/Screens/HomeScreens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:first_app/Models/current_user_model.dart';
 import 'package:first_app/utils/widgets/home_widget.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
-
 import 'package:first_app/Screens/HomeScreens/exam_information_page.dart';
 import 'package:first_app/Screens/HomeScreens/reading_materials_page.dart';
 import 'package:first_app/Screens/HomeScreens/traffic_sign_page.dart';
 import 'package:first_app/Screens/HomeScreens/vision_test_page.dart';
 import 'package:first_app/Screens/HomeScreens/mock_exam_page.dart';
+import 'package:first_app/Screens/HomeScreens/notifications.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -22,9 +21,7 @@ class HomeScreen extends StatelessWidget {
         title: '${'welcome'.tr}, ${currentUser.name}', 
         automaticallyImplyLeading: false,
         action: IconButton(
-          onPressed: () {
-            Get.to(NotificationsScreen());
-          },
+          onPressed: () => Get.to(() => NotificationsScreen()),
           icon: const Icon(Icons.notifications_outlined),
         ),
       ),

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:http/http.dart' as http;
 import 'package:first_app/Services/globals.dart';
 import 'package:first_app/Models/exam_information_model.dart';
-import 'package:http/http.dart' as http;
 
 class ExamInformationRepo {
   static Future<void> getExamInformation(
@@ -15,7 +15,6 @@ class ExamInformationRepo {
         url,
         headers: headers,
       );
-      
       var data = json.decode(response.body);
       if (data['status']) {
         onSuccess(examInformationFromJson(data['data']['examInformations']));

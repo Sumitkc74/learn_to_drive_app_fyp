@@ -4,11 +4,9 @@ import 'package:get/get.dart';
 
 import 'package:first_app/Screens/HomeScreens/mock_exam_answer_page.dart';
 import 'package:first_app/Screens/navigator.dart';
-
-import 'package:first_app/Controllers/question_controller.dart';
+// import 'package:first_app/Controllers/question_controller.dart';
 import 'package:first_app/Services/repo/question_repo.dart';
 import 'package:first_app/Models/question_model.dart';
-
 import 'package:first_app/utils/colors.dart';
 import 'package:first_app/utils/widgets/button_widget.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
@@ -21,9 +19,7 @@ class MockExam extends StatefulWidget {
 }
 
 class _MockExamState extends State<MockExam> {
-
-  final c = Get.put(QuestionController());
-  
+  // final c = Get.put(QuestionController());
   List<Question> questions = [];
   int userScore=0, currentQuestion=1;
   static const int startingSeconds=0, startingMinutes = 30;
@@ -66,7 +62,6 @@ class _MockExamState extends State<MockExam> {
       if(localMinutes == 0 && localSeconds == 0){
         endQuiz();
       }
-
       if (localSeconds < 0) {
         localMinutes--;
         localSeconds = 59;
@@ -92,7 +87,7 @@ class _MockExamState extends State<MockExam> {
       if(correctOption == chosenOption){
         userScore++;
       }
-      if(currentQuestion == 8){
+      if(currentQuestion == 9){
         endQuiz();
       }
       currentQuestion++;
@@ -102,7 +97,7 @@ class _MockExamState extends State<MockExam> {
   void getQuestion(){
     QuestionRepo.getQuestion(onSuccess: (question){
       questions = question..shuffle();
-      // setState(() { });
+      questions = questions.sublist(0, 9);
       attemptedQuestions = questions;
     }, onError: (onError){});
   }
@@ -125,7 +120,7 @@ class _MockExamState extends State<MockExam> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                const Text('This is a demo alert dialog.', style: TextStyle(color: Colors.white),),
+                Text('mock-exam-instruction'.tr, style: const TextStyle(color: Colors.white),),
                 Text('start-mock-exam'.tr, style: const TextStyle(color: Colors.white),),
               ],
             ),
@@ -160,7 +155,7 @@ class _MockExamState extends State<MockExam> {
           title: Text("result".tr, style: const TextStyle(color: Colors.white),),
           content: Text(
             'Your score is $userScore out of 25', 
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           actions:  <Widget>[
             TextButton(
@@ -170,7 +165,6 @@ class _MockExamState extends State<MockExam> {
                 Get.to(() => MockExamAnswer());
               }, 
             ),
-
             TextButton(
               child: Text('try-again'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: (){
@@ -266,7 +260,6 @@ class _MockExamState extends State<MockExam> {
                     QuestionOptionButtonWidget(
                       option: '${'B'.tr}. ${question.first.option2}',
                       onPressed: () {
-                        question.first.selectOption = 'B';
                         checkAnswer(question.first.correctOption.toString(),'2');
                       }, 
                     ),
@@ -286,16 +279,6 @@ class _MockExamState extends State<MockExam> {
                         checkAnswer(question.first.correctOption.toString(),'D');
                       }, 
                     ),
-              
-                    // MaterialButton(
-                    //   color: Colors.blue,
-                    //   minWidth: double.infinity,
-                    //   child: Text('${'A'.tr}. ${question.first.option1}', style: const TextStyle(fontSize: 15),),
-                    //   onPressed: () {  
-                    //     question.first.selectOption = 'A';
-                    //     checkAnswer(question.first.correctOption.toString(),'1');
-                    //   },
-                    // ),
                   ]
                 )
               ),

@@ -1,7 +1,7 @@
 import 'dart:developer';
+import 'package:get/get.dart';
 import 'package:first_app/Services/repo/vision_test_repo.dart';
 import 'package:first_app/Models/vision_test.dart';
-import 'package:get/get.dart';
 
 class VisionTestController extends GetxController {
   RxList<VisionTest> visionTests = RxList();
@@ -17,7 +17,6 @@ class VisionTestController extends GetxController {
     await VisionTestRepo.getVisionTest(
       onSuccess: (visionTest) {
         loading.value = false;
-
         visionTests.addAll(visionTest);
       },
       onError: ((message) {

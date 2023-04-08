@@ -1,14 +1,13 @@
-import 'package:first_app/Controllers/user_history_controller.dart';
-import 'package:first_app/Models/current_user_model.dart';
-import 'package:first_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:first_app/Models/question_model.dart';
-import 'package:first_app/utils/widgets/screens_app_bar.dart';
-
+import 'package:first_app/Controllers/user_history_controller.dart';
 import 'package:first_app/Screens/HomeScreens/mock_exam_page.dart';
 import 'package:first_app/Screens/navigator.dart';
+import 'package:first_app/Models/question_model.dart';
+import 'package:first_app/Models/current_user_model.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
+import 'package:first_app/utils/colors.dart';
 
 class MockExamAnswer extends StatelessWidget {
   MockExamAnswer({Key? key}) : super(key: key);
@@ -32,7 +31,6 @@ class MockExamAnswer extends StatelessWidget {
               child: Text('no'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: () => Get.to(() => const NavigationPage()), 
             ),
-
             TextButton(
               child: Text('yes'.tr, style: const TextStyle(color: Colors.white),),
               onPressed: () async {
@@ -50,7 +48,7 @@ class MockExamAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ScreensAppBar(
-        title: "mock-exam-answer".tr, 
+        title: "mock-exam-answer".tr,
         onPressed: () {
           (currentUser.role == 'User')
           ? Get.off(const NavigationPage())
@@ -64,48 +62,43 @@ class MockExamAnswer extends StatelessWidget {
         ),
       ),
       
-      // backgroundColor: const Color(0xFF303030),
       body:  SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: Get.height,
-                width: Get.width, 
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: attemptedQuestions.length - 1,
-                  itemBuilder: (context,index){ 
-                    // count++;
-                    Question question = attemptedQuestions[index];
-                    return  Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Column(
-                        children: [
-                          ListTile(
-                            title: Text(
-                              '${index+1}. ${question.question}',
-                              style: const TextStyle(
-                                fontSize: 20
-                              ),
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('${'A'.tr}.  ${question.option1}', style: const TextStyle(fontSize: 16)),
-                                Text('${'B'.tr}.  ${question.option2}', style: const TextStyle(fontSize: 16)),
-                                Text('${'C'.tr}.  ${question.option3}', style: const TextStyle(fontSize: 16)),
-                                Text('${'D'.tr}.  ${question.option4}', style: const TextStyle(fontSize: 16)),
-                                Text('${'correct-option'.tr} : ${question.correctOption}', style: const TextStyle(fontSize: 16)),
-                                Text('${'selected-option'.tr} : ${question.selectOption?.tr}', style: const TextStyle(fontSize: 16)),
-                              ],
+              ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: attemptedQuestions.length,
+                itemBuilder: (context,index){
+                  Question question = attemptedQuestions[index];
+                  return  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: Text(
+                            '${index+1}. ${question.question}',
+                            style: const TextStyle(
+                              fontSize: 20
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  }
-                ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${'A'.tr}.  ${question.option1}', style: const TextStyle(fontSize: 16)),
+                              Text('${'B'.tr}.  ${question.option2}', style: const TextStyle(fontSize: 16)),
+                              Text('${'C'.tr}.  ${question.option3}', style: const TextStyle(fontSize: 16)),
+                              Text('${'D'.tr}.  ${question.option4}', style: const TextStyle(fontSize: 16)),
+                              Text('${'correct-option'.tr} : ${question.correctOption?.tr}', style: const TextStyle(fontSize: 16)),
+                              Text('${'selected-option'.tr} : ${question.selectOption?.tr}', style: const TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
               ),
             ],
           ),

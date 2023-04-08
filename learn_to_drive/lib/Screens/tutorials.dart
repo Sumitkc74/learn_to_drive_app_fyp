@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:first_app/Controllers/tutorial_controller.dart';
 import 'package:first_app/Models/tutorial_model.dart';
-import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:first_app/Screens/HomeScreens/notifications.dart';
+import 'package:first_app/utils/widgets/screens_app_bar.dart';
 
 class TutorialsScreen extends StatelessWidget {
   TutorialsScreen({super.key});
@@ -19,7 +18,7 @@ class TutorialsScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         action: IconButton(
           onPressed: () {
-            Get.to(NotificationsScreen());
+            Get.to(() => NotificationsScreen());
           },
           icon: const Icon(Icons.notifications_outlined),
         ),

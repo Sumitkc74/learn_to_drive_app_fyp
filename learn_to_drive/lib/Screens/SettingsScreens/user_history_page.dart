@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:first_app/Controllers/user_history_controller.dart';
 import 'package:first_app/Models/current_user_model.dart';
 import 'package:first_app/Models/user_history_model.dart';
 import 'package:first_app/Screens/SettingsScreens/individual_user_history_page.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class UserHistoryScreen extends StatelessWidget {
   UserHistoryScreen({super.key});
@@ -16,7 +16,7 @@ class UserHistoryScreen extends StatelessWidget {
     final currentUserHistories = userHistoryController.userHistories.where((history) => history.userId == currentUser.id);
     return Scaffold(
       appBar: ScreensAppBar(
-        title: 'user-history'.tr, 
+        title: 'mock-exam-history'.tr, 
         onPressed: (){
           Get.back();
         }
@@ -41,7 +41,7 @@ class UserHistoryScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 10),
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(IndividualUserHistory(userHistory: userHistory, index: currentUserHistories.length - index - 1));
+                            Get.to(() => IndividualUserHistory(userHistory: userHistory, index: currentUserHistories.length - index - 1));
                           },
                           child: Card(
                             elevation: 4,

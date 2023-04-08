@@ -1,7 +1,7 @@
 import 'dart:developer';
+import 'package:get/get.dart';
 import 'package:first_app/Services/repo/exam_paper_repo.dart';
 import 'package:first_app/Models/exam_paper_model.dart';
-import 'package:get/get.dart';
 
 class ExamPaperController extends GetxController {
   RxList<ExamPaper> examPapers = RxList();
@@ -17,7 +17,6 @@ class ExamPaperController extends GetxController {
     await ExamPaperRepo.getExamPaper(
       onSuccess: (examPaper) {
         loading.value = false;
-
         examPapers.addAll(examPaper);
       },
       onError: ((message) {

@@ -1,16 +1,23 @@
 import 'dart:developer';
 import 'dart:io';
-
-import 'package:first_app/Controllers/payment_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
+import 'package:first_app/Controllers/payment_controller.dart';
 
 class SettingsController extends GetxController{
   
   PaymentController paymentController = Get.put(PaymentController());
-
   bool isEnglish = true;
+  final picker = ImagePicker();
+  Rxn<File> image = Rxn<File>();
+  var isDarkModeOn = true.obs;
+
+  void toggleDarkMode(bool value) {
+    isDarkModeOn.value = value;
+    Get.changeThemeMode(isDarkModeOn.value ? ThemeMode.dark : ThemeMode.light);
+  }
 
   checkLanguage(String english, String nepali){
     if(isEnglish){
@@ -21,8 +28,6 @@ class SettingsController extends GetxController{
     }
   }
 
-  final picker = ImagePicker();
-  Rxn<File> image = Rxn<File>();
   void pickImage() async {
     log("Picking image");
     final pickedImage = await picker.pickImage(
@@ -36,13 +41,10 @@ class SettingsController extends GetxController{
     }
   }
   
-  String? token;
-  int? amount;
-  payWithKhalti(
-      context) {
+  payWithKhalti(context) {
     KhaltiScope.of(context).pay(
       config: PaymentConfig(
-        amount: 50000,
+        amount: 20000,
         productIdentity: "jhasdklas",
         productName: "dsdjksldasd",
       ),
@@ -50,22 +52,18 @@ class SettingsController extends GetxController{
         PaymentPreference.khalti,
       ],
       onSuccess: (success) {
-        // paymentController.token.value = success.token;
-        token = success.token.toString();
-        amount = success.amount;
+        paymentController.token.value = success.token;
+        paymentController.amount.value = success.amount;
         paymentController.postPayment();
-
-        Get.snackbar("Success ", 'Payment success');
-        },
+        Get.snackbar("Payment Success", 'The Payment is successfully completed.');
+      },
       onFailure: (fa) {
-        
-        Get.snackbar("fail ", 'Payment fail');
+        Get.snackbar("Payment Fail ", 'Your Payment has failed. Please Try again!');
       },
       onCancel: () {
        
-        Get.snackbar("cancel ", 'Payment cancel');
+        Get.snackbar("Payment Cancelled ", 'You have cancelled your payment.');
       },
     );
   }
-
 }

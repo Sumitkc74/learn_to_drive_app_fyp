@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:http/http.dart' as http;
 import 'package:first_app/Models/tutorial_model.dart';
 import 'package:first_app/Services/globals.dart';
-import 'package:http/http.dart' as http;
 
 class TutorialRepo {
   static Future<void> getTutorial(

@@ -7,17 +7,27 @@ class Notice {
   int? id;
   String? title;
   String? description;
-  String? createdAt;
+  String? nepaliTitle;
+  String? nepaliDescription;
+  String? link;
   String? updatedAt;
 
   Notice(
-      {this.id, this.title, this.description, this.createdAt, this.updatedAt});
+      {this.id,
+      this.title,
+      this.description,
+      this.nepaliTitle,
+      this.nepaliDescription,
+      this.link,
+      this.updatedAt});
 
   Notice.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
-    createdAt = json['created_at'];
+    nepaliTitle = json['nepaliTitle'];
+    nepaliDescription = json['nepaliDescription'];
+    link = json['link'];
     updatedAt = json['updated_at'];
   }
 
@@ -26,7 +36,9 @@ class Notice {
     data['id'] = id;
     data['title'] = title;
     data['description'] = description;
-    data['created_at'] = createdAt;
+    data['nepaliTitle'] = nepaliTitle;
+    data['nepaliDescription'] = nepaliDescription;
+    data['link'] = link;
     data['updated_at'] = updatedAt;
     return data;
   }

@@ -1,7 +1,7 @@
 import 'dart:developer';
+import 'package:get/get.dart';
 import 'package:first_app/Services/repo/exam_information_repo.dart';
 import 'package:first_app/Models/exam_information_model.dart';
-import 'package:get/get.dart';
 
 class ExamInformationController extends GetxController {
   RxList<ExamInformation> examInformations = RxList();
@@ -17,7 +17,6 @@ class ExamInformationController extends GetxController {
     await ExamInformationRepo.getExamInformation(
       onSuccess: (examInformation) {
         loading.value = false;
-
         examInformations.addAll(examInformation);
       },
       onError: ((message) {

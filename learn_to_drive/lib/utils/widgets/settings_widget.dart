@@ -8,14 +8,12 @@ class SettingsWidget extends StatelessWidget {
     required this.label,
     this.arrowIcon,
     this.onTap,
-    this.obx,
   }) : super(key: key);
 
   final IconData icon;
   final IconData? arrowIcon;
   final String label;
   final VoidCallback? onTap;
-  final Obx? obx;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +47,11 @@ class SettingsWidget extends StatelessWidget {
                         fontSize: 25
                       ),
                     ),
-                    // const SizedBox(width:50),
                     Icon(
                       arrowIcon,
                       color: Colors.white,
                       size: 30,
                     ),
-                    if (obx != null) Obx(() => obx!),
                   ],
                 ),
               ),

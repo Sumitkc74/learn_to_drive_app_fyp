@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:http/http.dart' as http;
 import 'package:first_app/Models/notice_model.dart';
 import 'package:first_app/Services/globals.dart';
-import 'package:http/http.dart' as http;
 
 class NoticeRepo {
   static Future<void> getNotice(

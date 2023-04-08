@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TextOnlyButtonWidget extends StatelessWidget {
-  const TextOnlyButtonWidget({
+class CustomTextButtonWidget extends StatelessWidget {
+  const CustomTextButtonWidget({
     Key? key,
     required this.label,
     required this.onPressed,
@@ -37,8 +37,8 @@ class TextOnlyButtonWidget extends StatelessWidget {
 }
 
 
-class FilledButtonWidget extends StatelessWidget {
-  const FilledButtonWidget({
+class CustomFilledButtonWidget extends StatelessWidget {
+  const CustomFilledButtonWidget({
     Key? key,
     required this.label,
     required this.onPressed,
@@ -65,7 +65,7 @@ class FilledButtonWidget extends StatelessWidget {
             label,
             style: const TextStyle(
               fontSize: 18,
-              // color: Colors.white,
+              color: Colors.black,
             )
           )
         )
@@ -98,6 +98,55 @@ class QuestionOptionButtonWidget extends StatelessWidget {
   }
 }
 
+class ChooseLanguageWidget extends StatelessWidget {
+  const ChooseLanguageWidget({
+    Key? key,
+    required this.language,
+    required this.onTap,
+    required this.iconVisible,
+  }) : super(key: key);
+
+  final String language;
+  final bool iconVisible;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: 48,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  language,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: iconVisible, 
+              child: Icon(
+                Icons.check,
+                size: 28,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ]
+        ),
+      ),
+    );
+  }
+}
+
 class PdfLanguageButtonWidget extends StatelessWidget {
   const PdfLanguageButtonWidget({
     Key? key,
@@ -114,12 +163,11 @@ class PdfLanguageButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton( 
       onPressed : onPressed,
+      fillColor : chosenLanguage == buttonLanguage ? Colors.blue : Colors.white, 
       textStyle: TextStyle(
-        color: chosenLanguage == buttonLanguage 
-          ? Colors.white : Colors.black,
+        color: chosenLanguage == buttonLanguage ? Colors.white : Colors.black,
         fontSize: 18,
       ),
-      fillColor : chosenLanguage == buttonLanguage ? Colors.blue : Colors.white, 
       shape : RoundedRectangleBorder( 
         borderRadius: BorderRadius.circular(0),
         side : const BorderSide (color : Colors.blue), 

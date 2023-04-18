@@ -53,6 +53,23 @@ class AuthServicesRepo {
     return response;
   }
 
+    static Future<http.Response> updateProfile(String name, String email, String phoneNumber, String profileImage) async {
+    Map data = {
+      "name": name,
+      "email": email,
+      "phoneNumber": phoneNumber,
+      "profileImage": profileImage,
+    };
+    var body = json.encode(data);
+    var url = Uri.parse(updateProfileAPI);
+    http.Response response = await http.post(
+      url,
+      headers: headers,
+      body: body,
+    );
+    return response;
+  }
+
   static Future<http.Response> resetPassword(String email) async {
     Map data = {
       "email": email,

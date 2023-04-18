@@ -12,26 +12,26 @@ class PaymentController extends GetxController {
 
   void postPayment() async {
     try {
-      // log("tnx id -----------${token.toString()}");
-      // log("tnx id -----------${amount.toString()}");
-      // log("tnx id -----------${currentUser.id.toString()}");
 
       var response = await http.post(
         Uri.parse(paymentAPI),
-        headers: headers,
-        body: {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode({
           "user_id" : currentUser.id.toString(),
           "token": token.value,
           "amount": (amount.value/100).toString(),
-        },
+        }),
       );
       // print(response);
       
       Map responseMap = await jsonDecode(response.body);
       // print(responseMap);
       if (response.statusCode == 200) {
-        // currentUser = CurrentUser.fromJson(responseMap['data']['user']);
-        currentUser.role = 'PremiumUser';
+        currentUser = CurrentUser.fromJson(responseMap['data']['user']);
+        // currentUser.role = 'PremiumUser';
         log(responseMap.toString());
         log(currentUser.role.toString());
       } else {

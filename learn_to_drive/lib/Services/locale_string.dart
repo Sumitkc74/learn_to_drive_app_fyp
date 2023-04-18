@@ -55,6 +55,8 @@ class LocaleString extends Translations{
       'D': 'D',
       'correct-option': 'Correct Option',
       'selected-option': 'Selected Option',
+      'yes': 'Yes',
+      'no': 'No',
     },
 
      //NEPALI LANGUAGE
@@ -109,6 +111,8 @@ class LocaleString extends Translations{
       'D': 'घ',
       'correct-option': 'सही जवाफ',
       'selected-option': 'छानिएको जवाफ',
+      'yes': 'हो',
+      'no': 'होइन',
     },
   };
 }

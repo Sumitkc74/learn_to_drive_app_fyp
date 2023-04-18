@@ -1,3 +1,4 @@
+import 'package:first_app/utils/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:first_app/Screens/SettingsScreens/change_language_page.dart';
@@ -10,11 +11,29 @@ import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:first_app/utils/widgets/settings_widget.dart';
 import 'package:first_app/utils/colors.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   final settingsController = Get.put(SettingsController());
-  final logoutController = Get.put(AuthController());
+  final authController = Get.put(AuthController());
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+
+@override
+void initState() {
+  super.initState();
+  // Set the initial value of the controller
+  nameController.text = currentUser.name??'';
+  emailController.text = currentUser.email??'';
+  phoneNumberController.text = currentUser.phoneNumber??'';
+}
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +67,20 @@ class SettingsScreen extends StatelessWidget {
                       const SizedBox(height: 15,),
 
                       TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.account_circle),
-                            hintText: 'name'.tr,
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                            filled: true, 
-                            // fillColor: Colors.white,
-                          ),
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.account_circle),
+                          hintText: 'name'.tr,
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                          filled: true, 
+                          // fillColor: Colors.white,
+                        ),
                         // onChanged: (value) { _email = value; }
                       ),
                       const SizedBox(height: 15,),
 
                       TextField(
+                        controller: emailController,
                           decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.email),
                           hintText: 'email'.tr,
@@ -72,6 +93,7 @@ class SettingsScreen extends StatelessWidget {
                       const SizedBox(height: 15,),
 
                       TextField(
+                        controller: phoneNumberController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.phone),
@@ -88,6 +110,12 @@ class SettingsScreen extends StatelessWidget {
                           child: Text("Upload Image"),
                         ),
                       ),
+                      // CustomFilledButtonWidget(
+                      //   label: 'login'.tr,
+                      //   onPressed: () => 
+                      //   authController.updateProfile(name: nameController.text, email: emailController.text, phoneNumber: phoneNumberController.text, profileImage: profileImageController.text), 
+                      //   margin: 10
+                      // ),
                     ]
                   )
                 )
@@ -186,7 +214,7 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(height: 20,),
 
                   SettingsWidget(
-                    onTap: () => logoutController.logout(),
+                    onTap: () => authController.logout(),
                     label: "logout".tr, 
                     icon: Icons.logout, 
                   ),

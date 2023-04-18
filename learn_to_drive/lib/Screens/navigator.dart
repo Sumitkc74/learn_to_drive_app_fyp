@@ -17,7 +17,7 @@ class _NavigationState extends State<NavigationPage> {
 
   int _selectedIndex = 0;  
   final List<Widget> _children =[
-    const HomeScreen(),
+    HomeScreen(),
     TutorialsScreen(),
     SettingsScreen(),
   ];  

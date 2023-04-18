@@ -1,4 +1,4 @@
-const String baseURL = "http://192.168.1.68:8000/api/"; //emulator localhost
+const String baseURL = "http://172.16.16.129:8000/api/"; //emulator localhost
 const Map<String, String> headers = {
   "Accept": "application/json",
   "Content-Type": "application/json",
@@ -7,6 +7,7 @@ const Map<String, String> headers = {
 const String loginAPI = '${baseURL}auth/login';
 const String registerAPI = '${baseURL}auth/register';
 const String changePasswordAPI = '${baseURL}auth/changePassword';
+const String updateProfileAPI = '${baseURL}auth/updateProfile';
 const String logoutAPI = '${baseURL}auth/logout';
 
 const String trafficSignAPI = '${baseURL}trafficSign';
@@ -28,4 +29,3 @@ const String userHistoryAPI = '${baseURL}userHistory';
 //     )
 //   );
 // }
-

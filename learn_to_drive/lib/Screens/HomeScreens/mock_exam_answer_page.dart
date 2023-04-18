@@ -91,7 +91,12 @@ class MockExamAnswer extends StatelessWidget {
                               Text('${'C'.tr}.  ${question.option3}', style: const TextStyle(fontSize: 16)),
                               Text('${'D'.tr}.  ${question.option4}', style: const TextStyle(fontSize: 16)),
                               Text('${'correct-option'.tr} : ${question.correctOption?.tr}', style: const TextStyle(fontSize: 16)),
-                              Text('${'selected-option'.tr} : ${question.selectOption?.tr}', style: const TextStyle(fontSize: 16)),
+                              Text('${'selected-option'.tr} : ${question.selectOption?.tr}', 
+                                style: const TextStyle(
+                                  fontSize: 16, 
+                                  // color: (question.correctOption == question.selectOption) ? Colors.green : Colors.red,
+                                )
+                              ),
                             ],
                           ),
                         ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,7 +20,7 @@ class AuthController extends GetxController {
         currentUser = CurrentUser.fromJson(responseMap['user']);
         accessToken = AccessToken.fromJson(responseMap['token']);
         Get.off(() => const NavigationPage());
-        Get.snackbar("Success", responseMap["message"]);
+        Get.snackbar("Success", responseMap["message"], backgroundColor: Colors.green);
       } else {
         Get.snackbar("Failed", responseMap["message"]);
       }
@@ -39,7 +40,8 @@ class AuthController extends GetxController {
           currentUser = CurrentUser.fromJson(responseMap['data']['user']);
           accessToken = AccessToken.fromJson(responseMap['data']['token']);
           Get.off(() => const NavigationPage());
-          Get.snackbar("Registration Successful", responseMap["message"]);
+          Get.snackbar("Registration Successful",responseMap["message"],
+          backgroundColor: Colors.green);
         } else {
           Get.snackbar("Failed", responseMap["message"]);
         }
@@ -71,7 +73,7 @@ class AuthController extends GetxController {
           Map responseMap = jsonDecode(response.body);
           if (response.statusCode == 200) {
             Get.back();
-            Get.snackbar("Success", responseMap["message"]); 
+            Get.snackbar("Success", responseMap["message"], backgroundColor: Colors.green); 
           }else{
             Get.snackbar("Failed", responseMap["message"]); 
           }
@@ -81,6 +83,21 @@ class AuthController extends GetxController {
       } else {
         Get.snackbar("Failed", 'Please enter same password in confirm password');
       }
+    } else {
+      Get.snackbar("Failed", 'Enter all the required fields');
+    }
+  }
+
+    Future<void> updateProfile({required String name, required String email, required String phoneNumber, required String profileImage}) async {
+    if (name.isNotEmpty && email.isNotEmpty && phoneNumber.isNotEmpty && profileImage.isNotEmpty) {
+          http.Response response = await AuthServicesRepo.updateProfile(name, email, phoneNumber, profileImage);
+          Map responseMap = jsonDecode(response.body);
+          if (response.statusCode == 200) {
+            Get.back();
+            Get.snackbar("Success", responseMap["message"], backgroundColor: Colors.green); 
+          }else{
+            Get.snackbar("Failed", responseMap["message"]); 
+          }
     } else {
       Get.snackbar("Failed", 'Enter all the required fields');
     }

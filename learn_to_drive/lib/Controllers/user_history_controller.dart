@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -57,9 +58,9 @@ class UserHistoryController extends GetxController {
       Map responseMap = await jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.off(() => const NavigationPage());
-        Get.snackbar("Success", responseMap["message"]);
+        Get.snackbar("Success", responseMap["message"], backgroundColor: Colors.green);
       } else {
-        Get.snackbar("Failed", responseMap["message"]);
+        Get.snackbar("Failed", responseMap["message"], backgroundColor: Colors.red);
       }
   }
 }

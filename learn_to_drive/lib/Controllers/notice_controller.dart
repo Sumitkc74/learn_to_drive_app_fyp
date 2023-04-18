@@ -6,6 +6,7 @@ import 'package:first_app/Services/repo/notice_repo.dart';
 
 class NoticeController extends GetxController {
   RxList<Notice> notices = RxList();
+  RxInt unReadCount = RxInt(0);
   RxBool loading = false.obs;
   @override
   void onInit() {
@@ -19,6 +20,7 @@ class NoticeController extends GetxController {
       onSuccess: (notice) {
         loading.value = false;
         notices.addAll(notice);
+        unReadCount.value += notice.length;
       },
       onError: ((message) {
         loading.value = false;

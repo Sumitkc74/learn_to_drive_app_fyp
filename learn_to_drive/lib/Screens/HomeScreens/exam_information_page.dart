@@ -24,7 +24,7 @@ class _ExamInformationPageState extends State<ExamInformationPage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: ScreensAppBar(
-        title: 'reading-materials'.tr, 
+        title: 'exam-trial-information'.tr, 
         onPressed: () => Get.back(),
       ),
       

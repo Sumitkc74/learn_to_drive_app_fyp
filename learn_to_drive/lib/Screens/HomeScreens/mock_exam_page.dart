@@ -87,7 +87,7 @@ class _MockExamState extends State<MockExam> {
       if(correctOption == chosenOption){
         userScore++;
       }
-      if(currentQuestion == 9){
+      if(currentQuestion == 25){
         endQuiz();
       }
       currentQuestion++;
@@ -97,7 +97,7 @@ class _MockExamState extends State<MockExam> {
   void getQuestion(){
     QuestionRepo.getQuestion(onSuccess: (question){
       questions = question..shuffle();
-      questions = questions.sublist(0, 9);
+      questions = questions.sublist(0, 25);
       attemptedQuestions = questions;
     }, onError: (onError){});
   }
@@ -253,14 +253,15 @@ class _MockExamState extends State<MockExam> {
                       option: '${'A'.tr}. ${question.first.option1}',
                       onPressed: () {
                         question.first.selectOption = 'A';
-                        checkAnswer(question.first.correctOption.toString(),'1');
+                        checkAnswer(question.first.correctOption.toString(),'A');
                       }, 
                     ),
 
                     QuestionOptionButtonWidget(
                       option: '${'B'.tr}. ${question.first.option2}',
                       onPressed: () {
-                        checkAnswer(question.first.correctOption.toString(),'2');
+                        question.first.selectOption = 'B';
+                        checkAnswer(question.first.correctOption.toString(),'B');
                       }, 
                     ),
 
@@ -268,7 +269,7 @@ class _MockExamState extends State<MockExam> {
                       option: '${'C'.tr}. ${question.first.option3}',
                       onPressed: () {
                         question.first.selectOption = 'C';
-                        checkAnswer(question.first.correctOption.toString(),'3');
+                        checkAnswer(question.first.correctOption.toString(),'C');
                       }, 
                     ),
 

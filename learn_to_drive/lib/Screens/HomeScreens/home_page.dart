@@ -9,7 +9,6 @@ import 'package:first_app/Screens/HomeScreens/reading_materials_page.dart';
 import 'package:first_app/Screens/HomeScreens/traffic_sign_page.dart';
 import 'package:first_app/Screens/HomeScreens/vision_test_page.dart';
 import 'package:first_app/Screens/HomeScreens/mock_exam_page.dart';
-import 'package:first_app/Screens/HomeScreens/notifications.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,13 +16,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ScreensAppBar(
-        title: '${'welcome'.tr}, ${currentUser.name}', 
-        automaticallyImplyLeading: false,
-        action: IconButton(
-          onPressed: () => Get.to(() => NotificationsScreen()),
-          icon: const Icon(Icons.notifications_outlined),
-        ),
+      appBar: MainScreensAppBar(
+        title: '${'welcome'.tr}, ${currentUser.name}',
       ),
       
       // backgroundColor: AppColors.secondaryBlack,

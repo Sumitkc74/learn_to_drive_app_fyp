@@ -29,7 +29,6 @@ class SettingsController extends GetxController{
   }
 
   void pickImage() async {
-    log("Picking image");
     final pickedImage = await picker.pickImage(
       source: ImageSource.gallery,
       imageQuality: 40,
@@ -45,8 +44,8 @@ class SettingsController extends GetxController{
     KhaltiScope.of(context).pay(
       config: PaymentConfig(
         amount: 20000,
-        productIdentity: "jhasdklas",
-        productName: "dsdjksldasd",
+        productIdentity: "PaymentId",
+        productName: "UserUpgrade",
       ),
       preferences: [
         PaymentPreference.khalti,
@@ -55,14 +54,14 @@ class SettingsController extends GetxController{
         paymentController.token.value = success.token;
         paymentController.amount.value = success.amount;
         paymentController.postPayment();
-        Get.snackbar("Payment Success", 'The Payment is successfully completed.');
+        Get.snackbar("Payment Success", 'The Payment is successfully completed.', backgroundColor: Colors.green);
       },
       onFailure: (fa) {
-        Get.snackbar("Payment Fail ", 'Your Payment has failed. Please Try again!');
+        Get.snackbar("Payment Failed", 'Your Payment has failed. Please Try again!', backgroundColor: Colors.red);
       },
       onCancel: () {
        
-        Get.snackbar("Payment Cancelled ", 'You have cancelled your payment.');
+        Get.snackbar("Payment Cancelled", 'You have cancelled your payment.', backgroundColor: Colors.red);
       },
     );
   }

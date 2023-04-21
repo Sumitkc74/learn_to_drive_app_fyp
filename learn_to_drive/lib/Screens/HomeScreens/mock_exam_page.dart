@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import 'package:first_app/Screens/HomeScreens/mock_exam_answer_page.dart';
 import 'package:first_app/Screens/navigator.dart';
-// import 'package:first_app/Controllers/question_controller.dart';
 import 'package:first_app/Services/repo/question_repo.dart';
 import 'package:first_app/Models/question_model.dart';
 import 'package:first_app/utils/colors.dart';

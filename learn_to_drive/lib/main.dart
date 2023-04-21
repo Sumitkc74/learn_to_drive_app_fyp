@@ -1,4 +1,3 @@
-import 'package:first_app/Screens/navigator.dart';
 import 'package:first_app/Screens/splashscreen.dart';
 import 'package:first_app/Services/locale_string.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,3 @@
-import 'package:first_app/utils/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:first_app/Screens/SettingsScreens/change_language_page.dart';
@@ -9,10 +8,11 @@ import 'package:first_app/Controllers/auth_controller.dart';
 import 'package:first_app/Models/current_user_model.dart';
 import 'package:first_app/utils/widgets/screens_app_bar.dart';
 import 'package:first_app/utils/widgets/settings_widget.dart';
+import 'package:first_app/utils/widgets/button_widget.dart';
 import 'package:first_app/utils/colors.dart';
 
 class SettingsScreen extends StatefulWidget {
-  SettingsScreen({super.key});
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -21,7 +21,6 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   final settingsController = Get.put(SettingsController());
   final authController = Get.put(AuthController());
-
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
@@ -73,9 +72,7 @@ void initState() {
                           hintText: 'name'.tr,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           filled: true, 
-                          // fillColor: Colors.white,
                         ),
-                        // onChanged: (value) { _email = value; }
                       ),
                       const SizedBox(height: 15,),
 
@@ -86,9 +83,7 @@ void initState() {
                           hintText: 'email'.tr,
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           filled: true, 
-                          // fillColor: Colors.white,
                         ),
-                        // onChanged: (value) { _email = value; }
                       ),
                       const SizedBox(height: 15,),
 
@@ -101,21 +96,21 @@ void initState() {
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                           filled: true, 
                         ),
-                        // onChanged: (value) { _phoneNumber = value; }
                       ),
                       const SizedBox(height: 25,),
                       TextButton(
                         onPressed: settingsController.pickImage,
                         child: const Center(
-                          child: Text("Upload Image"),
+                          child: Text("Upload Image", style: TextStyle(color: Colors.white),),
                         ),
                       ),
-                      // CustomFilledButtonWidget(
-                      //   label: 'login'.tr,
-                      //   onPressed: () => 
-                      //   authController.updateProfile(name: nameController.text, email: emailController.text, phoneNumber: phoneNumberController.text, profileImage: profileImageController.text), 
-                      //   margin: 10
-                      // ),
+                      const SizedBox(height: 25,),
+
+                      CustomFilledButtonWidget(
+                        label: 'Update'.tr,
+                        onPressed: () => Get.snackbar("Failed", 'Incorrect phone-number field', backgroundColor: Colors.red),
+                        margin: 10
+                      ),
                     ]
                   )
                 )

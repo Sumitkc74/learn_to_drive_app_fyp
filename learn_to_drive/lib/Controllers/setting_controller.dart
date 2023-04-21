@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:first_app/Controllers/payment_controller.dart';
 
 class SettingsController extends GetxController{
-  
   PaymentController paymentController = Get.put(PaymentController());
   bool isEnglish = true;
   final picker = ImagePicker();
@@ -17,27 +15,6 @@ class SettingsController extends GetxController{
   void toggleDarkMode(bool value) {
     isDarkModeOn.value = value;
     Get.changeThemeMode(isDarkModeOn.value ? ThemeMode.dark : ThemeMode.light);
-  }
-
-  checkLanguage(String english, String nepali){
-    if(isEnglish){
-      return english;
-    }
-    else{
-      return nepali;
-    }
-  }
-
-  void pickImage() async {
-    final pickedImage = await picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 40,
-      maxHeight: 500,
-      maxWidth: 500
-    );
-    if (pickedImage != null) {
-      image.value = File(pickedImage.path);
-    }
   }
   
   payWithKhalti(context) {
@@ -64,5 +41,26 @@ class SettingsController extends GetxController{
         Get.snackbar("Payment Cancelled", 'You have cancelled your payment.', backgroundColor: Colors.red);
       },
     );
+  }
+  
+  checkLanguage(String english, String nepali){
+    if(isEnglish){
+      return english;
+    }
+    else{
+      return nepali;
+    }
+  }
+
+  void pickImage() async {
+    final pickedImage = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 40,
+      maxHeight: 500,
+      maxWidth: 500
+    );
+    if (pickedImage != null) {
+      image.value = File(pickedImage.path);
+    }
   }
 }
